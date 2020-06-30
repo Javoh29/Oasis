@@ -8,8 +8,6 @@ class SightsModel(){
     var name_en: String = ""
     var name_ru: String = ""
     var photo: String = ""
-    var distance: Double = 0.0
-    var dataSnap: String = ""
 
     constructor(
         address: String,
@@ -18,9 +16,7 @@ class SightsModel(){
         like: Int,
         name_en: String,
         name_ru: String,
-        photo: String,
-        distance: Double,
-        dataSnap: String
+        photo: String
     ) : this(){
         this.address = address
         this.lat = lat
@@ -29,12 +25,10 @@ class SightsModel(){
         this.name_en = name_en
         this.name_ru = name_ru
         this.photo = photo
-        this.distance = distance
-        this.dataSnap = dataSnap
     }
 
     override fun toString(): String {
-        return "SightsModel(address='$address', lat=$lat, lon=$lon, like=$like, name_en='$name_en', name_ru='$name_ru', photo='$photo', distance=$distance)"
+        return "SightsModel(address='$address', lat=$lat, lon=$lon, like=$like, name_en='$name_en', name_ru='$name_ru', photo='$photo')"
     }
 
 

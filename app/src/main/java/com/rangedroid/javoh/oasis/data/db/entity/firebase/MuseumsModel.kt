@@ -11,8 +11,6 @@ class MuseumsModel(){
     var timeClose: String = ""
     var price: String = ""
     var photo: String = ""
-    var distance: Float = 0f
-    var dataSnap: String = ""
 
     constructor(
     address: String,
@@ -24,9 +22,7 @@ class MuseumsModel(){
     timeOpen: String,
     timeClose: String,
     price: String,
-    photo: String,
-    distance: Float,
-    dataSnap: String
+    photo: String
     ) : this() {
         this.address = address
         this.lat = lat
@@ -38,12 +34,10 @@ class MuseumsModel(){
         this.timeClose = timeClose
         this.price = price
         this.photo = photo
-        this.distance = distance
-        this.dataSnap = dataSnap
     }
 
     override fun toString(): String {
-        return "MuseumsModel(address='$address', lat=$lat, lon=$lon, like=$like, name_en='$name_en', name_ru='$name_ru', timeOpen='$timeOpen', timeClose='$timeClose', price='$price', photo='$photo', distance=$distance)"
+        return "MuseumsModel(address='$address', lat=$lat, lon=$lon, like=$like, name_en='$name_en', name_ru='$name_ru', timeOpen='$timeOpen', timeClose='$timeClose', price='$price', photo='$photo')"
     }
 
 

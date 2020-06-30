@@ -63,7 +63,7 @@ class HomeFragment : ScopedFragment(R.layout.home_fragment), KodeinAware, Action
         val currentWind = viewModel.wind().value.await()
 
         currentClimate.observe(viewLifecycleOwner, Observer{
-            if (it == null) return@Observer
+            if (it == null || it.size < 12) return@Observer
             if (it.isNotEmpty()) {
                 weatherModel.climate = ArrayList(it)
                 bindUI()
@@ -71,12 +71,12 @@ class HomeFragment : ScopedFragment(R.layout.home_fragment), KodeinAware, Action
         })
 
         currentWeather.observe(viewLifecycleOwner, Observer{
-            if (it == null) return@Observer
+            if (it == null || it.size < 12) return@Observer
             weatherModel.weather = ArrayList(it)
         })
 
         currentWind.observe(viewLifecycleOwner, Observer{
-            if (it == null) return@Observer
+            if (it == null || it.size < 12) return@Observer
             weatherModel.wind = ArrayList(it)
         })
 

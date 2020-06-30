@@ -10,9 +10,7 @@ import com.rangedroid.javoh.oasis.data.db.FirebaseDao
 import com.rangedroid.javoh.oasis.data.db.entity.current.Climate
 import com.rangedroid.javoh.oasis.data.db.entity.current.Weather
 import com.rangedroid.javoh.oasis.data.db.entity.current.Wind
-import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesInfoModelsEn
-import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesInfoModelsRu
-import com.rangedroid.javoh.oasis.data.db.entity.firebase.MoreAppsModel
+import com.rangedroid.javoh.oasis.data.db.entity.firebase.*
 import com.rangedroid.javoh.oasis.data.db.unitlocalized.UnitSpecificCitiesInfoModel
 import com.rangedroid.javoh.oasis.data.network.WeatherNetworkDataSource
 import com.rangedroid.javoh.oasis.data.network.response.CurrentWeatherResponse
@@ -37,10 +35,14 @@ class OasisRepositoryImpl(
     private val appsRu = "apps_ru"
     private val appsEn = "apps_en"
     private val cityMoreInfo = "city_more_info_en"
-    private val cityPhotoInfo = "photos_night"
-    private val cityPhoto = "photos"
-    private val cityTextEn = "text_info_en"
-    private val cityTextRu = "text_info_ru"
+    private val banks = "banks"
+    private val hotels = "hotels"
+    private val sights = "history_places"
+    private val markets = "markets"
+    private val museums = "museums"
+    private val photos = "photos"
+    private val photosNight = "photos_night"
+    private val restaurants = "restaurants"
     private val myRef: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     init {
@@ -82,7 +84,9 @@ class OasisRepositoryImpl(
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.child("update_base").value.toString() == "yes") {
                         firebaseDao.deleteCitiesInfoEn()
-                        firebaseDao.deleteCitiesInfoEn()
+                        firebaseDao.deleteCitiesInfoRu()
+                        firebaseDao.deleteCitiesMoreInfo()
+                        firebaseDao.deleteMoreApps()
                         loadFirebase(dataSnapshot)
                     } else {
                         if (unitProvider.getUnitLoadFirebase() == UnitLoadFirebase.NOT) {
@@ -249,7 +253,306 @@ class OasisRepositoryImpl(
         }
 
         for (ds in dataSnapshot.child(cities).child(cityMoreInfo).children){
-
+            val listBanksModel: ArrayList<BanksModel> = ArrayList()
+            val listHotelsModel: ArrayList<HotelsModel> = ArrayList()
+            val listMarketsModel: ArrayList<MarketsModel> = ArrayList()
+            val listSightsModel: ArrayList<SightsModel> = ArrayList()
+            val listMuseumsModel: ArrayList<MuseumsModel> = ArrayList()
+            val listRestaurantsModel: ArrayList<RestaurantsModel> = ArrayList()
+            val listPhotos: ArrayList<String> = ArrayList()
+            val listPhotosNight: ArrayList<String> = ArrayList()
+            dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child(banks).children.forEach {
+                val model = BanksModel(
+                    address = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(banks).child(it.key.toString())
+                        .getValue(BanksModel::class.java)!!.address,
+                    lat = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(banks).child(it.key.toString())
+                        .getValue(BanksModel::class.java)!!.lat,
+                    lon = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(banks).child(it.key.toString())
+                        .getValue(BanksModel::class.java)!!.lon,
+                    like = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(banks).child(it.key.toString())
+                        .getValue(BanksModel::class.java)!!.like,
+                    name = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(banks).child(it.key.toString())
+                        .getValue(BanksModel::class.java)!!.name,
+                    tel = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(banks).child(it.key.toString())
+                        .getValue(BanksModel::class.java)!!.tel,
+                    time = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(banks).child(it.key.toString())
+                        .getValue(BanksModel::class.java)!!.time,
+                    timeOpen = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(banks).child(it.key.toString())
+                        .getValue(BanksModel::class.java)!!.timeOpen,
+                    timeClose = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(banks).child(it.key.toString())
+                        .getValue(BanksModel::class.java)!!.timeClose,
+                    website = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(banks).child(it.key.toString())
+                        .getValue(BanksModel::class.java)!!.website,
+                    ccyEx = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(banks).child(it.key.toString())
+                        .getValue(BanksModel::class.java)!!.ccyEx
+                )
+                listBanksModel.add(model)
+            }
+            dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child(hotels).children.forEach {
+                val model = HotelsModel(
+                    address = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(hotels).child(it.key.toString())
+                        .getValue(HotelsModel::class.java)!!.address,
+                    lat = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(hotels).child(it.key.toString())
+                        .getValue(HotelsModel::class.java)!!.lat,
+                    lon = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(hotels).child(it.key.toString())
+                        .getValue(HotelsModel::class.java)!!.lon,
+                    like = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(hotels).child(it.key.toString())
+                        .getValue(HotelsModel::class.java)!!.like,
+                    name = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(hotels).child(it.key.toString())
+                        .getValue(HotelsModel::class.java)!!.name,
+                    tel = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(hotels).child(it.key.toString())
+                        .getValue(HotelsModel::class.java)!!.tel,
+                    time = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(hotels).child(it.key.toString())
+                        .getValue(HotelsModel::class.java)!!.time,
+                    timeOut = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(hotels).child(it.key.toString())
+                        .getValue(HotelsModel::class.java)!!.timeOut,
+                    timeIn = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(hotels).child(it.key.toString())
+                        .getValue(HotelsModel::class.java)!!.timeIn,
+                    website = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(hotels).child(it.key.toString())
+                        .getValue(HotelsModel::class.java)!!.website,
+                    wifi = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(hotels).child(it.key.toString())
+                        .getValue(HotelsModel::class.java)!!.wifi
+                )
+                listHotelsModel.add(model)
+            }
+            dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child(markets).children.forEach {
+                val model = MarketsModel(
+                    address = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(markets).child(it.key.toString())
+                        .getValue(MarketsModel::class.java)!!.address,
+                    lat = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(markets).child(it.key.toString())
+                        .getValue(MarketsModel::class.java)!!.lat,
+                    lon = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(markets).child(it.key.toString())
+                        .getValue(MarketsModel::class.java)!!.lon,
+                    like = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(markets).child(it.key.toString())
+                        .getValue(MarketsModel::class.java)!!.like,
+                    name_en = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(markets).child(it.key.toString())
+                        .getValue(MarketsModel::class.java)!!.name_en,
+                    name_ru = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(markets).child(it.key.toString())
+                        .getValue(MarketsModel::class.java)!!.name_ru,
+                    photo = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(markets).child(it.key.toString())
+                        .getValue(MarketsModel::class.java)!!.photo,
+                    timeClose = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(markets).child(it.key.toString())
+                        .getValue(MarketsModel::class.java)!!.timeClose,
+                    timeOpen = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(markets).child(it.key.toString())
+                        .getValue(MarketsModel::class.java)!!.timeOpen
+                )
+                listMarketsModel.add(model)
+            }
+            dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child(sights).children.forEach {
+                val model = SightsModel(
+                    address = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(sights).child(it.key.toString())
+                        .getValue(SightsModel::class.java)!!.address,
+                    lat = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(sights).child(it.key.toString())
+                        .getValue(SightsModel::class.java)!!.lat,
+                    lon = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(sights).child(it.key.toString())
+                        .getValue(SightsModel::class.java)!!.lon,
+                    like = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(sights).child(it.key.toString())
+                        .getValue(SightsModel::class.java)!!.like,
+                    name_en = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(sights).child(it.key.toString())
+                        .getValue(SightsModel::class.java)!!.name_en,
+                    name_ru = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(sights).child(it.key.toString())
+                        .getValue(SightsModel::class.java)!!.name_ru,
+                    photo = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(sights).child(it.key.toString())
+                        .getValue(SightsModel::class.java)!!.photo
+                )
+                listSightsModel.add(model)
+            }
+            dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child(museums).children.forEach {
+                val model = MuseumsModel(
+                    address = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(museums).child(it.key.toString())
+                        .getValue(MuseumsModel::class.java)!!.address,
+                    lat = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(museums).child(it.key.toString())
+                        .getValue(MuseumsModel::class.java)!!.lat,
+                    lon = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(museums).child(it.key.toString())
+                        .getValue(MuseumsModel::class.java)!!.lon,
+                    like = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(museums).child(it.key.toString())
+                        .getValue(MuseumsModel::class.java)!!.like,
+                    name_en = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(museums).child(it.key.toString())
+                        .getValue(MuseumsModel::class.java)!!.name_en,
+                    name_ru = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(museums).child(it.key.toString())
+                        .getValue(MuseumsModel::class.java)!!.name_ru,
+                    photo = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(museums).child(it.key.toString())
+                        .getValue(MuseumsModel::class.java)!!.photo,
+                    price = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(museums).child(it.key.toString())
+                        .getValue(MuseumsModel::class.java)!!.price,
+                    timeOpen = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(museums).child(it.key.toString())
+                        .getValue(MuseumsModel::class.java)!!.timeOpen,
+                    timeClose = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(museums).child(it.key.toString())
+                        .getValue(MuseumsModel::class.java)!!.timeClose
+                )
+                listMuseumsModel.add(model)
+            }
+            dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child(restaurants).children.forEach {
+                val model = RestaurantsModel(
+                    address = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(restaurants).child(it.key.toString())
+                        .getValue(RestaurantsModel::class.java)!!.address,
+                    lat = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(restaurants).child(it.key.toString())
+                        .getValue(RestaurantsModel::class.java)!!.lat,
+                    lon = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(restaurants).child(it.key.toString())
+                        .getValue(RestaurantsModel::class.java)!!.lon,
+                    like = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(restaurants).child(it.key.toString())
+                        .getValue(RestaurantsModel::class.java)!!.like,
+                    name = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(restaurants).child(it.key.toString())
+                        .getValue(RestaurantsModel::class.java)!!.name,
+                    prices = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(restaurants).child(it.key.toString())
+                        .getValue(RestaurantsModel::class.java)!!.prices,
+                    tel = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(restaurants).child(it.key.toString())
+                        .getValue(RestaurantsModel::class.java)!!.tel,
+                    time = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(restaurants).child(it.key.toString())
+                        .getValue(RestaurantsModel::class.java)!!.time,
+                    timeClose = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(restaurants).child(it.key.toString())
+                        .getValue(RestaurantsModel::class.java)!!.timeClose,
+                    timeOpen = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(restaurants).child(it.key.toString())
+                        .getValue(RestaurantsModel::class.java)!!.timeOpen,
+                    wifi = dataSnapshot.child(cities)
+                        .child(cityMoreInfo).child(ds.key.toString())
+                        .child(restaurants).child(it.key.toString())
+                        .getValue(RestaurantsModel::class.java)!!.wifi
+                )
+                listRestaurantsModel.add(model)
+            }
+            dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child(photos).children.forEach {
+                listPhotos.add(
+                    dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child(photos).child(it.key.toString()).value.toString()
+                )
+            }
+            dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child(photosNight).children.forEach {
+                listPhotosNight.add(
+                    dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child(photosNight).child(it.key.toString()).value.toString()
+                )
+            }
+            GlobalScope.launch(Dispatchers.IO) {
+                firebaseDao.upsertCitiesMoreInfo(
+                    CitiesMoreInfo(
+                        banks = listBanksModel,
+                        hotels = listHotelsModel,
+                        markets = listMarketsModel,
+                        sights = listSightsModel,
+                        museums = listMuseumsModel,
+                        restaurants = listRestaurantsModel,
+                        photos = listPhotos,
+                        photosNight = listPhotosNight,
+                        textInfoEn = dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child("text_info_en").value.toString(),
+                        textInfoRu = dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child("text_info_ru").value.toString()
+                    )
+                )
+            }
         }
         unitProvider.setUnitLoadFirebase(true)
     }

@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesInfoModelsEn
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesInfoModelsRu
+import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesMoreInfo
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.MoreAppsModel
 import com.rangedroid.javoh.oasis.data.db.unitlocalized.UnitSpecificCitiesInfoModel
 
@@ -38,4 +39,13 @@ interface FirebaseDao {
 
     @Query("DELETE FROM firebase_more_apps")
     fun deleteMoreApps()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun upsertCitiesMoreInfo(citiesMoreInfo: CitiesMoreInfo)
+
+    @Query("SELECT * from cities_more_info")
+    fun getCitiesMoreInfo(): LiveData<List<CitiesMoreInfo>>
+
+    @Query("DELETE FROM cities_more_info")
+    fun deleteCitiesMoreInfo()
 }
