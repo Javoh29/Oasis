@@ -8,22 +8,22 @@ import java.lang.reflect.Type
 
 class DataConverterSights {
     @TypeConverter
-    fun fromCountryLangList(countryLang: List<SightsModel?>?): String? {
-        if (countryLang == null) {
+    fun fromModelList(model: List<SightsModel?>?): String? {
+        if (model == null) {
             return null
         }
         val gson = Gson()
         val type: Type = object : TypeToken<List<SightsModel?>?>() {}.type
-        return gson.toJson(countryLang, type)
+        return gson.toJson(model, type)
     }
 
     @TypeConverter
-    fun toCountryLangList(countryLangString: String?): List<SightsModel?>? {
-        if (countryLangString == null) {
+    fun toModelList(model: String?): List<SightsModel?>? {
+        if (model == null) {
             return null
         }
         val gson = Gson()
         val type: Type = object : TypeToken<List<SightsModel?>?>() {}.type
-        return gson.fromJson(countryLangString, type)
+        return gson.fromJson(model, type)
     }
 }

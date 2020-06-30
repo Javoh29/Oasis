@@ -6,24 +6,24 @@ import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
 
-class DataConverterBanks {
+class DataConverterRes {
     @TypeConverter
-    fun fromModelList(model: List<BanksModel?>?): String? {
+    fun fromModelList(model: List<RestaurantsModel?>?): String? {
         if (model == null) {
             return null
         }
         val gson = Gson()
-        val type: Type = object : TypeToken<List<BanksModel?>?>() {}.type
+        val type: Type = object : TypeToken<List<RestaurantsModel?>?>() {}.type
         return gson.toJson(model, type)
     }
 
     @TypeConverter
-    fun toModelList(model: String?): List<BanksModel?>? {
+    fun toModelList(model: String?): List<RestaurantsModel?>? {
         if (model == null) {
             return null
         }
         val gson = Gson()
-        val type: Type = object : TypeToken<List<BanksModel?>?>() {}.type
+        val type: Type = object : TypeToken<List<RestaurantsModel?>?>() {}.type
         return gson.fromJson(model, type)
     }
 }
