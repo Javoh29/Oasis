@@ -1,0 +1,145 @@
+<resources>
+    <string name="app_name" translatable="false">Oasis</string>
+
+    <!--SharadPreferences strings-->
+    <string name="bool_panorama" translatable="false">PANORAMA</string>
+    <string name="bool_change" translatable="false">THEME</string>
+    <string name="text_about_ver" translatable="false">Oasis ver 1.9</string>
+    <string name="text_uzb" translatable="false">Uzbekistan</string>
+
+    <string name="open" translatable="false">Open</string>
+    <string name="close" translatable="false">Close</string>
+    <string name="city_info_1">Area —</string>
+    <string name="city_info_2">Climate type —</string>
+    <string name="city_info_3">Height above sea level —</string>
+    <string name="city_info_4">Population —</string>
+    <string name="city_info_5">PostCode —</string>
+    <string name="city_info_6">Telephone code —</string>
+    <string name="city_info_7">Car code —</string>
+    <string name="city_info_8">Transport from the center to -</string>
+    <string name="menu_text_home">Home</string>
+    <string name="menu_text_hotels">Hotels</string>
+    <string name="menu_text_tours">Tours</string>
+    <string name="menu_text_restaurants">Restaurants</string>
+    <string name="menu_text_banks">Banks</string>
+    <string name="menu_text_weather">Weather</string>
+    <string name="menu_text_currency">Currency</string>
+    <string name="menu_text_holidays">Holidays</string>
+    <string name="menu_text_language">Language</string>
+    <string name="menu_text_for">For tourists</string>
+    <string name="menu_text_phbook">Phrasebook</string>
+    <string name="menu_text_uzb360">Uzbekistan 360</string>
+    <string name="menu_text_other_app">Other apps</string>
+    <string name="tv_author">Author —</string>
+    <string name="more_info">Information</string>
+    <string name="more_cities">Cities</string>
+    <string name="btn_info_text">Open</string>
+    <string name="title_dialog">Choose language</string>
+    <string name="lang_menu">Language</string>
+    <string name="about_menu">About</string>
+    <string name="more_apps_menu">More Apps</string>
+    <string name="no_con_text">No internet connection</string>
+    <string name="no_con_text2">Please check your internet connection and try again</string>
+    <string name="btn_try_age">Try again</string>
+    <string name="tv_creator_name">Creator: Javohir Ergashev</string>
+    <string name="tv_mail">Mail: javohergashev97@gmail.com</string>
+    <string name="tv_telegram">Telegram: @Javoh29</string>
+    <string name="text_more_apps">If you like our apps,\n then we still have new apps for you.</string>
+    <string name="currency_app_bar">Currency</string>
+    <string name="weather_app_bar">Weather</string>
+    <string name="text_tel_num">Telephone number: </string>
+    <string name="text_work_time">Working hours - </string>
+    <string name="text_time_open">Opens from: </string>
+    <string name="text_time_close">Closes at: </string>
+    <string name="text_tickets">Tickets: </string>
+    <string name="text_sum">sum</string>
+    <string name="text_ccy_ex">Currency exchange: </string>
+    <string name="text_from_km"> km: From you</string>
+    <string name="text_from_m"> m: From you</string>
+    <string name="text_website">Website: </string>
+    <string name="btn_text_call">Call</string>
+    <string name="btn_text_open">Open</string>
+    <string name="btn_text_open_map">Open in map</string>
+    <string name="text_work_time_banks_not">Monday to Friday</string>
+    <string name="text_work_time_banks_yes">Monday to Saturday</string>
+    <string name="text_yes">Yes</string>
+    <string name="text_not">Not</string>
+    <string name="text_contacts">Contacts</string>
+    <string name="text_timeOut_hotels">Check out time:</string>
+    <string name="text_timeIn_hotels">Check in time:</string>
+    <string name="text_fast_yes">WiFi: Yes</string>
+    <string name="text_fast_not">WiFi: Not</string>
+    <string name="text_not_website">there is currently no website</string>
+    <string name="text_work_time_hotels_yes">Round the clock</string>
+    <string name="text_work_time_hotels_not">Not round the clock</string>
+    <string name="text_wifi" translatable="false">Wi-Fi:</string>
+    <string name="text_prices">Prices:</string>
+    <string name="text_work_time_rest_yes">Seven days a week</string>
+    <string name="text_work_time_rest_no">Six days a week</string>
+    <string name="text_prices_1">Low</string>
+    <string name="text_prices_2">Medium</string>
+    <string name="text_prices_3">High</string>
+    <string name="text_sights">Sights</string>
+    <string name="text_hotels">Hotels</string>
+    <string name="text_restaurants">Restaurants</string>
+    <string name="text_museums">Museums</string>
+    <string name="text_markets">Markets</string>
+    <string name="text_no_info">no information</string>
+    <string name="text_banks">Banks</string>
+    <string name="text_befor_info">Brief info</string>
+    <string name="text_address">Address:</string>
+    <string name="text_humidity">Humidity</string>
+    <string name="text_wind">Wind</string>
+    <string name="text_thunderstorm">Thunderstorm</string>
+    <string name="text_drizzle">Drizzle</string>
+    <string name="text_rain">Rain</string>
+    <string name="text_snow">Snow</string>
+    <string name="text_mist">Mist</string>
+    <string name="text_smoke">Smoke</string>
+    <string name="text_haze">Haze</string>
+    <string name="text_dust">Dust</string>
+    <string name="text_fog">Fog</string>
+    <string name="text_sand">Sand</string>
+    <string name="text_ash">Ash</string>
+    <string name="text_squall">Squall</string>
+    <string name="text_tornado">Tornado</string>
+    <string name="text_clear">Clear</string>
+    <string name="text_clouds">Clouds</string>
+    <string name="text_feels">Feels like:</string>
+    <string name="text_pressure">Pressure:</string>
+    <string name="text_uzb_sum">Uzbek sum</string>
+    <string name="text_add_ccy">Add currency</string>
+    <string name="text_search">Search</string>
+    <string name="btn_text_back">Back</string>
+    <string name="text_backspeed">Please click BACK again to exit.</string>
+    <string name="text_gps">Please turn on GPS to determine your location.</string>
+    <string name="text_ok">OK</string>
+    <string name="text_close">Close</string>
+    <string name="text_soon">Soon add</string>
+    <string name="text_slogan">This is where the journey begins.</string>
+    <string name="text_exp">Oasis is application for tourists and tourism development in Uzbekistan.</string>
+    <string name="text_enable_gps">Enable Geolocation</string>
+    <string name="text_allow">Allow</string>
+    <string name="text_gps_needs">First needed your location  to determine the distance to the place you need</string>
+    <string name="text_read_more">Read more</string>
+    <string name="text_cities">Cities:</string>
+    <string name="text_season">Season:</string>
+    <!--    Holidays-->
+    <string name="text_yan1">New Year\'s Day</string>
+    <string name="text_yan14">Day of Defenders of the Motherland</string>
+    <string name="text_mar8">International Women\'s Day</string>
+    <string name="text_mar21">Nawruz</string>
+    <string name="text_may9">Memorial and Remembrance Day</string>
+    <string name="text_sep1">Independence Day</string>
+    <string name="text_oct1">Teacher and Mentor Day</string>
+    <string name="text_dec8">Constitution day</string>
+    <string name="text_yan_1">January 1</string>
+    <string name="text_yan_14">January 14</string>
+    <string name="text_mar_8">March 8</string>
+    <string name="text_mar_21">March 21</string>
+    <string name="text_may">May 9</string>
+    <string name="text_sep">September 1</string>
+    <string name="text_oct">October 1</string>
+    <string name="text_dec">December 8</string>
+
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="bottom_shadow_fon" format="integer"/>
+    <attr name="color_home_view" format="color"/>
+    <attr name="tv_info_color" format="color"/>
+    <attr name="tv_flowing_color" format="color"/>
+    <attr name="img_flowing_line" format="reference"/>
+    <attr name="img_flowing_background" format="reference"/>
+    <attr name="flowing_drawer_color" format="color"/>
+    <attr name="line_ccy" format="reference"/>
+    <attr name="panel_color" format="color"/>
+    <attr name="btn_open" format="reference"/>
+    <attr name="foldingcell_shadow" format="reference"/>
+    <attr name="nav_menu_text_color" format="color"/>
+    <attr name="nav_items_icons_color" format="reference"/>
+    <attr name="ic_menu_mood" format="reference"/>
+
+    <declare-styleable name="MovingImageView" >
+        <attr name="miv_speed" format="integer" />
+        <attr name="miv_repetitions" format="integer" />
+        <attr name="miv_max_relative_size" format="float" />
+        <attr name="miv_min_relative_offset" format="float" />
+        <attr name="miv_start_delay" format="integer" />
+        <attr name="miv_load_on_create" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="MovingImageViewTheme" >
+        <attr name="movingImageViewStyle" format="reference" />
+    </declare-styleable>
+</resources>

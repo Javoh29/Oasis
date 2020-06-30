@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:folding-cell="http://schemas.android.com/tools"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:id="@+id/frame_list"
+    android:paddingEnd="5dp"
+    android:paddingStart="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?foldingcell_shadow">
+
+    <com.ramotion.foldingcell.FoldingCell
+        android:id="@+id/folding_cell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/list_shadow_fon_purple"
+        android:padding="2dp"
+        android:layout_marginBottom="10dp"
+        folding-cell:animationDuration="1800">
+
+        <RelativeLayout
+            android:id="@+id/cell_content_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:id="@+id/cell_frame">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_view_home_cell"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_view_weather_cell"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <ImageView
+                            android:id="@+id/img_weather_ic"
+                            android:layout_width="100dp"
+                            android:layout_height="90dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentStart="true"/>
+
+                        <ImageView
+                            android:id="@+id/ic_wind"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="25dp"
+                            android:src="@drawable/ic_wind"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"/>
+
+                        <TextView
+                            android:id="@+id/tv_wind_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@id/ic_wind"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="20dp"
+                            android:text="@string/text_wind"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:textColor="@color/colorWhite"
+                            android:layout_marginEnd="5dp"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tv_wind"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_alignBottom="@+id/tv_wind_text"
+                            android:layout_toStartOf="@id/ic_wind"
+                            android:textColor="@color/colorWhite"
+                            android:fontFamily="@font/rubik"
+                            android:textSize="10sp" />
+
+                        <ImageView
+                            android:id="@+id/ic_humidity"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="25dp"
+                            android:src="@drawable/ic_humidity"
+                            android:layout_alignBottom="@+id/ic_wind"
+                            android:layout_alignParentEnd="true"/>
+
+                        <TextView
+                            android:id="@+id/tv_humidity_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@id/ic_wind"
+                            android:layout_alignBottom="@+id/tv_wind_text"
+                            android:layout_marginBottom="25dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="@string/text_humidity"
+                            android:textColor="@color/colorWhite"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tv_humidity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_alignBottom="@+id/tv_humidity_text"
+                            android:layout_toStartOf="@id/ic_wind"
+                            android:textColor="@color/colorWhite"
+                            android:fontFamily="@font/rubik"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tv_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_alignBottom="@+id/tv_humidity"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/colorWhite"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_temp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik"
+                            android:layout_toStartOf="@id/tv_humidity_text"
+                            android:layout_marginEnd="20dp"
+                            android:textColor="@color/colorWhite"
+                            android:layout_alignBottom="@id/tv_wind_text"
+                            android:textSize="40sp"/>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </FrameLayout>
+
+            <com.sackcentury.shinebuttonlib.ShineButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/cell_frame"
+                android:id="@+id/like_btn"
+                app:btn_color="@android:color/darker_gray"
+                app:btn_fill_color="@color/colorMenuText"
+                app:allow_random_color="false"
+                app:enable_flashing="false"
+                app:big_shine_color="@color/colorMenuText"
+                app:click_animation_duration="200"
+                app:shine_animation_duration="1500"
+                app:shine_turn_angle="10"
+                app:small_shine_offset_angle="20"
+                app:shine_distance_multiple="1.5"
+                app:small_shine_color="#B91010"
+                app:shine_count="8"
+                app:siShape="@raw/heart"
+                folding-cell:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/tv_like_qty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/work_sans"
+                android:layout_below="@id/cell_frame"
+                android:layout_marginTop="5dp"
+                android:textSize="16sp"
+                android:textColor="?tv_flowing_color"
+                android:layout_toEndOf="@id/like_btn"/>
+
+            <TextView
+                android:id="@+id/tv_city_name_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@+id/cell_frame"
+                android:textSize="20sp"
+                android:fontFamily="@font/work_sans"
+                android:textColor="?tv_flowing_color"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="?img_flowing_line"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/like_btn"/>
+
+            <TextView
+                android:id="@+id/tv_area"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/city_info_1"
+                android:layout_below="@id/like_btn"
+                style="@style/TextViewQtyStyle"/>
+
+            <TextView
+                android:id="@+id/tv_area_qty"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/like_btn"
+                style="@style/TextViewQtyStyle"/>
+
+            <TextView
+                android:id="@+id/tv_climate"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/city_info_2"
+                android:layout_below="@id/tv_area"
+                style="@style/TextViewQtyStyle"/>
+
+            <TextView
+                android:id="@+id/tv_climate_qty"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/tv_area_qty"
+                style="@style/TextViewQtyStyle"/>
+
+            <TextView
+                android:id="@+id/tv_hight"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/city_info_3"
+                android:layout_below="@id/tv_climate"
+                style="@style/TextViewQtyStyle"/>
+
+            <TextView
+                android:id="@+id/tv_hight_qty"
+                style="@style/TextViewQtyStyle"
+                android:layout_below="@id/tv_climate_qty"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp" />
+
+            <TextView
+                android:id="@+id/tv_pop"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/city_info_4"
+                android:layout_below="@id/tv_hight"
+                style="@style/TextViewQtyStyle"/>
+
+            <TextView
+                android:id="@+id/tv_pop_qty"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/tv_hight_qty"
+                style="@style/TextViewQtyStyle"/>
+
+            <TextView
+                android:id="@+id/tv_tel_code"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/city_info_6"
+                android:layout_below="@id/tv_pop"
+                style="@style/TextViewQtyStyle"/>
+
+            <TextView
+                android:id="@+id/tv_tel_code_qty"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/tv_pop_qty"
+                style="@style/TextViewQtyStyle"/>
+
+            <View
+                android:id="@+id/view_line_down"
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="?img_flowing_line"
+                android:layout_below="@+id/tv_tel_code"/>
+
+            <com.skydoves.elasticviews.ElasticButton
+                android:id="@+id/btn_open"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_line_down"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/btn_info_text"
+                android:textAlignment="center"
+                android:background="?btn_open"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:textColor="@color/colorPanel"
+                android:fontFamily="@font/work_sans_medium"
+                app:button_duration="250"
+                app:button_scale="0.87"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cell_title_view"
+            android:layout_width="match_parent"
+            android:layout_height="182dp"
+            android:visibility="visible">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="2dp"
+                android:id="@+id/card_view_list">
+
+                <com.rangedroid.javoh.oasis.utils.MovingImageView
+                    android:id="@+id/img_view_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:miv_load_on_create="true"
+                    app:miv_max_relative_size="3"
+                    app:miv_min_relative_offset="0.2"
+                    app:miv_repetitions="-1"
+                    app:miv_speed="20" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_cities"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:indeterminateDrawable="@drawable/spinner_progressbar"
+                    android:indeterminateOnly="true" />
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/card_view_list"
+                android:layout_toEndOf="@id/tv_city_name"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="3dp"
+                android:background="?tv_flowing_color"/>
+
+            <TextView
+                android:id="@+id/tv_city_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_list"
+                android:paddingStart="3dp"
+                android:paddingEnd="5dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="3dp"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/work_sans"
+                android:textColor="?tv_flowing_color"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+
+    </com.ramotion.foldingcell.FoldingCell>
+
+</FrameLayout>

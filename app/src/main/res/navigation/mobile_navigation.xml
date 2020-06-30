@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment" />
+
+    <fragment
+        android:id="@+id/toursFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.ToursFragment"
+        android:label="tours_fragment"
+        tools:layout="@layout/tours_fragment" />
+
+    <fragment
+        android:id="@+id/sightsFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.SightsFragment"
+        android:label="sights_fragment"
+        tools:layout="@layout/sights_fragment" />
+
+    <fragment
+        android:id="@+id/hotelsFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.HotelsFragment"
+        android:label="hotels_fragment"
+        tools:layout="@layout/hotels_fragment" />
+
+    <activity
+        android:id="@+id/aboutActivity"
+        android:name="com.rangedroid.javoh.oasis.ui.activities.AboutActivity"
+        android:label="activity_about"
+        tools:layout="@layout/activity_about" />
+
+</navigation>

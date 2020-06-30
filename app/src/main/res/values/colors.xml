@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#03A7ED</color>
+    <color name="colorPrimaryDark">#048FCA</color>
+    <color name="colorAccent">#03A7ED</color>
+
+    <color name="colorPrimaryNight">#0F1012</color>
+    <color name="colorAccentNight">#0F1012</color>
+
+    <color name="colorPrimaryDarkAbout">#373737</color>
+
+    <color name="colorPanelList">#E5E5E5</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorDarkVeryGrey">#343434</color>
+    <color name="colorHomeLayoutFont">#b7e6ff</color>
+    <color name="colorHomeLayoutFontNight">#1A1C1F</color>
+    <color name="colorInitial">#50E4F8</color>
+    <color name="colorConnectTwo">#567FAC</color>
+    <color name="colorMoreAppsInstall">#67B904</color>
+    <color name="colorMenuText">#004686</color>
+    <color name="colorPanel">#EBF1F7</color>
+    <color name="colorPanelNight">#2B2F35</color>
+    <color name="colorPanelCcy">#DFEEF9</color>
+    <color name="colorPanelMainCcy">#C5E3FF</color>
+    <color name="colorFlowing_night">#141419</color>
+    <color name="colorMenuTextGrey">#65758B</color>
+</resources>

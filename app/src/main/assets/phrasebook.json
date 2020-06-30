@@ -1,0 +1,575 @@
+[
+  {
+    "name_en" : "Greetings",
+    "name_ru" : "Приветствия",
+    "fon" : 1,
+    "text_en" : [
+      "Hello! How do you do?",
+      "Glad to meet you",
+      "How are you?",
+      "I'm fine too thanks",
+      "Not bad",
+      "So-so"
+    ],
+    "text_ru" : [
+      "Здравствуйте! Как вы?",
+      "Рад тебя видеть",
+      "Как дела?",
+      "И я хорощо, спасибо",
+      "Неплохо",
+      "Так себе"
+    ],
+    "text_uz" : [
+      "Salom Qandaysiz?",
+      "Seni ko'rganimdan hursandman",
+      "Ishlaringiz qalay?",
+      "Men ham yaxshiman, rahmat",
+      "Yomon emas",
+      "Bo`ladi"
+    ]
+  },
+  {
+    "name_en" : "Goodbyes",
+    "name_ru" : "Прощания",
+    "fon" : 2,
+    "text_en" : [
+      "Goof-bye!",
+      "Good night!",
+      "So long!",
+      "Take care!",
+      "See you...",
+      "See you tomorrow!",
+      "See you soon!",
+      "Excuse me, but I must be going",
+      "I've got to go",
+      "Good luck!",
+      "Say hello to..."
+    ],
+    "text_ru" : [
+      "До свидания!",
+      "Спокойной ночи!",
+      "Пока!",
+      "Береги себя!",
+      "Увидимся...",
+      "До завтра!",
+      "До скорой встречи!",
+      "Извините, я должен идти",
+      "Мне надо идти",
+      "Всего хорошего!",
+      "Передавайте привет..."
+    ],
+    "text_uz" : [
+      "Ko‘rishguncha!",
+      "Xayrli tun!",
+      "Xayr!",
+      "O`zingni ehtiyot qil!",
+      "Ko‘rishguncha...",
+      "Ertaga ko'rishguncha!",
+      "Tezda ko'rishguncha!",
+      "Kechirasiz, ketishim kerak",
+      "Ketishim kerak",
+      "Oq yo`l",
+      "Salom ayting..."
+    ]
+  },
+  {
+    "name_en" : "Requests",
+    "name_ru" : "Просьбы",
+    "fon" : 3,
+    "text_en" : [
+      "Please...Will you please...",
+      "May I ask you to...",
+      "May I...",
+      "...ask you a question?",
+      "can i come in?",
+      "sit here?",
+      "May I smoke?",
+      "Could you help me, please?",
+      "Give me, please...",
+      "Show me, please...",
+      "Please, wait for me!"
+    ],
+    "text_ru" : [
+      "Простите...Пожалуйста...",
+      "Могу ли я вас попростиь...",
+      "Могу ли я...",
+      "...спросить?",
+      "можно войти?",
+      "сесть здесь?",
+      "Можно курить?",
+      "Не могли бы вы мне помочь?",
+      "Дайте, пожалуйста...",
+      "Покажите, пожалуйста...",
+      "Подождите меня, пожалуйста!"
+    ],
+    "text_uz" : [
+      "Kechirasiz ... iltimos ...",
+      "So`rasam bo`ladimi...?",
+      "Mumkunmi...",
+      "...so'rash?",
+      "kirish mumkunmi?",
+      "Shu erga o`tiraymi?",
+      "Chekish mumkinmi?",
+      "Menga yordam bera olmaysizmi?",
+      "Iltimos bering...",
+      "Iltimos, ko'rsating ...",
+      "Iltimos, meni kutip turing!"
+    ]
+  },
+  {
+    "name_en" : "Apologies",
+    "name_ru" : "Извинения",
+    "fon" : 4,
+    "text_en" : [
+      "Excuse me. I'm sorry",
+      "Sorry to be later",
+      "It's not my fault",
+      "That was my fault",
+      "Sorry?",
+      "Sorry, I didn't hear",
+      "Would you mind repeating it",
+      "I'm afraid I won't be able to help you",
+      "I'm very much regret what happened",
+      "I'm very sorry about that",
+      "Please don't be angry!"
+    ],
+    "text_ru" : [
+      "Простите. Извините",
+      "Извините за опоздание",
+      "Я не виноват",
+      "Это моя вина",
+      "Простите что?",
+      "Извините, я не услышал",
+      "Если можно, повторите",
+      "Боюсь, я вам не смогу помочь",
+      "Я очень жалею, что так случилось",
+      "Я очень сожалею об этом",
+      "Пожалуйста, не сердись!"
+    ],
+    "text_uz" : [
+      "Kechirasiz. Uzr",
+      "Kechikkanim uchun uzr",
+      "Men aybdor emasman",
+      "Bu mening aybim",
+      "Kechirasiz nima?",
+      "Kechirasiz, men eshitmadim",
+      "Iloji bo'lsa, takrorlang",
+      "Sizga yordam berolmayman deb qo'rqaman",
+      "Bunday bo'lganidan juda afsusdaman",
+      "Bundan juda afsusdaman",
+      "Iltimos, jaxlingiz chiqmasin!"
+    ]
+  },
+  {
+    "name_en" : "Thanks",
+    "name_ru" : "Благодарности",
+    "fon" : 5,
+    "text_en" : [
+      "Thank you",
+      "Thanks a lot",
+      "I'm very grateful to you",
+      "You are very kind",
+      "Thank you for your attention",
+      "Thank you for your hospitality"
+    ],
+    "text_ru" : [
+      "Спасибо ",
+      "Большое спасибо",
+      "Я вам очень благодарен",
+      "Вы очень любезны",
+      "Спасибо за внимание",
+      "Спасибо за гостеприимство"
+    ],
+    "text_uz" : [
+      "Rahmat",
+      "Katta rahmat",
+      "Sizdan juda minnatdorman",
+      "Siz juda mehribonsiz",
+      "E'tiboringiz uchun rahmat.",
+      "Mehmondo'stlik uchun rahmat"
+    ]
+  },
+  {
+    "name_en" : "Acquaintance",
+    "name_ru" : "Знакомство",
+    "fon" : 6,
+    "text_en" : [
+      "Please, introduce yourselves",
+      "Pleased to meet you!",
+      "May I speak to you?",
+      "I would like to speak to you",
+      "Are you busy at the moment?",
+      "Please, give me your tel number?",
+      "I hope we'll meet again",
+      "It's a pleasure to meet you"
+    ],
+    "text_ru" : [
+      "Пожалуйста, представьтесь",
+      "Рад с вами познакомится!",
+      "Могу ли я поговорить с вами?",
+      "Я хотел бы поговорить с вами",
+      "Вы сейчас заняты?",
+      "Пожалуйста, дайте мне ваш номер телефона?",
+      "Я надеюсь, что мы встретимся снова",
+      "Было очень приятно с вами познакомится"
+    ],
+    "text_uz" : [
+      "O'zingizni tanishtiring",
+      "Siz bilan tanishganimdan xursandman!",
+      "Siz bilan gaplashsam bo'ladimi?",
+      "Men siz bilan gaplashmoqchiman",
+      "Hozir bandmisiz?",
+      "Iltimos, telefon raqamingizni bering?",
+      "Yana uchrashamiz degan umiddaman",
+      "Siz bilan tanishganimdan juda minnaddorman"
+    ]
+  },
+  {
+    "name_en" : "Direction and distance",
+    "name_ru" : "Направление и расстояние",
+    "fon" : 1,
+    "text_en" : [
+      "Near",
+      "Forward",
+      "Far off",
+      "Left",
+      "To the left",
+      "Back",
+      "Right",
+      "To the right",
+      "Straight"
+    ],
+    "text_ru" : [
+      "Близко",
+      "Вперед",
+      "Далеко",
+      "Левый",
+      "На лево",
+      "Назад",
+      "Правый",
+      "На право",
+      "Прямо"
+    ],
+    "text_uz" : [
+      "Yaqin",
+      "Oldinga",
+      "Uzoq",
+      "Chap",
+      "Chap tomonga",
+      "Ortga",
+      "O'ng",
+      "O'ng tomonga",
+      "To'g'riga"
+    ]
+  },
+  {
+    "name_en" : "Price",
+    "name_ru" : "Цена",
+    "fon" : 2,
+    "text_en" : [
+      "Cheap",
+      "Cheaper",
+      "Expensive",
+      "More expensive",
+      "Too expensive"
+    ],
+    "text_ru" : [
+      "Дешевый",
+      "Дешевле",
+      "Дорогой",
+      "Дороже",
+      "Очень дорогой"
+    ],
+    "text_uz" : [
+      "Arzon",
+      "Arzonroq",
+      "Qimmat",
+      "Qimmatroq",
+      "Juda qimmat"
+    ]
+  },
+  {
+    "name_en" : "Times of Day",
+    "name_ru" : "Время суток",
+    "fon" : 3,
+    "text_en" : [
+      "Tonight",
+      "At the afternoon",
+      "Evening",
+      "In the morning",
+      "Night",
+      "At midnight",
+      "At noon",
+      "This evening"
+    ],
+    "text_ru" : [
+      "Вечером",
+      "Днем",
+      "Вечер",
+      "Утром",
+      "Ночь",
+      "В полночь",
+      "В полдень",
+      "Сегодня вечером"
+    ],
+    "text_uz" : [
+      "Kechki payit",
+      "Kunduzi",
+      "Kechqurun",
+      "Ertalab",
+      "Kechasi",
+      "Yarim tunda",
+      "Yarim kunda",
+      "Bugun kechqurun"
+    ]
+  },
+  {
+    "name_en" : "Days of the week",
+    "name_ru" : "Дни недели",
+    "fon" : 4,
+    "text_en" : [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+      "What day is it today?",
+      "Today is Monday",
+      "On what day shall we meet?",
+      "On Saturday",
+      "Working day",
+      "Day off",
+      "Weekend"
+    ],
+    "text_ru" : [
+      "Понедельник",
+      "Вторник",
+      "Среда",
+      "Четверг",
+      "Пятница",
+      "Суббота",
+      "Воскресенье",
+      "Какой сегодня день?",
+      "Сегодня понедельник",
+      "В какой день мы встретимся?",
+      "В субботу",
+      "Рабочий день",
+      "Выходной",
+      "Выходные"
+    ],
+    "text_uz" : [
+      "Dushanba",
+      "Seshanba",
+      "Chorshanba",
+      "Payshanba",
+      "Juma",
+      "Shanba",
+      "Yakshanba",
+      "Bugun qaysi kun?",
+      "Bugun dushanba",
+      "Biz qaysi kuni uchrashamiz?",
+      "Shanbada",
+      "Ish kuni",
+      "Dam olish kuni",
+      "Dam olish kunlari"
+    ]
+  },
+  {
+    "name_en" : "Time",
+    "name_ru" : "Время",
+    "fon" : 5,
+    "text_en" : [
+      "What time is it now?",
+      "Eight o'clock",
+      "Eight fifteen",
+      "Half past eight",
+      "Five minutes to nine",
+      "Quarter to nine",
+      "About twelve"
+    ],
+    "text_ru" : [
+      "Который час?",
+      "Восемь часов",
+      "Восемь пятнадцать",
+      "Половина девятого",
+      "Без пяти девять",
+      "Без пятнадцати девять",
+      "Около двенадцати"
+    ],
+    "text_uz" : [
+      "Soat nechada?",
+      "Soat sakkiz",
+      "Sakkizu o'n besh",
+      "Sakkiz yarimdan oshdi",
+      "Beshta kam to'qqiz",
+      "O'n beshta kam to`qqiz",
+      "Taxminan o'n ikki"
+    ]
+  },
+  {
+    "name_en" : "Documents and passport control",
+    "name_ru" : "Документы и паспортный контроль",
+    "fon" : 6,
+    "text_en" : [
+      "Visa",
+      "exit visa",
+      "entry visa",
+      "transit visa",
+      "Citizenship",
+      "Document",
+      "Consulate",
+      "Border",
+      "Passport",
+      "Embassy",
+      "Where is passport control?",
+      "Where do I sign?"
+    ],
+    "text_ru" : [
+      "Виза",
+      "выездная виза",
+      "въездная виза",
+      "транзитная виза",
+      "Гражданство",
+      "Документ",
+      "Консульство",
+      "Граница",
+      "Паспорт",
+      "Посольство",
+      "Где паспортный контроль?",
+      "Где я должен прописаться?"
+    ],
+    "text_uz" : [
+      "Viza",
+      "chiqish vizasi",
+      "kirish vizasi",
+      "tranzit viza",
+      "Fuqarolik",
+      "Hujjat",
+      "Konsullik",
+      "Chegara",
+      "Pasport",
+      "Elchixona",
+      "Pasport nazorati qayerda?",
+      "Qayerda imzo qo'yishim kerak?"
+    ]
+  },
+  {
+    "name_en" : "Customs",
+    "name_ru" : "Таможня",
+    "fon" : 1,
+    "text_en" : [
+      "Alcoholic beverages",
+      "customs declaration",
+      "Prohibited",
+      "Gold",
+      "Customs inspection",
+      "Which way to customs?",
+      "Where is the baggage check?",
+      "I have only things for personal use",
+      "I didn't intend to break rules"
+    ],
+    "text_ru" : [
+      "Спиртные напитки",
+      "таможенная декларация",
+      "Запрещено",
+      "Золото",
+      "Таможенный досмотр",
+      "Где таможня?",
+      "Где багажный контроль?",
+      "У меня только личные вещи",
+      "Я не хотел нарушать правила"
+    ],
+    "text_uz" : [
+      "Spirtli ichimliklar",
+      "bojxona deklaratsiyasi",
+      "Taqiqlangan",
+      "Oltin",
+      "Bojxona tekshiruvi",
+      "Bojxona qayerda?",
+      "Yuklarni nazorat qilish qayerda?",
+      "Menda faqat shaxsiy narsalarim bor",
+      "Men qoydani buzmoqchi emas edim"
+    ]
+  },
+  {
+    "name_en" : "A meeting",
+    "name_ru" : "Встреча",
+    "fon" : 2,
+    "text_en" : [
+      "Can we agree",
+      "How can I get to your place?",
+      "Where can we meet?",
+      "See you...",
+      "tomorrow",
+      "On what day?",
+      "I have very little time",
+      "In half an hour",
+      "Please hurry!",
+      "Don't be late!",
+      "I'll be back in a moment"
+    ],
+    "text_ru" : [
+      "Можем ли мы договорится",
+      "Как добраться к вам?",
+      "Где мы можем встретить?",
+      "Увидимся...",
+      "завтра",
+      "В какой день?",
+      "У меня очень мало времени",
+      "В течении получаса",
+      "Пожалуйста, поторопись!",
+      "Не опаздывайте",
+      "Я вернусь через минуту"
+    ],
+    "text_uz" : [
+      "Kelishsak bo`ladimi",
+      "Siznikiga qanday borsa bo`ladi?",
+      "Qayerda uchrashamiz?",
+      "Ko'rishguncha...",
+      "ertaga",
+      "Qaysi kun?",
+      "Meni judayam vaqtim oz",
+      "Yarim soat ichida",
+      "Iltimos, shoshiling!",
+      "Kech qolmang",
+      "Tezda qaytib kelaman"
+    ]
+  },
+  {
+    "name_en" : "Money",
+    "name_ru" : "Деньги",
+    "fon" : 3,
+    "text_en" : [
+      "Bank",
+      "Bank note",
+      "Money",
+      "Cash",
+      "Coin",
+      "Exchange",
+      "Signature",
+      "How much is the commission?"
+    ],
+    "text_ru" : [
+      "Банк",
+      "Денежная купюра",
+      "Деньги",
+      "Наличные деньги",
+      "Монета",
+      "Обмен",
+      "Подпись",
+      "Сколько стоит комиссия?"
+    ],
+    "text_uz" : [
+      "Bank",
+      "Banknot",
+      "Pul",
+      "Naqd pul",
+      "Tangalar",
+      "Birja",
+      "Imzo",
+      "Komissiya qancha turadi?"
+    ]
+  }
+]

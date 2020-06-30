@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/anim_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorInitial">
+
+    <ImageView
+        android:id="@+id/img_camel"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:paddingStart="15dp"
+        android:visibility="invisible"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_camel"/>
+
+    <TextView
+        android:id="@+id/tv_init_oasis"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_camel"
+        android:layout_centerHorizontal="true"
+        android:paddingStart="10dp"
+        android:fontFamily="@font/righteous"
+        android:text="@string/app_name"
+        android:visibility="invisible"
+        android:textColor="#562C7D"
+        android:textSize="32sp" />
+
+    <ImageView
+        android:id="@+id/img_sun"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_init_oasis"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_sun"/>
+
+    <ImageView
+        android:id="@+id/img_tower_one"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:scaleType="fitXY"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/tv_init_oasis"
+        android:src="@drawable/ic_tower_one"/>
+
+    <ImageView
+        android:id="@+id/img_tower_two"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:scaleType="fitXY"
+        android:layout_marginTop="150dp"
+        android:layout_below="@id/tv_init_oasis"
+        android:src="@drawable/ic_tower_two"/>
+
+    <ImageView
+        android:id="@+id/img_squeak_one"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:scaleType="fitXY"
+        android:layout_marginTop="80dp"
+        android:layout_below="@id/img_sun"
+        android:src="@drawable/ic_squeak_one"/>
+
+    <ImageView
+        android:id="@+id/img_squeak_two"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:scaleType="fitXY"
+        android:layout_marginTop="90dp"
+        android:layout_below="@id/img_sun"
+        android:src="@drawable/ic_squeak_two"/>
+
+    <ImageView
+        android:id="@+id/img_caravan"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/img_sun"
+        android:src="@drawable/ic_caravan"/>
+
+</RelativeLayout>

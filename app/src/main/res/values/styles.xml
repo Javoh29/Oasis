@@ -1,0 +1,76 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="ThemeDay" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@font/work_sans</item>
+        <item name="bottom_shadow_fon">@drawable/home_to_shadow</item>
+        <item name="color_home_view">@color/colorHomeLayoutFont</item>
+        <item name="tv_info_color">@color/colorDarkVeryGrey</item>
+        <item name="android:textColorSecondary">@color/colorWhite</item>
+        <item name="tv_flowing_color">@color/colorMenuText</item>
+        <item name="flowing_drawer_color">@color/colorHomeLayoutFont</item>
+        <item name="img_flowing_line">@drawable/ab_line</item>
+        <item name="img_flowing_background">@color/colorWhite</item>
+        <item name="line_ccy">@drawable/ab_line_add</item>
+        <item name="panel_color">@color/colorPanel</item>
+        <item name="btn_open">@drawable/btn_cell_open</item>
+        <item name="foldingcell_shadow">@drawable/shadow_fon_purple</item>
+        <item name="nav_menu_text_color">@color/colorMenuText</item>
+        <item name="nav_items_icons_color">@drawable/ab_nav_items_background</item>
+        <item name="ic_menu_mood">@drawable/ic_moon_night</item>
+    </style>
+
+    <style name="ThemeAbout" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkAbout</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ThemeNight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryNight</item>
+        <item name="colorPrimaryDark">@color/colorAccentNight</item>
+        <item name="colorAccent">@color/colorAccentNight</item>
+        <item name="android:textViewStyle">@font/work_sans</item>
+        <item name="bottom_shadow_fon">@drawable/home_to_shadow_night</item>
+        <item name="color_home_view">@color/colorHomeLayoutFontNight</item>
+        <item name="tv_info_color">@color/colorWhite</item>
+        <item name="android:textColorSecondary">@color/colorWhite</item>
+        <item name="tv_flowing_color">@color/colorPanel</item>
+        <item name="flowing_drawer_color">@color/colorFlowing_night</item>
+        <item name="img_flowing_line">@drawable/ab_line_night</item>
+        <item name="img_flowing_background">@color/colorFlowing_night</item>
+        <item name="line_ccy">@drawable/ab_line_add_white</item>
+        <item name="panel_color">@color/colorPanelNight</item>
+        <item name="btn_open">@drawable/btn_cell_open_night</item>
+        <item name="foldingcell_shadow">@drawable/shadow_fon_black</item>
+        <item name="nav_menu_text_color">@color/colorMenuTextGrey</item>
+        <item name="nav_items_icons_color">@drawable/ab_nav_items_background_night</item>
+        <item name="ic_menu_mood">@drawable/ic_sun_day</item>
+    </style>
+
+    <style name="TextViewQtyStyle" parent="android:Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?tv_flowing_color</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="TextViewQtyStyleReg" parent="android:Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorDarkVeryGrey</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="Text_menu_flowing" parent="android:Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorMenuTextGrey</item>
+        <item name="android:fontFamily">@font/raleway_semibold</item>
+    </style>
+
+</resources>

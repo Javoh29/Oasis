@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient
+                android:type="linear"
+                android:angle="135"
+                android:startColor="#5388DE"
+                android:endColor="#55D7B5"/>
+        </shape>
+    </item>
+
+    <item
+        android:left="400dp"
+        android:right="400dp"
+        android:top="200dp"
+        android:bottom="200dp">
+        <bitmap android:src="@drawable/def_img"
+            android:gravity="center"
+            tools:ignore="ResourceCycle" />
+    </item>
+</layer-list>

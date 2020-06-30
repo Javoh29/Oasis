@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:title="@string/menu_text_home"
+        android:icon="@drawable/ic_menu_home"/>
+
+    <item
+        android:id="@+id/toursFragment"
+        android:title="@string/menu_text_tours"
+        android:icon="@drawable/ic_menu_tours" />
+
+    <item
+        android:id="@+id/sightsFragment"
+        android:title="@string/text_sights"
+        android:icon="@drawable/ic_menu_sights"/>
+
+    <item
+        android:id="@+id/hotelsFragment"
+        android:title="@string/menu_text_hotels"
+        android:icon="@drawable/ic_menu_hotels"/>
+
+    <item
+        android:id="@+id/restaurantsFragment"
+        android:title="@string/menu_text_restaurants"
+        android:icon="@drawable/ic_menu_restaurants"/>
+
+    <item
+        android:id="@+id/museumsFragment"
+        android:title="@string/text_museums"
+        android:icon="@drawable/ic_menu_museums"/>
+
+    <item
+        android:id="@+id/marketsFragment"
+        android:title="@string/text_markets"
+        android:icon="@drawable/ic_menu_markets"/>
+
+    <item
+        android:id="@+id/banksFragment"
+        android:title="@string/menu_text_banks"
+        android:icon="@drawable/ic_menu_banks"/>
+
+    <item
+        android:id="@+id/weatherFragment"
+        android:title="@string/menu_text_weather"
+        android:icon="@drawable/ic_menu_weather"/>
+
+    <item
+        android:id="@+id/currencyFragment"
+        android:title="@string/menu_text_currency"
+        android:icon="@drawable/ic_menu_currency"/>
+
+    <item
+        android:id="@+id/holidaysFragment"
+        android:title="@string/menu_text_holidays"
+        android:icon="@drawable/ic_menu_holidays"/>
+
+    <item
+        android:id="@+id/forTouristsFragment"
+        android:title="@string/menu_text_for"
+        android:icon="@drawable/ic_menu_for_tourists"/>
+
+    <item
+        android:id="@+id/phbookFragment"
+        android:title="@string/menu_text_phbook"
+        android:icon="@drawable/ic_menu_phrasebook"/>
+
+    <item
+        android:id="@+id/uzb360Fragment"
+        android:title="@string/menu_text_uzb360"
+        android:icon="@drawable/ic_menu_uzb_360"/>
+
+    <item
+        android:id="@+id/languageDialog"
+        android:title="@string/menu_text_language"
+        android:icon="@drawable/ic_menu_language"/>
+
+    <item
+        android:id="@+id/otherAppActivity"
+        android:title="@string/menu_text_other_app"
+        android:icon="@drawable/ic_menu_other_apps"/>
+
+    <item
+        android:id="@+id/aboutActivity"
+        android:title="@string/about_menu"
+        android:icon="@drawable/ic_menu_about"/>
+</menu>
