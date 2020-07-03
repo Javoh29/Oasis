@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?color_home_view"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/frame_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scroll_view">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_info_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/view_pager_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="240dp" />
+
+                        <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+                            android:id="@+id/indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:layout_marginBottom="15dp"
+                            app:spi_dotColor="@color/colorWhite"
+                            app:spi_dotSelectedColor="@color/colorAccent"/>
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+
+                    <FrameLayout
+                        android:id="@+id/relative_info_sight"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:background="@drawable/img_main_fon_sights"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="20dp"
+                            android:src="@drawable/ic_sights" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="140dp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="30sp"
+                            android:fontFamily="@font/raleway_semibold"
+                            android:text="@string/text_sights"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:shadowColor="@color/colorMenuText"
+                            android:shadowDx="2"
+                            android:shadowDy="4"
+                            android:shadowRadius="5"/>
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+
+                    <FrameLayout
+                        android:id="@+id/relative_info_hotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:background="@drawable/img_fon_hotel"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="20dp"
+                            android:src="@drawable/ic_hotels" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="140dp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="30sp"
+                            android:fontFamily="@font/raleway_semibold"
+                            android:text="@string/text_hotels"
+                            android:shadowColor="@color/colorMenuText"
+                            android:shadowDx="2"
+                            android:shadowDy="4"
+                            android:shadowRadius="5"/>
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+
+                    <FrameLayout
+                        android:id="@+id/relative_info_resta"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/img_fon_restaurant">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="20dp"
+                            android:src="@drawable/ic_restaurants" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="140dp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="30sp"
+                            android:fontFamily="@font/raleway_semibold"
+                            android:text="@string/text_restaurants"
+                            android:shadowColor="@color/colorMenuText"
+                            android:shadowDx="2"
+                            android:shadowDy="4"
+                            android:shadowRadius="5"/>
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+
+                    <FrameLayout
+                        android:id="@+id/relative_info_museums"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/img_main_fon_museums">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
+                            android:src="@drawable/ic_museums" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="140dp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="30sp"
+                            android:fontFamily="@font/raleway_semibold"
+                            android:text="@string/text_museums"
+                            android:shadowColor="@color/colorMenuText"
+                            android:shadowDx="2"
+                            android:shadowDy="4"
+                            android:shadowRadius="5"/>
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+
+                    <FrameLayout
+                        android:id="@+id/relative_info_markets"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/img_main_fon_markets">
+
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
+                            android:src="@drawable/ic_markets" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="140dp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="30sp"
+                            android:fontFamily="@font/raleway_semibold"
+                            android:text="@string/text_markets"
+                            android:shadowColor="@color/colorMenuText"
+                            android:shadowDx="2"
+                            android:shadowDy="4"
+                            android:shadowRadius="5"/>
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+
+                    <FrameLayout
+                        android:id="@+id/relative_info_bank"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/img_fon_bank">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="20dp"
+                            android:src="@drawable/ic_banks" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="140dp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="30sp"
+                            android:fontFamily="@font/raleway_semibold"
+                            android:text="@string/text_banks"
+                            android:shadowColor="@color/colorMenuText"
+                            android:shadowDx="2"
+                            android:shadowDy="4"
+                            android:shadowRadius="5"/>
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    app:cardBackgroundColor="@color/colorPanel"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorMenuText"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/raleway_semibold"
+                        android:text="@string/text_befor_info"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1.5dp"
+                        android:background="@drawable/ab_line"
+                        android:layout_marginTop="45dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_full_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="50dp"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/comfortaa"
+                        android:lineSpacingExtra="5sp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="20dp"
+                        android:textColor="@color/colorMenuText"
+                        android:textIsSelectable="true"
+                        android:textSize="14sp" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spin_kit_info"
+        android:layout_gravity="center"
+        style="@style/SpinKitView.Large.CubeGrid"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="?bottom_shadow_fon"
+        android:layout_gravity="bottom"/>
+
+</FrameLayout>

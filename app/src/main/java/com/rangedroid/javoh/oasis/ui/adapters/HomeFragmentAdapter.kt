@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.ramotion.foldingcell.FoldingCell
@@ -16,6 +17,7 @@ import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.db.entity.current.CurrentWeatherModel
 import com.rangedroid.javoh.oasis.data.db.unitlocalized.UnitSpecificCitiesInfoModel
 import com.rangedroid.javoh.oasis.data.provider.UnitProvider
+import com.rangedroid.javoh.oasis.ui.fragments.HomeFragmentDirections
 import com.rangedroid.javoh.oasis.utils.MovingImageView
 import com.rangedroid.javoh.oasis.utils.UnitPanorama
 import com.rangedroid.javoh.oasis.utils.UnitTheme
@@ -307,7 +309,7 @@ class HomeFragmentAdapter():
         }
 
         holder.btnOpen.setOnClickListener {
-//            activity.get()?.startActivity(Intent(activity.get(), InfoActivity::class.java))
+            Navigation.findNavController(it).navigate(HomeFragmentDirections.actionHomeFragmentToInfoFragment(listInfoModel[position].dataSnap))
         }
     }
 

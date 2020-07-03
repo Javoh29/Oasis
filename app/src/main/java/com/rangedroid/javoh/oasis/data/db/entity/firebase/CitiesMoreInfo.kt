@@ -39,6 +39,8 @@ class CitiesMoreInfo() {
 
     var textInfoRu: String = ""
 
+    var dataSnap: String = ""
+
     constructor(
         banks: List<BanksModel>,
         sights: List<SightsModel>,
@@ -49,7 +51,8 @@ class CitiesMoreInfo() {
         photosNight: List<String>,
         restaurants: List<RestaurantsModel>,
         textInfoEn: String,
-        textInfoRu: String
+        textInfoRu: String,
+        dataSnap: String
     ) : this(){
         this.banks = banks
         this.sights = sights
@@ -61,10 +64,12 @@ class CitiesMoreInfo() {
         this.restaurants = restaurants
         this.textInfoEn = textInfoEn
         this.textInfoRu = textInfoRu
+        this.dataSnap = dataSnap
     }
 
     override fun toString(): String {
-        return "CitiesMoreInfo(banks=$banks, history_places=$sights, hotels=$hotels, markets=$markets, museums=$museums, photos=$photos, photos_night=$photosNight, restaurants=$restaurants, text_info_en='$textInfoEn', text_info_ru='$textInfoRu')"
+        return "CitiesMoreInfo(id=$id, banks=$banks, sights=$sights, hotels=$hotels, markets=$markets, museums=$museums, photos=$photos, photosNight=$photosNight, restaurants=$restaurants, textInfoEn='$textInfoEn', textInfoRu='$textInfoRu', dataSnap='$dataSnap')"
     }
+
 
 }

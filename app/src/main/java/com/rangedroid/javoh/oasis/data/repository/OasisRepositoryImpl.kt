@@ -1,6 +1,5 @@
 package com.rangedroid.javoh.oasis.data.repository
 
-import android.text.Html
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.google.firebase.database.*
@@ -101,54 +100,54 @@ class OasisRepositoryImpl(
 
     private fun loadFirebase(dataSnapshot: DataSnapshot){
         //Load CitiesInfo dataRu
-        for (ds in dataSnapshot.child(cities).child(cityInfoRu).children) {
+        dataSnapshot.child(cities).child(cityInfoRu).children.forEach {
             val citiesInfo = CitiesInfoModelsRu(
                 name = dataSnapshot.child(cities).child(cityInfoRu)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsRu::class.java
                     )!!.name,
                 area = dataSnapshot.child(cities).child(cityInfoRu)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsRu::class.java
                     )!!.area,
                 climate = dataSnapshot.child(cities).child(cityInfoRu)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsRu::class.java
                     )!!.climate,
                 height = dataSnapshot.child(cities).child(cityInfoRu)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsRu::class.java
                     )!!.height,
                 likes = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsRu::class.java
                     )!!.likes,
                 pop = dataSnapshot.child(cities).child(cityInfoRu)
-                    .child(ds.key.toString())
+                    .child(it.key.toString())
                     .getValue(
                         CitiesInfoModelsRu::class.java
                     )!!.pop,
                 tel_code = dataSnapshot.child(cities).child(cityInfoRu)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsRu::class.java
                     )!!.tel_code,
                 cityPhoto = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsRu::class.java
                     )!!.cityPhoto,
                 cityPhotoParm = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsRu::class.java
                     )!!.cityPhotoParm,
                 cityPhotoNight = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsRu::class.java
                     )!!.cityPhotoNight,
                 cityPhotoParmNight = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsRu::class.java
                     )!!.cityPhotoParmNight,
-                dataSnap = ds.key.toString()
+                dataSnap = it.key.toString()
             )
             GlobalScope.launch(Dispatchers.IO) {
                 firebaseDao.upsertCitiesInfoRu(citiesInfo)
@@ -156,54 +155,54 @@ class OasisRepositoryImpl(
         }
 
         //Load CitiesInfo dataEn
-        for (ds in dataSnapshot.child(cities).child(cityInfoEn).children) {
+        dataSnapshot.child(cities).child(cityInfoEn).children.forEach {
             val citiesInfo = CitiesInfoModelsEn(
                 name = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsEn::class.java
                     )!!.name,
                 area = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsEn::class.java
                     )!!.area,
                 climate = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsEn::class.java
                     )!!.climate,
                 height = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsEn::class.java
                     )!!.height,
                 likes = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsEn::class.java
                     )!!.likes,
                 pop = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString())
+                    .child(it.key.toString())
                     .getValue(
                         CitiesInfoModelsEn::class.java
                     )!!.pop,
                 tel_code = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsEn::class.java
                     )!!.tel_code,
                 cityPhoto = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsEn::class.java
                     )!!.cityPhoto,
                 cityPhotoParm = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsEn::class.java
                     )!!.cityPhotoParm,
                 cityPhotoNight = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsEn::class.java
                     )!!.cityPhotoNight,
                 cityPhotoParmNight = dataSnapshot.child(cities).child(cityInfoEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         CitiesInfoModelsEn::class.java
                     )!!.cityPhotoParmNight,
-                dataSnap = ds.key.toString()
+                dataSnap = it.key.toString()
             )
             GlobalScope.launch(Dispatchers.IO) {
                 firebaseDao.upsertCitiesInfoEn(citiesInfo)
@@ -212,38 +211,38 @@ class OasisRepositoryImpl(
         }
 
         //Load MoreApps
-        for (ds in dataSnapshot.child(moreApps).child(appsRu).children) {
+        dataSnapshot.child(moreApps).child(appsRu).children.forEach {
             val model = MoreAppsModel(
                 app_info_ru = dataSnapshot.child(moreApps).child(appsRu)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         MoreAppsModel::class.java
                     )!!.app_info_ru,
                 app_info_en = dataSnapshot.child(moreApps).child(appsEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         MoreAppsModel::class.java
                     )!!.app_info_en,
                 photo_app = dataSnapshot.child(moreApps).child(appsEn)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         MoreAppsModel::class.java
                     )!!.photo_app,
                 app_name_ru = dataSnapshot.child(moreApps).child(appsRu)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         MoreAppsModel::class.java
                     )!!.app_name_ru,
                 app_name_en = dataSnapshot.child(moreApps).child(appsRu)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         MoreAppsModel::class.java
                     )!!.app_name_en,
                 app_url = dataSnapshot.child(moreApps).child(appsRu)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         MoreAppsModel::class.java
                     )!!.app_url,
                 btn_text_en = dataSnapshot.child(moreApps).child(appsRu)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         MoreAppsModel::class.java
                     )!!.btn_text_en,
                 btn_text_ru = dataSnapshot.child(moreApps).child(appsRu)
-                    .child(ds.key.toString()).getValue(
+                    .child(it.key.toString()).getValue(
                         MoreAppsModel::class.java
                     )!!.btn_text_ru
             )
@@ -252,6 +251,7 @@ class OasisRepositoryImpl(
             }
         }
 
+        //Load Cities More Info
         for (ds in dataSnapshot.child(cities).child(cityMoreInfo).children){
             val listBanksModel: ArrayList<BanksModel> = ArrayList()
             val listHotelsModel: ArrayList<HotelsModel> = ArrayList()
@@ -549,11 +549,13 @@ class OasisRepositoryImpl(
                         photos = listPhotos,
                         photosNight = listPhotosNight,
                         textInfoEn = dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child("text_info_en").value.toString(),
-                        textInfoRu = dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child("text_info_ru").value.toString()
+                        textInfoRu = dataSnapshot.child(cities).child(cityMoreInfo).child(ds.key.toString()).child("text_info_ru").value.toString(),
+                        dataSnap = ds.key.toString()
                     )
                 )
             }
         }
+
         unitProvider.setUnitLoadFirebase(true)
     }
 
@@ -564,6 +566,12 @@ class OasisRepositoryImpl(
         return withContext(Dispatchers.IO) {
             return@withContext if (unitProvider.isLocale()) firebaseDao.getCitiesInfoEn()
             else firebaseDao.getCitiesInfoRu()
+        }
+    }
+
+    override suspend fun getCitiesMoreInfo(): LiveData<List<CitiesMoreInfo>> {
+        return withContext(Dispatchers.IO) {
+            return@withContext firebaseDao.getCitiesMoreInfo()
         }
     }
 

@@ -8,6 +8,8 @@ apply plugin: 'com.google.gms.google-services'
 
 apply plugin: "kotlin-kapt"
 
+apply plugin: 'androidx.navigation.safeargs'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -47,8 +49,6 @@ dependencies {
 
     // Navigation
     def navigation_version = '1.0.0-alpha06'
-    implementation "android.arch.navigation:navigation-fragment:$navigation_version"
-    implementation "android.arch.navigation:navigation-ui:$navigation_version"
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigation_version"
 
@@ -125,15 +125,8 @@ dependencies {
     def viewpager_indicetor = '4.1.2'
     implementation "com.tbuonomo.andrui:viewpagerdotsindicator:$viewpager_indicetor"
 
-    //Flowing Drawer
-    implementation 'com.mxn.soul:flowingdrawer-core:2.1.0'
-    implementation 'com.nineoldandroids:library:2.4.0'
-
     //Gson
     implementation 'com.google.code.gson:gson:2.8.6'
-
-    //Dexter
-    implementation 'com.karumi:dexter:6.0.2'
 
     //Animation Loading
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
@@ -145,7 +138,7 @@ dependencies {
     implementation 'com.ms-square:expandableTextView:0.1.4'
 
     //FireBase
-    implementation 'com.google.firebase:firebase-database:19.3.0'
+    implementation 'com.google.firebase:firebase-database:19.3.1'
     implementation 'com.google.firebase:firebase-core:17.4.3'
 
     // Preference
