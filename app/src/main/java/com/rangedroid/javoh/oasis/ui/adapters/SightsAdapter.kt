@@ -15,6 +15,9 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.ramotion.foldingcell.FoldingCell
 import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.SightsModel
@@ -32,19 +35,17 @@ class SightsAdapter(): RecyclerView.Adapter<SightsAdapter.SightsViewHolder>() {
     private var listSightModelReserv: ArrayList<SightsModel> = ArrayList()
     private var listLikesBool: ArrayList<Boolean> = ArrayList()
     private var listLikesBoolReserv: ArrayList<Boolean> = ArrayList()
-    private lateinit var dataSnapshot: DataSnapshot
     private var locationA: Location = Location("point A")
     private var locationB: Location = Location("point B")
     private var isLocal: Boolean = true
 
 
     @SuppressLint("CommitPrefEdits")
-    constructor(listSightModel: ArrayList<SightsModel>, listLikesBool: ArrayList<Boolean>, dataSnapshot: DataSnapshot, lat: Double, lon: Double, isLocal: Boolean) : this(){
+    constructor(listSightModel: List<SightsModel>, listLikesBool: ArrayList<Boolean>, lat: Double, lon: Double, isLocal: Boolean) : this(){
         this.listSightModel = ArrayList(listSightModel)
         listSightModelReserv = ArrayList(listSightModel)
         this.listLikesBool = ArrayList(listLikesBool)
         listLikesBoolReserv = ArrayList(listLikesBool)
-        this.dataSnapshot = dataSnapshot
         locationA.latitude = lat
         locationA.longitude = lon
         this.isLocal = isLocal
@@ -62,7 +63,19 @@ class SightsAdapter(): RecyclerView.Adapter<SightsAdapter.SightsViewHolder>() {
         var btnOpenMap: ElasticButton = view.findViewById(R.id.btn_open_in_map)
         var imageView: AppCompatImageView = view.findViewById(R.id.img_sight_view)
         var progressBar: ProgressBar = view.findViewById(R.id.progress_bar_sight)
+        var dataSnapshot: DataSnapshot? = null
         var mView = view
+
+        init {
+            FirebaseDatabase.getInstance().reference.addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                }
+                override fun onDataChange(ds: DataSnapshot) {
+                    dataSnapshot = ds
+                }
+            })
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SightsViewHolder {
@@ -84,11 +97,11 @@ class SightsAdapter(): RecyclerView.Adapter<SightsAdapter.SightsViewHolder>() {
         locationB.longitude = listSightModel[position].lon
         val distance: Float = locationA.distanceTo(locationB)
         if (isLocal) {
-            holder.tvSightName.text = listSightModel[position].nameRu
-            holder.tvSightNameCell.text = listSightModel[position].nameRu
+            holder.tvSightName.text = listSightModel[position].name_en
+            holder.tvSightNameCell.text = listSightModel[position].name_en
         }else{
-            holder.tvSightName.text = listSightModel[position].nameEn
-            holder.tvSightNameCell.text = listSightModel[position].nameEn
+            holder.tvSightName.text = listSightModel[position].name_ru
+            holder.tvSightNameCell.text = listSightModel[position].name_ru
         }
         holder.tvSightAddress.text = listSightModel[position].address
         if (distance > 1100){
@@ -116,7 +129,7 @@ class SightsAdapter(): RecyclerView.Adapter<SightsAdapter.SightsViewHolder>() {
 
         holder.likeBtn.setOnCheckStateChangeListener { view, checked ->
             if (checked){
-                dataSnapshot.child(cities).child(cityInfo).child(listSightModel[position].link).child(history)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listSightModel[position].link).child(history)
                     .child(listSightModel[position].dataSnap).child("like")
                     .ref.setValue(listSightModel[position].like + 1)
                 listSightModel[position].like++
@@ -124,7 +137,7 @@ class SightsAdapter(): RecyclerView.Adapter<SightsAdapter.SightsViewHolder>() {
                     listSightModel[position].like.toString()
                 PreferenceManager.getDefaultSharedPreferences(view.context).edit().putBoolean(listSightModel[position].dataSnap, true).apply()
             }else {
-                dataSnapshot.child(cities).child(cityInfo).child(listSightModel[position].link).child(history)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listSightModel[position].link).child(history)
                     .child(listSightModel[position].dataSnap).child("like")
                     .ref.setValue(listSightModel[position].like - 1)
                 listSightModel[position].like--
@@ -144,14 +157,14 @@ class SightsAdapter(): RecyclerView.Adapter<SightsAdapter.SightsViewHolder>() {
             listLikesBool = ArrayList(listLikesBoolReserv)
         }else{
             for (i in 0 until listSightModelReserv.size){
-                if (listSightModelReserv[i].nameEn.toLowerCase().contains(text.toLowerCase()) || listSightModelReserv[i].nameRu.toLowerCase().contains(text.toLowerCase())){
+                if (listSightModelReserv[i].name_en.toLowerCase().contains(text.toLowerCase()) || listSightModelReserv[i].name_ru.toLowerCase().contains(text.toLowerCase())){
                     val model = SightsModel(
                         address = listSightModelReserv[i].address,
                         lat = listSightModelReserv[i].lat,
                         lon = listSightModelReserv[i].lon,
                         like = listSightModelReserv[i].like,
-                        nameEn = listSightModelReserv[i].nameEn,
-                        nameRu = listSightModelReserv[i].nameRu,
+                        name_en = listSightModelReserv[i].name_en,
+                        name_ru = listSightModelReserv[i].name_ru,
                         photo = listSightModelReserv[i].photo,
                         link = listSightModelReserv[i].link,
                         dataSnap = listSightModelReserv[i].dataSnap

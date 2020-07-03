@@ -2,10 +2,12 @@ package com.rangedroid.javoh.oasis.ui.fragments
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.ToxicBakery.viewpager.transforms.ZoomOutTransformer
 import com.github.ybq.android.spinkit.SpinKitView
@@ -34,6 +36,7 @@ class InfoFragment : ScopedFragment(R.layout.info_fragment), KodeinAware {
     private lateinit var spinKit: SpinKitView
     private lateinit var frameInfo: FrameLayout
     private lateinit var tvInfo: TextView
+    private var ds: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,17 +54,18 @@ class InfoFragment : ScopedFragment(R.layout.info_fragment), KodeinAware {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(InfoViewModel::class.java)
 
-        loadData(snapData = arguments?.let {
+        ds = arguments?.let {
             InfoFragmentArgs.fromBundle(it)
-        }?.snapData!!)
+        }?.snapData!!
+        loadData()
     }
 
-    private fun loadData(snapData: String) = launch {
+    private fun loadData() = launch {
         val citiesMoreInfo = viewModel.citiesMoreInfo().value.await()
         citiesMoreInfo.observe(viewLifecycleOwner, Observer {
             if (it == null || it.isEmpty()) return@Observer
             it.forEach {list ->
-                if (list.dataSnap == snapData) bindUI(list)
+                if (list.dataSnap == ds) bindUI(list)
             }
         })
     }
@@ -70,9 +74,9 @@ class InfoFragment : ScopedFragment(R.layout.info_fragment), KodeinAware {
         imageAdapter = if (viewModel.mUnitProvider.getUnitTheme() == UnitTheme.DAY) {
             ImageAdapter(citiesMoreInfo.photos)
         }else ImageAdapter(citiesMoreInfo.photosNight)
-        tvInfo.text = if (viewModel.mUnitProvider.isLocale()){
+        tvInfo.text = Html.fromHtml(if (viewModel.mUnitProvider.isLocale()){
             citiesMoreInfo.textInfoEn
-        }else citiesMoreInfo.textInfoRu
+        }else citiesMoreInfo.textInfoRu)
         mViewPager?.adapter = imageAdapter
         mViewPager?.setPageTransformer(true, ZoomOutTransformer())
         indicator?.attachToPager(mViewPager!!)
@@ -83,21 +87,27 @@ class InfoFragment : ScopedFragment(R.layout.info_fragment), KodeinAware {
 
     private fun clickListener(){
         relative_info_sight.setOnClickListener {
+            Navigation.findNavController(it).navigate(InfoFragmentDirections.actionInfoFragmentToOtherFragment(ds, 0))
         }
 
         relative_info_hotel.setOnClickListener {
+            Navigation.findNavController(it).navigate(InfoFragmentDirections.actionInfoFragmentToOtherFragment(ds, 1))
         }
 
         relative_info_bank.setOnClickListener {
+            Navigation.findNavController(it).navigate(InfoFragmentDirections.actionInfoFragmentToOtherFragment(ds, 5))
         }
 
         relative_info_resta.setOnClickListener {
+            Navigation.findNavController(it).navigate(InfoFragmentDirections.actionInfoFragmentToOtherFragment(ds, 2))
         }
 
         relative_info_museums.setOnClickListener {
+            Navigation.findNavController(it).navigate(InfoFragmentDirections.actionInfoFragmentToOtherFragment(ds, 3))
         }
 
         relative_info_markets.setOnClickListener {
+            Navigation.findNavController(it).navigate(InfoFragmentDirections.actionInfoFragmentToOtherFragment(ds, 4))
         }
     }
 

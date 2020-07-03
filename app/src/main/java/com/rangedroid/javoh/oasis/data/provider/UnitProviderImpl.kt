@@ -98,4 +98,8 @@ class UnitProviderImpl(context: Context) : PreferenceProvider(context), UnitProv
     override fun setLocation(location: String) {
         preferences.edit().putString(UNIT_LOCATION, location).apply()
     }
+
+    override fun getIsLiked(ds: String): Boolean {
+        return preferences.getBoolean(ds, false)
+    }
 }

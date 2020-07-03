@@ -23,15 +23,39 @@
 
     <fragment
         android:id="@+id/sightsFragment"
-        android:name="com.rangedroid.javoh.oasis.ui.fragments.SightsFragment"
-        android:label="sights_fragment"
-        tools:layout="@layout/sights_fragment" />
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.SingleFragment"
+        android:label="Sights"
+        tools:layout="@layout/single_fragment" />
 
     <fragment
         android:id="@+id/hotelsFragment"
-        android:name="com.rangedroid.javoh.oasis.ui.fragments.HotelsFragment"
-        android:label="hotels_fragment"
-        tools:layout="@layout/hotels_fragment" />
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.SingleFragment"
+        android:label="Hotels"
+        tools:layout="@layout/single_fragment" />
+
+    <fragment
+        android:id="@+id/restaurantsFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.SingleFragment"
+        android:label="Restaurants"
+        tools:layout="@layout/single_fragment" />
+
+    <fragment
+        android:id="@+id/museumsFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.SingleFragment"
+        android:label="Museums"
+        tools:layout="@layout/single_fragment" />
+
+    <fragment
+        android:id="@+id/marketsFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.SingleFragment"
+        android:label="Markets"
+        tools:layout="@layout/single_fragment" />
+
+    <fragment
+        android:id="@+id/banksFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.SingleFragment"
+        android:label="Banks"
+        tools:layout="@layout/single_fragment" />
 
     <activity
         android:id="@+id/aboutActivity"
@@ -57,11 +81,11 @@
         android:name="com.rangedroid.javoh.oasis.ui.fragments.OtherFragment"
         android:label="OtherFragment" >
         <argument
-            android:name="search"
-            app:argType="boolean" />
+            android:name="snapData"
+            app:argType="string" />
         <argument
             android:name="index"
-            app:argType="int" />
+            app:argType="integer" />
     </fragment>
 
 </navigation>

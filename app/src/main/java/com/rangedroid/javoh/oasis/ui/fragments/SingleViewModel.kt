@@ -5,7 +5,7 @@ import com.rangedroid.javoh.oasis.data.provider.UnitProvider
 import com.rangedroid.javoh.oasis.data.repository.OasisRepository
 import com.rangedroid.javoh.oasis.utils.lazyDeferred
 
-class OtherViewModel(
+class SingleViewModel(
     private val oasisRepository: OasisRepository,
     unitProvider: UnitProvider
 ) : ViewModel() {

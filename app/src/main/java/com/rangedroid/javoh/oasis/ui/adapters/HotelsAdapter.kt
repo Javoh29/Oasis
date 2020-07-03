@@ -13,6 +13,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.ramotion.foldingcell.FoldingCell
 import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.HotelsModel
@@ -30,17 +33,15 @@ class HotelsAdapter constructor(): RecyclerView.Adapter<HotelsAdapter.HotelsView
     private var listHotelModelReserv: ArrayList<HotelsModel> = ArrayList()
     private var listLikesBool: ArrayList<Boolean> = ArrayList()
     private var listLikesBoolReserv: ArrayList<Boolean> = ArrayList()
-    private lateinit var dataSnapshot: DataSnapshot
     private var locationA: Location = Location("point A")
     private var locationB: Location = Location("point B")
 
     @SuppressLint("CommitPrefEdits")
-    constructor(listHotelModel: ArrayList<HotelsModel>, listLikesBool: ArrayList<Boolean>, dataSnapshot: DataSnapshot, lat: Double, lon: Double) : this(){
+    constructor(listHotelModel: List<HotelsModel>, listLikesBool: ArrayList<Boolean>, lat: Double, lon: Double) : this(){
         this.listHotelModel = ArrayList(listHotelModel)
         listHotelModelReserv = ArrayList(listHotelModel)
         this.listLikesBool = ArrayList(listLikesBool)
         listLikesBoolReserv = ArrayList(listLikesBool)
-        this.dataSnapshot = dataSnapshot
         locationA.latitude = lat
         locationA.longitude = lon
     }
@@ -56,14 +57,26 @@ class HotelsAdapter constructor(): RecyclerView.Adapter<HotelsAdapter.HotelsView
         var tvHotelNameCell: TextView = view.findViewById(R.id.tv_hotel_name_cell)
         var tvHotelTel: TextView = view.findViewById(R.id.tv_hotels_tel)
         var btnCall: TextView = view.findViewById(R.id.btn_hotel_call)
-        var btnOpne: TextView = view.findViewById(R.id.btn_hotel_open)
+        var btnOpen: TextView = view.findViewById(R.id.btn_hotel_open)
         var tvWorkHours: TextView = view.findViewById(R.id.tv_hotels_work_hours)
         var tvTimeOut: TextView = view.findViewById(R.id.tv_time_out)
         var tvTimeIn: TextView = view.findViewById(R.id.tv_time_in)
         var tvWebsiteLink: TextView = view.findViewById(R.id.tv_website_link)
         var tvFast: TextView = view.findViewById(R.id.tv_fast)
         var btnOpenMap: ElasticButton = view.findViewById(R.id.btn_open_in_map)
+        var dataSnapshot: DataSnapshot? = null
         var mView = view
+
+        init {
+            FirebaseDatabase.getInstance().reference.addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                }
+                override fun onDataChange(ds: DataSnapshot) {
+                    dataSnapshot = ds
+                }
+            })
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelsViewHolder {
@@ -108,10 +121,10 @@ class HotelsAdapter constructor(): RecyclerView.Adapter<HotelsAdapter.HotelsView
         if (listHotelModel[position].website == "not" || listHotelModel[position].website == "no"){
             holder.tvWebsiteLink.setTextColor(R.color.colorMenuText)
             holder.tvWebsiteLink.setText(R.string.text_not_website)
-            holder.btnOpne.visibility = View.GONE
+            holder.btnOpen.visibility = View.GONE
         }else{
             holder.tvWebsiteLink.text = listHotelModel[position].website
-            holder.btnOpne.visibility = View.VISIBLE
+            holder.btnOpen.visibility = View.VISIBLE
         }
 
         if (distance > 1100){
@@ -133,13 +146,13 @@ class HotelsAdapter constructor(): RecyclerView.Adapter<HotelsAdapter.HotelsView
             it.context.startActivity(Intent(Intent.ACTION_CALL, Uri.fromParts("tel",listHotelModel[position].tel, "hotel_fragment")))
         }
 
-        holder.btnOpne.setOnClickListener {
+        holder.btnOpen.setOnClickListener {
             it.context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://${listHotelModel[position].website}/")))
         }
 
         holder.likeBtn.setOnCheckStateChangeListener { view, checked ->
             if (checked){
-                dataSnapshot.child(cities).child(cityInfo).child(listHotelModel[position].link).child(hotels)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listHotelModel[position].link).child(hotels)
                     .child(listHotelModel[position].dataSnap).child("like")
                     .ref.setValue(listHotelModel[position].like + 1)
                 listHotelModel[position].like++
@@ -147,7 +160,7 @@ class HotelsAdapter constructor(): RecyclerView.Adapter<HotelsAdapter.HotelsView
                     listHotelModel[position].like.toString()
                 PreferenceManager.getDefaultSharedPreferences(view.context).edit().putBoolean(listHotelModel[position].dataSnap, true).apply()
             }else {
-                dataSnapshot.child(cities).child(cityInfo).child(listHotelModel[position].link).child(hotels)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listHotelModel[position].link).child(hotels)
                     .child(listHotelModel[position].dataSnap).child("like")
                     .ref.setValue(listHotelModel[position].like - 1)
                 listHotelModel[position].like--

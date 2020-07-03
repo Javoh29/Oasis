@@ -42,7 +42,7 @@ class HomeActivity: AppCompatActivity(), KodeinAware {
     private val fusedLocationProviderClient: FusedLocationProviderClient by instance<FusedLocationProviderClient>()
     private val isTheme: Boolean
         get() =  unitProvider.getUnitTheme() == UnitTheme.DAY
-    private lateinit var navController: NavController
+    lateinit var navController: NavController
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(location: LocationResult?) {
             super.onLocationResult(location)

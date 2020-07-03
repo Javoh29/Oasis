@@ -32,4 +32,6 @@ interface UnitProvider {
 
     fun setLocation(location: String)
 
+    fun getIsLiked(ds: String): Boolean
+
 }

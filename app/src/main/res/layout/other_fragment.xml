@@ -2,64 +2,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?color_home_view"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="?color_home_view">
 
-    <LinearLayout
-        android:id="@+id/other_liner_layout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/other_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/search_card_view"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            app:cardBackgroundColor="@color/colorPanel"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_seartch"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="20dp"
-                android:contentDescription="@string/todo" />
-
-            <EditText
-                android:id="@+id/edit_search_rest_main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textSize="18sp"
-                android:hint="@string/text_search"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:textColorHint="#8D004686"
-                android:textColor="@color/colorMenuText"
-                android:fontFamily="@font/work_sans_medium"
-                android:inputType="text"
-                android:background="@null"
-                android:layout_marginStart="60dp"
-                android:layout_marginEnd="20dp"
-                android:importantForAutofill="no" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/other_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:dividerHeight="0dp" />
-
-    </LinearLayout>
+        android:scrollbars="none"
+        android:dividerHeight="0dp"
+        android:visibility="gone"/>
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:layout_width="wrap_content"

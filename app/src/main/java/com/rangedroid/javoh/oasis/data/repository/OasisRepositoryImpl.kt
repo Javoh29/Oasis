@@ -306,7 +306,9 @@ class OasisRepositoryImpl(
                     ccyEx = dataSnapshot.child(cities)
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(banks).child(it.key.toString())
-                        .getValue(BanksModel::class.java)!!.ccyEx
+                        .getValue(BanksModel::class.java)!!.ccyEx,
+                    link = ds.key.toString(),
+                    dataSnap = it.key.toString()
                 )
                 listBanksModel.add(model)
             }
@@ -355,7 +357,9 @@ class OasisRepositoryImpl(
                     wifi = dataSnapshot.child(cities)
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(hotels).child(it.key.toString())
-                        .getValue(HotelsModel::class.java)!!.wifi
+                        .getValue(HotelsModel::class.java)!!.wifi,
+                    link = ds.key.toString(),
+                    dataSnap = it.key.toString()
                 )
                 listHotelsModel.add(model)
             }
@@ -396,7 +400,9 @@ class OasisRepositoryImpl(
                     timeOpen = dataSnapshot.child(cities)
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(markets).child(it.key.toString())
-                        .getValue(MarketsModel::class.java)!!.timeOpen
+                        .getValue(MarketsModel::class.java)!!.timeOpen,
+                    link = ds.key.toString(),
+                    dataSnap = it.key.toString()
                 )
                 listMarketsModel.add(model)
             }
@@ -418,18 +424,20 @@ class OasisRepositoryImpl(
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(sights).child(it.key.toString())
                         .getValue(SightsModel::class.java)!!.like,
-                    nameEn = dataSnapshot.child(cities)
+                    name_en = dataSnapshot.child(cities)
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(sights).child(it.key.toString())
-                        .getValue(SightsModel::class.java)!!.nameEn,
-                    nameRu = dataSnapshot.child(cities)
+                        .getValue(SightsModel::class.java)!!.name_en,
+                    name_ru = dataSnapshot.child(cities)
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(sights).child(it.key.toString())
-                        .getValue(SightsModel::class.java)!!.nameRu,
+                        .getValue(SightsModel::class.java)!!.name_ru,
                     photo = dataSnapshot.child(cities)
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(sights).child(it.key.toString())
-                        .getValue(SightsModel::class.java)!!.photo
+                        .getValue(SightsModel::class.java)!!.photo,
+                    link = ds.key.toString(),
+                    dataSnap = it.key.toString()
                 )
                 listSightsModel.add(model)
             }
@@ -474,7 +482,9 @@ class OasisRepositoryImpl(
                     timeClose = dataSnapshot.child(cities)
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(museums).child(it.key.toString())
-                        .getValue(MuseumsModel::class.java)!!.timeClose
+                        .getValue(MuseumsModel::class.java)!!.timeClose,
+                    link = ds.key.toString(),
+                    dataSnap = it.key.toString()
                 )
                 listMuseumsModel.add(model)
             }
@@ -523,7 +533,9 @@ class OasisRepositoryImpl(
                     wifi = dataSnapshot.child(cities)
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(restaurants).child(it.key.toString())
-                        .getValue(RestaurantsModel::class.java)!!.wifi
+                        .getValue(RestaurantsModel::class.java)!!.wifi,
+                    link = ds.key.toString(),
+                    dataSnap = it.key.toString()
                 )
                 listRestaurantsModel.add(model)
             }

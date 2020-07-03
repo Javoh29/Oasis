@@ -13,6 +13,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.ramotion.foldingcell.FoldingCell
 import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.BanksModel
@@ -29,17 +32,15 @@ class BanksAdapter(): RecyclerView.Adapter<BanksAdapter.BanksViewHolder>() {
     private var listBanksModelReserv: ArrayList<BanksModel> = ArrayList()
     private var listLikesBool: ArrayList<Boolean> = ArrayList()
     private var listLikesBoolReserv: ArrayList<Boolean> = ArrayList()
-    private lateinit var dataSnapshot: DataSnapshot
     private var locationA: Location = Location("point A")
     private var locationB: Location = Location("point B")
 
     @SuppressLint("CommitPrefEdits")
-    constructor(listBanksModel: ArrayList<BanksModel>, listLikesBool: ArrayList<Boolean>, dataSnapshot: DataSnapshot, lat: Double, lon: Double) : this(){
+    constructor(listBanksModel: List<BanksModel>, listLikesBool: ArrayList<Boolean>, lat: Double, lon: Double) : this(){
         this.listBanksModel = ArrayList(listBanksModel)
         listBanksModelReserv = ArrayList(listBanksModel)
         this.listLikesBool = ArrayList(listLikesBool)
         listLikesBoolReserv = ArrayList(listLikesBool)
-        this.dataSnapshot = dataSnapshot
         locationA.latitude = lat
         locationA.longitude = lon
     }
@@ -62,7 +63,19 @@ class BanksAdapter(): RecyclerView.Adapter<BanksAdapter.BanksViewHolder>() {
         var tvWebsiteLink: TextView = view.findViewById(R.id.tv_website_link)
         var tvCcyEx: TextView = view.findViewById(R.id.tv_ccyEx)
         var btnOpenMap: ElasticButton = view.findViewById(R.id.btn_open_in_map)
+        var dataSnapshot: DataSnapshot? = null
         var mView = view
+
+        init {
+            FirebaseDatabase.getInstance().reference.addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                }
+                override fun onDataChange(ds: DataSnapshot) {
+                    dataSnapshot = ds
+                }
+            })
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BanksViewHolder {
@@ -130,7 +143,7 @@ class BanksAdapter(): RecyclerView.Adapter<BanksAdapter.BanksViewHolder>() {
 
         holder.likeBtn.setOnCheckStateChangeListener { view, checked ->
             if (checked){
-                dataSnapshot.child(cities).child(cityInfo).child(listBanksModel[position].link).child(banks)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listBanksModel[position].link).child(banks)
                     .child(listBanksModel[position].dataSnap).child("like")
                     .ref.setValue(listBanksModel[position].like + 1)
                 listBanksModel[position].like++
@@ -138,7 +151,7 @@ class BanksAdapter(): RecyclerView.Adapter<BanksAdapter.BanksViewHolder>() {
                     listBanksModel[position].like.toString()
                 PreferenceManager.getDefaultSharedPreferences(view.context).edit().putBoolean(listBanksModel[position].dataSnap, true).apply()
             }else {
-                dataSnapshot.child(cities).child(cityInfo).child(listBanksModel[position].link).child(banks)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listBanksModel[position].link).child(banks)
                     .child(listBanksModel[position].dataSnap).child("like")
                     .ref.setValue(listBanksModel[position].like - 1)
                 listBanksModel[position].like--

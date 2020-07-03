@@ -19,6 +19,9 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.ramotion.foldingcell.FoldingCell
 import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.MuseumsModel
@@ -37,18 +40,16 @@ class MuseumsAdapter(): RecyclerView.Adapter<MuseumsAdapter.MuseumsViewHolder>()
     private var listMuseumsModelReserv: ArrayList<MuseumsModel> = ArrayList()
     private var listLikesBool: ArrayList<Boolean> = ArrayList()
     private var listLikesBoolReserv: ArrayList<Boolean> = ArrayList()
-    private lateinit var dataSnapshot: DataSnapshot
     private var locationA: Location = Location("point A")
     private var locationB: Location = Location("point B")
     private var isLocal: Boolean = true
 
     @SuppressLint("CommitPrefEdits")
-    constructor(listMuseumsModel: ArrayList<MuseumsModel>, listLikesBool: ArrayList<Boolean>, dataSnapshot: DataSnapshot, lat: Double, lon: Double, isLocal: Boolean) : this(){
+    constructor(listMuseumsModel: List<MuseumsModel>, listLikesBool: ArrayList<Boolean>, lat: Double, lon: Double, isLocal: Boolean) : this(){
         this.listMuseumsModel = ArrayList(listMuseumsModel)
         listMuseumsModelReserv = ArrayList(listMuseumsModel)
         this.listLikesBool = ArrayList(listLikesBool)
         listLikesBoolReserv = ArrayList(listLikesBool)
-        this.dataSnapshot = dataSnapshot
         locationA.latitude = lat
         locationA.longitude = lon
         this.isLocal = isLocal
@@ -70,7 +71,19 @@ class MuseumsAdapter(): RecyclerView.Adapter<MuseumsAdapter.MuseumsViewHolder>()
         var btnOpenMap: ElasticButton = view.findViewById(R.id.btn_open_in_map)
         var imageView: AppCompatImageView = view.findViewById(R.id.img_museums)
         var progressBar: ProgressBar = view.findViewById(R.id.progress_bar_mus)
+        var dataSnapshot: DataSnapshot? = null
         var mView = view
+
+        init {
+            FirebaseDatabase.getInstance().reference.addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                }
+                override fun onDataChange(ds: DataSnapshot) {
+                    dataSnapshot = ds
+                }
+            })
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MuseumsViewHolder {
@@ -93,11 +106,11 @@ class MuseumsAdapter(): RecyclerView.Adapter<MuseumsAdapter.MuseumsViewHolder>()
         locationB.longitude = listMuseumsModel[position].lon
         val distance: Float = locationA.distanceTo(locationB)
         if (isLocal) {
-            holder.tvMusName.text = listMuseumsModel[position].name_ru
-            holder.tvNameCell.text = listMuseumsModel[position].name_ru
-        }else{
             holder.tvMusName.text = listMuseumsModel[position].name_en
             holder.tvNameCell.text = listMuseumsModel[position].name_en
+        }else{
+            holder.tvMusName.text = listMuseumsModel[position].name_ru
+            holder.tvNameCell.text = listMuseumsModel[position].name_ru
         }
         holder.tvMusAddress.text = listMuseumsModel[position].address
         if (distance > 1100){
@@ -143,7 +156,7 @@ class MuseumsAdapter(): RecyclerView.Adapter<MuseumsAdapter.MuseumsViewHolder>()
 
         holder.likeBtn.setOnCheckStateChangeListener { view, checked ->
             if (checked){
-                dataSnapshot.child(cities).child(cityInfo).child(listMuseumsModel[position].link).child(museums)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listMuseumsModel[position].link).child(museums)
                     .child(listMuseumsModel[position].dataSnap).child("like")
                     .ref.setValue(listMuseumsModel[position].like + 1)
                 listMuseumsModel[position].like++
@@ -151,7 +164,7 @@ class MuseumsAdapter(): RecyclerView.Adapter<MuseumsAdapter.MuseumsViewHolder>()
                     listMuseumsModel[position].like.toString()
                 PreferenceManager.getDefaultSharedPreferences(view.context).edit().putBoolean(listMuseumsModel[position].dataSnap, true).apply()
             }else {
-                dataSnapshot.child(cities).child(cityInfo).child(listMuseumsModel[position].link).child(museums)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listMuseumsModel[position].link).child(museums)
                     .child(listMuseumsModel[position].dataSnap).child("like")
                     .ref.setValue(listMuseumsModel[position].like - 1)
                 listMuseumsModel[position].like--

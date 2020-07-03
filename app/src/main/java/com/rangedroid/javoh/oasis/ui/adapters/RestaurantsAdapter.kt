@@ -13,6 +13,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.ramotion.foldingcell.FoldingCell
 import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.RestaurantsModel
@@ -29,17 +32,15 @@ class RestaurantsAdapter(): RecyclerView.Adapter<RestaurantsAdapter.RestaurantsV
     private var listRestModelReserv: ArrayList<RestaurantsModel> = ArrayList()
     private var listLikesBool: ArrayList<Boolean> = ArrayList()
     private var listLikesBoolReserv: ArrayList<Boolean> = ArrayList()
-    private lateinit var dataSnapshot: DataSnapshot
     private var locationA: Location = Location("point A")
     private var locationB: Location = Location("point B")
 
     @SuppressLint("CommitPrefEdits")
-    constructor(listRestModel: ArrayList<RestaurantsModel>, listLikesBool: ArrayList<Boolean>, dataSnapshot: DataSnapshot, lat: Double, lon: Double) : this(){
+    constructor(listRestModel: List<RestaurantsModel>, listLikesBool: ArrayList<Boolean>, lat: Double, lon: Double) : this(){
         this.listRestModel = ArrayList(listRestModel)
         listRestModelReserv = ArrayList(listRestModel)
         this.listLikesBool = ArrayList(listLikesBool)
         listLikesBoolReserv = ArrayList(listLikesBool)
-        this.dataSnapshot = dataSnapshot
         locationA.latitude = lat
         locationA.longitude = lon
     }
@@ -61,7 +62,19 @@ class RestaurantsAdapter(): RecyclerView.Adapter<RestaurantsAdapter.RestaurantsV
         var tvPrices: TextView = view.findViewById(R.id.tv_prices)
         var tvWifi: TextView = view.findViewById(R.id.tv_wifi)
         var btnOpenMap: ElasticButton = view.findViewById(R.id.btn_open_in_map)
+        var dataSnapshot: DataSnapshot? = null
         var mView = view
+
+        init {
+            FirebaseDatabase.getInstance().reference.addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                }
+                override fun onDataChange(ds: DataSnapshot) {
+                    dataSnapshot = ds
+                }
+            })
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantsViewHolder {
@@ -136,7 +149,7 @@ class RestaurantsAdapter(): RecyclerView.Adapter<RestaurantsAdapter.RestaurantsV
 
         holder.likeBtn.setOnCheckStateChangeListener { view, checked ->
             if (checked){
-                dataSnapshot.child(cities).child(cityInfo).child(listRestModel[position].link).child(restaurants)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listRestModel[position].link).child(restaurants)
                     .child(listRestModel[position].dataSnap).child("like")
                     .ref.setValue(listRestModel[position].like + 1)
                 listRestModel[position].like++
@@ -144,7 +157,7 @@ class RestaurantsAdapter(): RecyclerView.Adapter<RestaurantsAdapter.RestaurantsV
                     listRestModel[position].like.toString()
                 PreferenceManager.getDefaultSharedPreferences(view.context).edit().putBoolean(listRestModel[position].dataSnap, true).apply()
             }else {
-                dataSnapshot.child(cities).child(cityInfo).child(listRestModel[position].link).child(restaurants)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listRestModel[position].link).child(restaurants)
                     .child(listRestModel[position].dataSnap).child("like")
                     .ref.setValue(listRestModel[position].like - 1)
                 listRestModel[position].like--

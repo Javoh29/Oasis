@@ -19,6 +19,9 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.ramotion.foldingcell.FoldingCell
 import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.MarketsModel
@@ -37,18 +40,16 @@ class MarketsAdapter(): RecyclerView.Adapter<MarketsAdapter.MarketsViewHolder>()
     private var listMarketsModelReserv: ArrayList<MarketsModel> = ArrayList()
     private var listLikesBool: ArrayList<Boolean> = ArrayList()
     private var listLikesBoolReserv: ArrayList<Boolean> = ArrayList()
-    private lateinit var dataSnapshot: DataSnapshot
     private var locationA: Location = Location("point A")
     private var locationB: Location = Location("point B")
     private var isLocal: Boolean = true
 
     @SuppressLint("CommitPrefEdits")
-    constructor(listMarketsModel: ArrayList<MarketsModel>, listLikesBool: ArrayList<Boolean>, dataSnapshot: DataSnapshot, lat: Double, lon: Double, isLocal: Boolean) : this(){
+    constructor(listMarketsModel: List<MarketsModel>, listLikesBool: ArrayList<Boolean>, lat: Double, lon: Double, isLocal: Boolean) : this(){
         this.listMarketsModel = ArrayList(listMarketsModel)
         listMarketsModelReserv = ArrayList(listMarketsModel)
         this.listLikesBool = ArrayList(listLikesBool)
         listLikesBoolReserv = ArrayList(listLikesBool)
-        this.dataSnapshot = dataSnapshot
         locationA.latitude = lat
         locationA.longitude = lon
         this.isLocal = isLocal
@@ -69,7 +70,19 @@ class MarketsAdapter(): RecyclerView.Adapter<MarketsAdapter.MarketsViewHolder>()
         var btnOpenMap: ElasticButton = view.findViewById(R.id.btn_open_in_map)
         var imageView: AppCompatImageView = view.findViewById(R.id.img_market)
         var progressBar: ProgressBar = view.findViewById(R.id.progress_bar_mar)
+        var dataSnapshot: DataSnapshot? = null
         var mView = view
+
+        init {
+            FirebaseDatabase.getInstance().reference.addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                }
+                override fun onDataChange(ds: DataSnapshot) {
+                    dataSnapshot = ds
+                }
+            })
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarketsViewHolder {
@@ -92,11 +105,11 @@ class MarketsAdapter(): RecyclerView.Adapter<MarketsAdapter.MarketsViewHolder>()
         locationB.longitude = listMarketsModel[position].lon
         val distance: Float = locationA.distanceTo(locationB)
         if (isLocal) {
-            holder.tvMusName.text = listMarketsModel[position].name_ru
-            holder.tvNameCell.text = listMarketsModel[position].name_ru
-        }else{
             holder.tvMusName.text = listMarketsModel[position].name_en
             holder.tvNameCell.text = listMarketsModel[position].name_en
+        }else{
+            holder.tvMusName.text = listMarketsModel[position].name_ru
+            holder.tvNameCell.text = listMarketsModel[position].name_ru
         }
         holder.tvMusAddress.text = listMarketsModel[position].address
         if (distance > 1100){
@@ -134,7 +147,7 @@ class MarketsAdapter(): RecyclerView.Adapter<MarketsAdapter.MarketsViewHolder>()
 
         holder.likeBtn.setOnCheckStateChangeListener { view, checked ->
             if (checked){
-                dataSnapshot.child(cities).child(cityInfo).child(listMarketsModel[position].link).child(markets)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listMarketsModel[position].link).child(markets)
                     .child(listMarketsModel[position].dataSnap).child("like")
                     .ref.setValue(listMarketsModel[position].like + 1)
                 listMarketsModel[position].like++
@@ -142,7 +155,7 @@ class MarketsAdapter(): RecyclerView.Adapter<MarketsAdapter.MarketsViewHolder>()
                     listMarketsModel[position].like.toString()
                 PreferenceManager.getDefaultSharedPreferences(view.context).edit().putBoolean(listMarketsModel[position].dataSnap, true).apply()
             }else {
-                dataSnapshot.child(cities).child(cityInfo).child(listMarketsModel[position].link).child(markets)
+                holder.dataSnapshot!!.child(cities).child(cityInfo).child(listMarketsModel[position].link).child(markets)
                     .child(listMarketsModel[position].dataSnap).child("like")
                     .ref.setValue(listMarketsModel[position].like - 1)
                 listMarketsModel[position].like--
