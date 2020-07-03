@@ -12,6 +12,8 @@ class HotelsModel(){
     var timeIn: String = ""
     var website: String = ""
     var wifi: String = ""
+    var link: String = ""
+    var dataSnap: String = ""
 
     constructor(
         address: String,
@@ -24,7 +26,9 @@ class HotelsModel(){
         timeOut: String,
         timeIn: String,
         website: String,
-        wifi: String
+        wifi: String,
+        link: String,
+        dataSnap: String
     ) : this(){
         this.address = address
         this.lat = lat
@@ -37,10 +41,12 @@ class HotelsModel(){
         this.timeIn = timeIn
         this.website = website
         this.wifi = wifi
+        this.link = link
+        this.dataSnap = dataSnap
     }
 
     override fun toString(): String {
-        return "HotelsModel(address='$address', lat=$lat, lon=$lon, like=$like, name='$name', tel='$tel', time='$time', timeOut='$timeOut', timeIn='$timeIn', website='$website', wifi='$wifi')"
+        return "HotelsModel(address='$address', lat=$lat, lon=$lon, like=$like, name='$name', tel='$tel', time='$time', timeOut='$timeOut', timeIn='$timeIn', website='$website', wifi='$wifi', link='$link', dataSnap='$dataSnap')"
     }
 
 }

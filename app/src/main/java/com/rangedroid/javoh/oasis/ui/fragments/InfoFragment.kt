@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.navigation.NavDirections
 import androidx.viewpager.widget.ViewPager
 import com.ToxicBakery.viewpager.transforms.ZoomOutTransformer
 import com.github.ybq.android.spinkit.SpinKitView

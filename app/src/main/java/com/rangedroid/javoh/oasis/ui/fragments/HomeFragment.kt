@@ -87,7 +87,7 @@ class HomeFragment : ScopedFragment(R.layout.home_fragment), KodeinAware, Action
         val citiesInfo = viewModel.citiesInfoModels().value.await()
         citiesInfo.observe(viewLifecycleOwner, Observer {
             if (it == null || it.isEmpty()) return@Observer
-            homeAdapter = HomeFragmentAdapter(activity = requireActivity(), listInfoModel = it, listCurrentWeather = weatherModel, unitProvider = viewModel.mUnitProvider)
+            homeAdapter = HomeFragmentAdapter(listInfoModel = it, listCurrentWeather = weatherModel, unitProvider = viewModel.mUnitProvider)
             recyclerView?.layoutManager = LinearLayoutManager(context)
             recyclerView?.adapter = homeAdapter
             pullToRefresh?.finishRefresh()

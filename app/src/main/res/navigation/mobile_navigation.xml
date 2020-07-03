@@ -38,6 +38,7 @@
         android:name="com.rangedroid.javoh.oasis.ui.activities.AboutActivity"
         android:label="activity_about"
         tools:layout="@layout/activity_about" />
+
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.rangedroid.javoh.oasis.ui.fragments.InfoFragment"
@@ -46,6 +47,21 @@
         <argument
             android:name="snapData"
             app:argType="string" />
+        <action
+            android:id="@+id/action_infoFragment_to_otherFragment"
+            app:destination="@id/otherFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/otherFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.OtherFragment"
+        android:label="OtherFragment" >
+        <argument
+            android:name="search"
+            app:argType="boolean" />
+        <argument
+            android:name="index"
+            app:argType="int" />
     </fragment>
 
 </navigation>

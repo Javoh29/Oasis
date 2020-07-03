@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    xmlns:folding-cell="http://schemas.android.com/tools">
+
+    <com.ramotion.foldingcell.FoldingCell
+        android:id="@+id/folding_sight_cell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        folding-cell:animationDuration="1800">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_sight_def_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="7dp"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="5dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_sight_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/defoult_img_history_place"
+                            android:scaleType="centerCrop" />
+
+                        <ProgressBar
+                            android:id="@+id/progress_bar_sight"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center"
+                            android:indeterminateDrawable="@drawable/spinner_progressbar"
+                            android:indeterminateOnly="true" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <com.sackcentury.shinebuttonlib.ShineButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_below="@+id/card_sight_def_img"
+                        android:id="@+id/like_btn_sight"
+                        app:btn_color="@android:color/darker_gray"
+                        app:btn_fill_color="@color/colorMenuText"
+                        app:allow_random_color="false"
+                        app:enable_flashing="false"
+                        app:big_shine_color="@color/colorMenuText"
+                        app:click_animation_duration="200"
+                        app:shine_animation_duration="1500"
+                        app:shine_turn_angle="10"
+                        app:small_shine_offset_angle="20"
+                        app:shine_distance_multiple="1.5"
+                        app:small_shine_color="#B91010"
+                        app:shine_count="8"
+                        app:siShape="@raw/heart"
+                        folding-cell:ignore="NotSibling"/>
+
+                    <TextView
+                        android:id="@+id/tv_like_qty_sight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans"
+                        android:layout_below="@id/card_sight_def_img"
+                        android:layout_marginTop="6dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorMenuText"
+                        android:layout_toEndOf="@id/like_btn_sight"/>
+
+                    <TextView
+                        android:id="@+id/tv_sight_name_cell"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="120dp"
+                        android:layout_below="@+id/card_sight_def_img"
+                        android:textSize="20sp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:textColor="@color/colorMenuText"
+                        android:layout_marginTop="2dp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1.5dp"
+                        android:background="@drawable/ab_line"
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@+id/like_btn_sight"/>
+
+                    <com.skydoves.elasticviews.ElasticButton
+                        android:id="@+id/btn_open_in_map"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/like_btn_sight"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginRight="70dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/btn_cell_sights"
+                        android:textAllCaps="false"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorPanel"
+                        android:fontFamily="@font/work_sans_semibold"
+                        android:text="@string/btn_text_open_map"
+                        android:textAlignment="center"
+                        app:button_duration="250"
+                        app:button_scale="0.87"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/img_menu_fon_sights">
+
+                    <ImageView
+                        android:id="@+id/img_sight"
+                        android:layout_width="125dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:paddingTop="5dp"
+                        android:src="@drawable/ic_sights"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@+id/img_sight"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:id="@+id/tv_sight_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorWhite"
+                            android:fontFamily="@font/work_sans_medium"/>
+
+                        <TextView
+                            android:id="@+id/tv_sight_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorWhite"
+                            android:fontFamily="@font/work_sans"/>
+
+                        <TextView
+                            android:id="@+id/tv_distance_sight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorWhite"
+                            android:fontFamily="@font/work_sans"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+    </com.ramotion.foldingcell.FoldingCell>
+
+</FrameLayout>

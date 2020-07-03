@@ -141,5 +141,6 @@
     <string name="text_sep">September 1</string>
     <string name="text_oct">October 1</string>
     <string name="text_dec">December 8</string>
+    <string name="todo" translatable="false">TODO</string>
 
 </resources>

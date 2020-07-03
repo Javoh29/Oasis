@@ -12,6 +12,7 @@ import com.rangedroid.javoh.oasis.data.repository.OasisRepository
 import com.rangedroid.javoh.oasis.data.repository.OasisRepositoryImpl
 import com.rangedroid.javoh.oasis.ui.fragments.HomeViewModelFactory
 import com.rangedroid.javoh.oasis.ui.fragments.InfoViewModelFactory
+import com.rangedroid.javoh.oasis.ui.fragments.OtherViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -42,5 +43,6 @@ class OasisApplication: Application(), KodeinAware {
             bind<OasisRepository>() with singleton { OasisRepositoryImpl(instance(), instance(), instance(), instance()) }
             bind() from provider { HomeViewModelFactory(instance(), instance()) }
             bind() from provider { InfoViewModelFactory(instance(), instance()) }
+            bind() from provider { OtherViewModelFactory(instance(), instance()) }
         }
 }

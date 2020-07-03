@@ -11,6 +11,8 @@ class MuseumsModel(){
     var timeClose: String = ""
     var price: String = ""
     var photo: String = ""
+    var link: String = ""
+    var dataSnap: String = ""
 
     constructor(
     address: String,
@@ -22,7 +24,9 @@ class MuseumsModel(){
     timeOpen: String,
     timeClose: String,
     price: String,
-    photo: String
+    photo: String,
+    link: String,
+    dataSnap: String
     ) : this() {
         this.address = address
         this.lat = lat
@@ -34,11 +38,12 @@ class MuseumsModel(){
         this.timeClose = timeClose
         this.price = price
         this.photo = photo
+        this.link = link
+        this.dataSnap = dataSnap
     }
 
     override fun toString(): String {
-        return "MuseumsModel(address='$address', lat=$lat, lon=$lon, like=$like, name_en='$name_en', name_ru='$name_ru', timeOpen='$timeOpen', timeClose='$timeClose', price='$price', photo='$photo')"
+        return "MuseumsModel(address='$address', lat=$lat, lon=$lon, like=$like, name_en='$name_en', name_ru='$name_ru', timeOpen='$timeOpen', timeClose='$timeClose', price='$price', photo='$photo', link='$link', dataSnap='$dataSnap')"
     }
-
 
 }

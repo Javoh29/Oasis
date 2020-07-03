@@ -38,12 +38,10 @@ class HomeFragmentAdapter():
     private lateinit var listCurrentWeather: CurrentWeatherModel
     private val myRef: DatabaseReference = FirebaseDatabase.getInstance().reference
     private val df: DecimalFormat = DecimalFormat("#,###.##")
-    private lateinit var activity: WeakReference<Activity>
     private lateinit var unitProvider: UnitProvider
 
     @SuppressLint("CommitPrefEdits")
-    constructor(activity: Activity, listInfoModel: List<UnitSpecificCitiesInfoModel>, listCurrentWeather: CurrentWeatherModel, unitProvider: UnitProvider) : this() {
-        this.activity = WeakReference(activity)
+    constructor(listInfoModel: List<UnitSpecificCitiesInfoModel>, listCurrentWeather: CurrentWeatherModel, unitProvider: UnitProvider) : this() {
         this.listInfoModel = listInfoModel
         this.listCurrentWeather = listCurrentWeather
         this.unitProvider = unitProvider
@@ -70,6 +68,7 @@ class HomeFragmentAdapter():
         var tvTemp: TextView = view.findViewById(R.id.tv_temp)
         var tvHumidity: TextView = view.findViewById(R.id.tv_humidity)
         var tvWind: TextView = view.findViewById(R.id.tv_wind)
+        var mView = view
 
     }
     override fun onCreateViewHolder(
@@ -116,77 +115,77 @@ class HomeFragmentAdapter():
                 "Thunderstorm" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_storm)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_storm)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_thunderstorm)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_thunderstorm)
                 }
                 "Drizzle" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_drizzle)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_drizzle)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_drizzle)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_drizzle)
                 }
                 "Rain" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_rain)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_rain)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_rain)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_rain)
                 }
                 "Clear" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_clear)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_sunny)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_clear)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_clear)
                 }
                 "Clouds" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_clouds)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_cloudy)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_clouds)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_clouds)
                 }
                 "Snow" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_snow)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_snow)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_snow)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_snow)
                 }
                 "Mist" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_mist)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_mist)
                 }
                 "Smoke" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_smoke)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_smoke)
                 }
                 "Dust" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_dust)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_dust)
                 }
                 "Fog" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_fog)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_fog)
                 }
                 "Sand" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_sand)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_sand)
                 }
                 "Ash" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_ash)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_ash)
                 }
                 "Squall" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_squall)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_squall)
                 }
                 "Tornado" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_tornado)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_tornado)
                 }
                 else -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_haze)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_haze)
                 }
 
             }
@@ -195,77 +194,77 @@ class HomeFragmentAdapter():
                 "Thunderstorm" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_storm)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_storm_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_thunderstorm)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_thunderstorm)
                 }
                 "Drizzle" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_drizzle_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_drizzle_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_drizzle)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_drizzle)
                 }
                 "Rain" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_rain_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_rain_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_rain)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_rain)
                 }
                 "Clear" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_clear_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_moon)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_clear)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_clear)
                 }
                 "Clouds" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_clouds_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_moon_cloud)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_clouds)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_clouds)
                 }
                 "Snow" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_snow_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_snow_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_snow)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_snow)
                 }
                 "Mist" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_mist)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_mist)
                 }
                 "Smoke" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_smoke)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_smoke)
                 }
                 "Dust" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_dust)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_dust)
                 }
                 "Fog" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_fog)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_fog)
                 }
                 "Sand" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_sand)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_sand)
                 }
                 "Ash" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_ash)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_ash)
                 }
                 "Squall" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_squall)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_squall)
                 }
                 "Tornado" -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_tornado)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_tornado)
                 }
                 else -> {
                     holder.imageViewWeatherFon.setImageResource(R.drawable.img_mist_night)
                     holder.imageWeatherIc.setImageResource(R.drawable.ic_mist_night)
-                    holder.tvMain.text = activity.get()?.getString(R.string.text_haze)
+                    holder.tvMain.text = holder.mView.context.getString(R.string.text_haze)
                 }
 
             }

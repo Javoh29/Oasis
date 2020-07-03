@@ -418,14 +418,14 @@ class OasisRepositoryImpl(
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(sights).child(it.key.toString())
                         .getValue(SightsModel::class.java)!!.like,
-                    name_en = dataSnapshot.child(cities)
+                    nameEn = dataSnapshot.child(cities)
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(sights).child(it.key.toString())
-                        .getValue(SightsModel::class.java)!!.name_en,
-                    name_ru = dataSnapshot.child(cities)
+                        .getValue(SightsModel::class.java)!!.nameEn,
+                    nameRu = dataSnapshot.child(cities)
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(sights).child(it.key.toString())
-                        .getValue(SightsModel::class.java)!!.name_ru,
+                        .getValue(SightsModel::class.java)!!.nameRu,
                     photo = dataSnapshot.child(cities)
                         .child(cityMoreInfo).child(ds.key.toString())
                         .child(sights).child(it.key.toString())

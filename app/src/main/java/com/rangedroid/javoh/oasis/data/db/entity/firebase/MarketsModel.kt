@@ -11,6 +11,8 @@ class MarketsModel(){
     var timeOpen: String = ""
     var timeClose: String = ""
     var photo: String = ""
+    var link: String = ""
+    var dataSnap: String = ""
 
     constructor(
     address: String,
@@ -21,7 +23,9 @@ class MarketsModel(){
     name_ru: String,
     timeOpen: String,
     timeClose: String,
-    photo: String
+    photo: String,
+    link: String,
+    dataSnap: String
     ) : this() {
         this.address = address
         this.lat = lat
@@ -32,11 +36,12 @@ class MarketsModel(){
         this.timeOpen = timeOpen
         this.timeClose = timeClose
         this.photo = photo
+        this.link = link
+        this.dataSnap = dataSnap
     }
 
     override fun toString(): String {
-        return "MarketsModel(address='$address', lat=$lat, lon=$lon, like=$like, name_en='$name_en', name_ru='$name_ru', timeOpen='$timeOpen', timeClose='$timeClose', photo='$photo')"
+        return "MarketsModel(address='$address', lat=$lat, lon=$lon, like=$like, name_en='$name_en', name_ru='$name_ru', timeOpen='$timeOpen', timeClose='$timeClose', photo='$photo', link='$link', dataSnap='$dataSnap')"
     }
-
 
 }
