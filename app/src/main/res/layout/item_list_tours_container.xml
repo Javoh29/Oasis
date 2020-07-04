@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="215dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/colorPanel"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="170dp"
+            android:layout_marginEnd="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_bold"
+                android:textColor="@color/colorMenuText"/>
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@drawable/ic_calendar"
+                android:layout_marginTop="3dp"
+                android:layout_below="@id/tv_title"/>
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@drawable/ic_price"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@+id/tv_price"
+                android:layout_below="@id/tv_title"/>
+
+            <TextView
+                android:id="@+id/tv_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:textColor="#336A96"
+                android:layout_marginTop="3dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/raleway"
+                android:layout_marginStart="15dp"/>
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="3dp"
+                android:textColor="#03A7ED"
+                android:textSize="12sp"
+                android:fontFamily="@font/raleway_bold"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/ab_line_blue"
+                android:layout_below="@id/tv_day"/>
+
+            <TextView
+                android:id="@+id/tv_cities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_day"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/raleway"
+                android:textColor="#336A96"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_season"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_cities"
+                android:textColor="#336A96"
+                android:layout_marginTop="3dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/raleway"/>
+
+            <TextView
+                android:id="@+id/tv_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/tv_season"
+                android:textColor="#336A96"
+                android:layout_marginTop="3dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/raleway"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_read_more"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_read_more"
+            android:textColor="@color/colorWhite"
+            android:text="@string/text_read_more"
+            android:textAllCaps="false"
+            android:fontFamily="@font/raleway_bold"
+            android:textSize="18sp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="150dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="15dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_tour"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

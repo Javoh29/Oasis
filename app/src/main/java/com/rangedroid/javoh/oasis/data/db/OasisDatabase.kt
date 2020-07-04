@@ -4,13 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesInfoModelsEn
-import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesInfoModelsRu
-import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesMoreInfo
-import com.rangedroid.javoh.oasis.data.db.entity.firebase.MoreAppsModel
+import com.rangedroid.javoh.oasis.data.db.entity.firebase.*
 
 @Database(
-    entities = [CitiesInfoModelsEn::class, CitiesInfoModelsRu::class, MoreAppsModel::class, CitiesMoreInfo::class],
+    entities = [CitiesInfoModelsEn::class, CitiesInfoModelsRu::class, MoreAppsModel::class, CitiesMoreInfo::class, ToursCategoryModelRu::class, ToursCategoryModelEn::class],
     version = 1
 )
 abstract class OasisDatabase: RoomDatabase() {

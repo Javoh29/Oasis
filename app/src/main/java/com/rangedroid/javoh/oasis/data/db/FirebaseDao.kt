@@ -5,10 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesInfoModelsEn
-import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesInfoModelsRu
-import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesMoreInfo
-import com.rangedroid.javoh.oasis.data.db.entity.firebase.MoreAppsModel
+import com.rangedroid.javoh.oasis.data.db.entity.firebase.*
 import com.rangedroid.javoh.oasis.data.db.unitlocalized.UnitSpecificCitiesInfoModel
 
 @Dao
@@ -48,4 +45,22 @@ interface FirebaseDao {
 
     @Query("DELETE FROM cities_more_info")
     fun deleteCitiesMoreInfo()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun upsertToursEn(toursCategoryModelEn: ToursCategoryModelEn)
+
+    @Query("SELECT * from tours_category_en")
+    fun getToursEn(): LiveData<List<ToursCategoryModelEn>>
+
+    @Query("DELETE FROM tours_category_en")
+    fun deleteToursEn()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun upsertToursRu(toursCategoryModelRu: ToursCategoryModelRu)
+
+    @Query("SELECT * from tours_category_ru")
+    fun getToursRu(): LiveData<List<ToursCategoryModelRu>>
+
+    @Query("DELETE FROM tours_category_ru")
+    fun deleteToursRu()
 }

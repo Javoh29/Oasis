@@ -42,6 +42,8 @@ class OasisRepositoryImpl(
     private val photos = "photos"
     private val photosNight = "photos_night"
     private val restaurants = "restaurants"
+    private val toursRu = "tours_ru"
+    private val toursEn = "tours_en"
     private val myRef: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     init {
@@ -85,6 +87,8 @@ class OasisRepositoryImpl(
                         firebaseDao.deleteCitiesInfoEn()
                         firebaseDao.deleteCitiesInfoRu()
                         firebaseDao.deleteCitiesMoreInfo()
+                        firebaseDao.deleteToursEn()
+                        firebaseDao.deleteToursRu()
                         firebaseDao.deleteMoreApps()
                         loadFirebase(dataSnapshot)
                     } else {
@@ -208,6 +212,128 @@ class OasisRepositoryImpl(
                 firebaseDao.upsertCitiesInfoEn(citiesInfo)
             }
 
+        }
+
+        //Load Tours dataRu
+        dataSnapshot.child(toursRu).children.forEach {ds ->
+            val toursList: ArrayList<ToursModel> = ArrayList()
+            dataSnapshot.child(toursRu).child(ds.key.toString()).child("tours").children.forEach {
+                val model = ToursModel(
+                    title =  dataSnapshot.child(toursRu)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.title,
+                    days = dataSnapshot.child(toursRu)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.days,
+                    price = dataSnapshot.child(toursRu)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.price,
+                    cities = dataSnapshot.child(toursRu)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.cities,
+                    season = dataSnapshot.child(toursRu)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.season,
+                    text = dataSnapshot.child(toursRu)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.text,
+                    photo = dataSnapshot.child(toursRu)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.photo,
+                    url = dataSnapshot.child(toursRu)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.url
+                )
+                toursList.add(model)
+            }
+
+            GlobalScope.launch(Dispatchers.IO) {
+                firebaseDao.upsertToursRu(
+                    ToursCategoryModelRu(
+                        title = dataSnapshot.child(toursRu).child(ds.key.toString()).getValue(ToursCategoryModelRu::class.java)!!.title,
+                        photo = dataSnapshot.child(toursRu).child(ds.key.toString()).getValue(ToursCategoryModelRu::class.java)!!.photo,
+                        tours = toursList,
+                        dataSnap = ds.key.toString()
+                    )
+                )
+            }
+        }
+
+        //Load Tours dataEn
+        dataSnapshot.child(toursRu).children.forEach {ds ->
+            val toursList: ArrayList<ToursModel> = ArrayList()
+            dataSnapshot.child(toursEn).child(ds.key.toString()).child("tours").children.forEach {
+                val model = ToursModel(
+                    title =  dataSnapshot.child(toursEn)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.title,
+                    days = dataSnapshot.child(toursEn)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.days,
+                    price = dataSnapshot.child(toursEn)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.price,
+                    cities = dataSnapshot.child(toursEn)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.cities,
+                    season = dataSnapshot.child(toursEn)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.season,
+                    text = dataSnapshot.child(toursEn)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.text,
+                    photo = dataSnapshot.child(toursEn)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.photo,
+                    url = dataSnapshot.child(toursEn)
+                        .child(ds.key.toString())
+                        .child("tours")
+                        .child(it.key.toString())
+                        .getValue(ToursModel::class.java)!!.url
+                )
+                toursList.add(model)
+            }
+
+            GlobalScope.launch(Dispatchers.IO) {
+                firebaseDao.upsertToursEn(
+                    ToursCategoryModelEn(
+                        title = dataSnapshot.child(toursEn).child(ds.key.toString()).getValue(ToursCategoryModelRu::class.java)!!.title,
+                        photo = dataSnapshot.child(toursEn).child(ds.key.toString()).getValue(ToursCategoryModelRu::class.java)!!.photo,
+                        tours = toursList,
+                        dataSnap = ds.key.toString()
+                    )
+                )
+            }
         }
 
         //Load MoreApps
@@ -584,6 +710,18 @@ class OasisRepositoryImpl(
     override suspend fun getCitiesMoreInfo(): LiveData<List<CitiesMoreInfo>> {
         return withContext(Dispatchers.IO) {
             return@withContext firebaseDao.getCitiesMoreInfo()
+        }
+    }
+
+    override suspend fun getToursEn(): LiveData<List<ToursCategoryModelEn>> {
+        return withContext(Dispatchers.IO) {
+            return@withContext firebaseDao.getToursEn()
+        }
+    }
+
+    override suspend fun getToursRu(): LiveData<List<ToursCategoryModelRu>> {
+        return withContext(Dispatchers.IO) {
+            return@withContext firebaseDao.getToursRu()
         }
     }
 
