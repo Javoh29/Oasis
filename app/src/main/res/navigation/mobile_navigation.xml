@@ -16,10 +16,16 @@
     </fragment>
 
     <fragment
-        android:id="@+id/toursFragment"
-        android:name="com.rangedroid.javoh.oasis.ui.fragments.ToursFragment"
+        android:id="@+id/toursCategoryFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.ToursCategoryFragment"
         android:label="tours_fragment"
-        tools:layout="@layout/tours_fragment" />
+        tools:layout="@layout/tours_category_fragment" />
+
+    <fragment
+        android:id="@+id/toursFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.ToursCategoryFragment"
+        android:label="tours_fragment"
+        tools:layout="@layout/tours_category_fragment" />
 
     <fragment
         android:id="@+id/sightsFragment"

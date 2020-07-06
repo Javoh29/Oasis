@@ -266,8 +266,8 @@ class OasisRepositoryImpl(
             GlobalScope.launch(Dispatchers.IO) {
                 firebaseDao.upsertToursRu(
                     ToursCategoryModelRu(
-                        title = dataSnapshot.child(toursRu).child(ds.key.toString()).getValue(ToursCategoryModelRu::class.java)!!.title,
-                        photo = dataSnapshot.child(toursRu).child(ds.key.toString()).getValue(ToursCategoryModelRu::class.java)!!.photo,
+                        title = dataSnapshot.child(toursRu).child(ds.key.toString()).child("title").value.toString(),
+                        photo = dataSnapshot.child(toursRu).child(ds.key.toString()).child("photo").value.toString(),
                         tours = toursList,
                         dataSnap = ds.key.toString()
                     )
@@ -276,7 +276,7 @@ class OasisRepositoryImpl(
         }
 
         //Load Tours dataEn
-        dataSnapshot.child(toursRu).children.forEach {ds ->
+        dataSnapshot.child(toursEn).children.forEach {ds ->
             val toursList: ArrayList<ToursModel> = ArrayList()
             dataSnapshot.child(toursEn).child(ds.key.toString()).child("tours").children.forEach {
                 val model = ToursModel(
@@ -327,8 +327,8 @@ class OasisRepositoryImpl(
             GlobalScope.launch(Dispatchers.IO) {
                 firebaseDao.upsertToursEn(
                     ToursCategoryModelEn(
-                        title = dataSnapshot.child(toursEn).child(ds.key.toString()).getValue(ToursCategoryModelRu::class.java)!!.title,
-                        photo = dataSnapshot.child(toursEn).child(ds.key.toString()).getValue(ToursCategoryModelRu::class.java)!!.photo,
+                        title = dataSnapshot.child(toursEn).child(ds.key.toString()).child("title").value.toString(),
+                        photo = dataSnapshot.child(toursEn).child(ds.key.toString()).child("photo").value.toString(),
                         tours = toursList,
                         dataSnap = ds.key.toString()
                     )
@@ -697,7 +697,7 @@ class OasisRepositoryImpl(
         unitProvider.setUnitLoadFirebase(true)
     }
 
-    override suspend fun getCitiesInfo(): LiveData<List<UnitSpecificCitiesInfoModel>> {
+    override suspend fun getCitiesInfo(): LiveData<out List<UnitSpecificCitiesInfoModel>> {
         if (unitProvider.isOnline()) {
             onStartLoadBase()
         }
@@ -713,13 +713,13 @@ class OasisRepositoryImpl(
         }
     }
 
-    override suspend fun getToursEn(): LiveData<List<ToursCategoryModelEn>> {
+    override suspend fun getToursEn(): LiveData<out List<ToursCategoryModelEn>> {
         return withContext(Dispatchers.IO) {
             return@withContext firebaseDao.getToursEn()
         }
     }
 
-    override suspend fun getToursRu(): LiveData<List<ToursCategoryModelRu>> {
+    override suspend fun getToursRu(): LiveData<out List<ToursCategoryModelRu>> {
         return withContext(Dispatchers.IO) {
             return@withContext firebaseDao.getToursRu()
         }

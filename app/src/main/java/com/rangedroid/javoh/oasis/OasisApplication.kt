@@ -10,10 +10,7 @@ import com.rangedroid.javoh.oasis.data.provider.UnitProvider
 import com.rangedroid.javoh.oasis.data.provider.UnitProviderImpl
 import com.rangedroid.javoh.oasis.data.repository.OasisRepository
 import com.rangedroid.javoh.oasis.data.repository.OasisRepositoryImpl
-import com.rangedroid.javoh.oasis.ui.fragments.HomeViewModelFactory
-import com.rangedroid.javoh.oasis.ui.fragments.InfoViewModelFactory
-import com.rangedroid.javoh.oasis.ui.fragments.OtherViewModelFactory
-import com.rangedroid.javoh.oasis.ui.fragments.SingleViewModelFactory
+import com.rangedroid.javoh.oasis.ui.fragments.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -46,5 +43,6 @@ class OasisApplication: Application(), KodeinAware {
             bind() from provider { InfoViewModelFactory(instance(), instance()) }
             bind() from provider { OtherViewModelFactory(instance(), instance()) }
             bind() from provider { SingleViewModelFactory(instance(), instance()) }
+            bind() from provider { ToursCategoryViewModelFactory(instance(), instance()) }
         }
 }

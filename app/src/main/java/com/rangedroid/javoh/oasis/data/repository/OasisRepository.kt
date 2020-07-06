@@ -13,8 +13,8 @@ interface OasisRepository {
     suspend fun getCurrentClimate(): LiveData<List<Climate>>
     suspend fun getCurrentWeather(): LiveData<List<Weather>>
     suspend fun getCurrentWind(): LiveData<List<Wind>>
-    suspend fun getCitiesInfo(): LiveData<List<UnitSpecificCitiesInfoModel>>
+    suspend fun getCitiesInfo(): LiveData<out List<UnitSpecificCitiesInfoModel>>
     suspend fun getCitiesMoreInfo(): LiveData<List<CitiesMoreInfo>>
-    suspend fun getToursEn():LiveData<List<ToursCategoryModelEn>>
-    suspend fun getToursRu():LiveData<List<ToursCategoryModelRu>>
+    suspend fun getToursEn():LiveData<out List<ToursCategoryModelEn>>
+    suspend fun getToursRu():LiveData<out List<ToursCategoryModelRu>>
 }

@@ -5,6 +5,8 @@ import androidx.room.ColumnInfo
 
 @Keep
 data class UnitSpecificCitiesInfoModel(
+    @ColumnInfo(name = "id")
+    var id: Int,
     @ColumnInfo(name = "name")
     var name: String,
     @ColumnInfo(name = "area")
