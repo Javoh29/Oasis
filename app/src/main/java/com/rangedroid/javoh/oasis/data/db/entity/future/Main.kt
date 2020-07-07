@@ -2,16 +2,24 @@ package com.rangedroid.javoh.oasis.data.db.entity.future
 
 
 import com.google.gson.annotations.SerializedName
-import androidx.annotation.Keep
 
-@Keep
 data class Main(
     @SerializedName("feels_like")
-    val feelsLike: Double, // 30.32
+    var feelsLike: Double,
+    @SerializedName("grnd_level")
+    var grndLevel: Int,
     @SerializedName("humidity")
-    val humidity: Double, // 15
+    var humidity: Int,
     @SerializedName("pressure")
-    val pressure: Double, // 1013
+    var pressure: Int,
+    @SerializedName("sea_level")
+    var seaLevel: Int,
     @SerializedName("temp")
-    val temp: Double // 33.71
+    var temp: Double,
+    @SerializedName("temp_kf")
+    var tempKf: Double,
+    @SerializedName("temp_max")
+    var tempMax: Double,
+    @SerializedName("temp_min")
+    var tempMin: Double
 )

@@ -7,7 +7,7 @@
     tools:context=".ui.fragments.ToursFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_tours"
+        android:id="@+id/recycler_view_tours"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="5dp"

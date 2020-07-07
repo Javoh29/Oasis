@@ -4,13 +4,21 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 @Keep
-data class WeatherList<T>(
-    @SerializedName("main")
-    val main: Main,
-    @SerializedName("weather")
-    val weather: WeatherList<Weather>,
+data class WeatherList(
+    @SerializedName("clouds")
+    var clouds: Clouds,
+    @SerializedName("dt")
+    var dt: Int,
     @SerializedName("dt_txt")
-    val dtTxt: String,
+    var dtTxt: String,
+    @SerializedName("main")
+    var main: Main,
+    @SerializedName("rain")
+    var rain: Rain,
+    @SerializedName("sys")
+    var sys: Sys,
+    @SerializedName("weather")
+    var weather: List<Weather>,
     @SerializedName("wind")
-    val wind: Wind
+    var wind: Wind
 )

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_weather_nav"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?color_home_view"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="ui.fragments.WeatherFragment">
+
+    <FrameLayout
+        android:id="@+id/frame_weather_nav_two"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="255dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <ImageView
+                android:id="@+id/img_fon_weather"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_clouds_nav"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/todo" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_place_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:textSize="26sp"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/work_sans_medium" />
+
+                <LinearLayout
+                    android:id="@+id/liner_weather_nav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="110dp"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/tv_place_name"
+                    android:layout_centerHorizontal="true"
+                    tools:ignore="UseCompoundDrawables">
+                    <TextView
+                        android:id="@+id/tv_temp_nav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="-10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="55sp" />
+
+                    <ImageView
+                        android:layout_marginLeft="-10dp"
+                        android:id="@+id/ic_weather_main_nav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="-10dp"
+                        android:contentDescription="@string/todo" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_main_nav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/work_sans_medium"
+                    android:layout_below="@id/liner_weather_nav"
+                    android:layout_marginTop="5dp"/>
+
+                <ImageView
+                    android:id="@+id/ic_feels_nav"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_feels"
+                    android:layout_below="@id/tv_main_nav"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/todo" />
+                <TextView
+                    android:id="@+id/tv_feels_nav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14sp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/work_sans_medium"
+                    android:layout_below="@+id/tv_main_nav"
+                    android:layout_toEndOf="@id/ic_feels_nav"
+                    android:layout_marginTop="8dp"/>
+
+                <ImageView
+                    android:id="@+id/ic_humi_nav"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_humidity"
+                    android:layout_below="@id/ic_feels_nav"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/todo" />
+                <TextView
+                    android:id="@+id/tv_humidity_nav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14sp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/work_sans_medium"
+                    android:layout_below="@+id/ic_feels_nav"
+                    android:layout_toEndOf="@id/ic_humi_nav"
+                    android:layout_marginTop="8dp"/>
+
+                <ImageView
+                    android:id="@+id/ic_wind_nav"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_wind"
+                    android:layout_below="@id/tv_main_nav"
+                    android:layout_toStartOf="@id/tv_pressure_nav"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/todo" />
+                <TextView
+                    android:id="@+id/tv_wind_nav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14sp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/work_sans_medium"
+                    android:layout_below="@+id/tv_main_nav"
+                    android:layout_toEndOf="@id/ic_wind_nav"
+                    android:layout_marginTop="8dp"/>
+
+                <ImageView
+                    android:id="@+id/ic_pressure_nav"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_pressure"
+                    android:layout_below="@id/tv_wind_nav"
+                    android:layout_toStartOf="@id/tv_pressure_nav"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/todo" />
+                <TextView
+                    android:id="@+id/tv_pressure_nav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14sp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/work_sans_medium"
+                    android:layout_below="@+id/tv_wind_nav"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="290dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorPanel"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_weather"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spin_kit_weather"
+        android:layout_gravity="center"
+        style="@style/SpinKitView.Large.CubeGrid"/>
+
+</FrameLayout>

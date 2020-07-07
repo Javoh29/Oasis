@@ -1,14 +1,15 @@
 package com.rangedroid.javoh.oasis.ui.adapters
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.db.unitlocalized.UnitSpecificTours
+import com.rangedroid.javoh.oasis.ui.fragments.ToursCategoryFragmentDirections
 import com.rangedroid.javoh.oasis.utils.UniversalImageLoader
 
 class ToursCategoryAdapter(private val listToursModel: List<UnitSpecificTours>): RecyclerView.Adapter<ToursCategoryAdapter.ToursCategoryViewHolder>(){
@@ -35,8 +36,7 @@ class ToursCategoryAdapter(private val listToursModel: List<UnitSpecificTours>):
         UniversalImageLoader.setImage(listToursModel[position].photo, holder.imgTours, null)
 
         holder.imgTours.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("ds", listToursModel[position].dataSnap)
+            Navigation.findNavController(it).navigate(ToursCategoryFragmentDirections.actionToursCategoryFragmentToToursFragment(listToursModel[position].dataSnap))
         }
     }
 }

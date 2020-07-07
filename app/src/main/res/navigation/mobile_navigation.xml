@@ -19,13 +19,21 @@
         android:id="@+id/toursCategoryFragment"
         android:name="com.rangedroid.javoh.oasis.ui.fragments.ToursCategoryFragment"
         android:label="tours_fragment"
-        tools:layout="@layout/tours_category_fragment" />
+        tools:layout="@layout/tours_category_fragment" >
+        <action
+            android:id="@+id/action_toursCategoryFragment_to_toursFragment"
+            app:destination="@id/toursFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/toursFragment"
-        android:name="com.rangedroid.javoh.oasis.ui.fragments.ToursCategoryFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.ToursFragment"
         android:label="tours_fragment"
-        tools:layout="@layout/tours_category_fragment" />
+        tools:layout="@layout/tours_category_fragment" >
+        <argument
+            android:name="snapData"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/sightsFragment"

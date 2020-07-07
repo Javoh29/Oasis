@@ -44,5 +44,6 @@ class OasisApplication: Application(), KodeinAware {
             bind() from provider { OtherViewModelFactory(instance(), instance()) }
             bind() from provider { SingleViewModelFactory(instance(), instance()) }
             bind() from provider { ToursCategoryViewModelFactory(instance(), instance()) }
+            bind() from provider { ToursViewModelFactory(instance(), instance()) }
         }
 }

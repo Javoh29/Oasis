@@ -2,10 +2,14 @@ package com.rangedroid.javoh.oasis.data.db.entity.future
 
 
 import com.google.gson.annotations.SerializedName
-import androidx.annotation.Keep
 
-@Keep
 data class Weather(
+    @SerializedName("description")
+    var description: String,
+    @SerializedName("icon")
+    var icon: String,
+    @SerializedName("id")
+    var id: Int,
     @SerializedName("main")
-    val main: String // Clear
+    var main: String
 )
