@@ -1,6 +1,7 @@
 package com.rangedroid.javoh.oasis.data.repository
 
 import androidx.lifecycle.LiveData
+import com.rangedroid.javoh.oasis.data.db.entity.currency.CurrencyModel
 import com.rangedroid.javoh.oasis.data.db.entity.current.Climate
 import com.rangedroid.javoh.oasis.data.db.entity.current.Weather
 import com.rangedroid.javoh.oasis.data.db.entity.current.Wind
@@ -17,4 +18,5 @@ interface OasisRepository {
     suspend fun getCitiesMoreInfo(): LiveData<List<CitiesMoreInfo>>
     suspend fun getToursEn():LiveData<out List<ToursCategoryModelEn>>
     suspend fun getToursRu():LiveData<out List<ToursCategoryModelRu>>
+    suspend fun getCurrency():LiveData<List<CurrencyModel>>
 }

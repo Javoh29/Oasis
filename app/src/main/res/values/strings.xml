@@ -38,7 +38,7 @@
     <string name="lang_menu">Language</string>
     <string name="about_menu">About</string>
     <string name="more_apps_menu">More Apps</string>
-    <string name="no_con_text">No internet connection</string>
+    <string name="no_con_text">No connection</string>
     <string name="no_con_text2">Please check your internet connection and try again</string>
     <string name="btn_try_age">Try again</string>
     <string name="tv_creator_name">Creator: Javohir Ergashev</string>
@@ -142,5 +142,7 @@
     <string name="text_oct">October 1</string>
     <string name="text_dec">December 8</string>
     <string name="todo" translatable="false">TODO</string>
+    <string name="uzs" translatable="false">UZS</string>
+    <string name="btn_text_retry">Retry</string>
 
 </resources>

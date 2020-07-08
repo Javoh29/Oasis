@@ -29,7 +29,7 @@
     <string name="lang_menu">Изменить язык</string>
     <string name="about_menu">О программе</string>
     <string name="more_apps_menu">Другие приложении</string>
-    <string name="no_con_text">Подключение к Интернету отсутствует</string>
+    <string name="no_con_text">Нет соединения</string>
     <string name="no_con_text2">Пожалуйста, проверьте ваше интернет-соединение и попробуйте снова</string>
     <string name="btn_try_age">Еще раз</string>
     <string name="tv_creator_name">Автор: Javohir Ergashev</string>
@@ -114,6 +114,8 @@
     <string name="text_read_more">Подробнее</string>
     <string name="text_cities">Города:</string>
     <string name="text_season">Сезон:</string>
+    <string name="btn_text_retry">Еще раз</string>
+
     <!--    Holidays-->
     <string name="text_yan1">Новый год</string>
     <string name="text_yan14">День защитников Родины</string>

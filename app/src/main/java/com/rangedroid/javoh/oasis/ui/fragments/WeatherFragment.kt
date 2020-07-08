@@ -6,7 +6,6 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,12 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.ybq.android.spinkit.SpinKitView
 import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.network.response.FutureWeatherResponse
+import com.rangedroid.javoh.oasis.ui.adapters.WeatherAdapter
 import com.rangedroid.javoh.oasis.ui.base.ScopedFragment
 import com.rangedroid.javoh.oasis.utils.UnitTheme
+import kotlinx.android.synthetic.main.weather_fragment.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import kotlin.math.roundToInt
 
 class WeatherFragment : ScopedFragment(R.layout.weather_fragment), KodeinAware {
 
@@ -37,7 +39,6 @@ class WeatherFragment : ScopedFragment(R.layout.weather_fragment), KodeinAware {
     private lateinit var tvWind: TextView
     private lateinit var tvPressure: TextView
     private lateinit var recyclerView: RecyclerView
-    private lateinit var frameNav: FrameLayout
     private lateinit var spinKit: SpinKitView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +55,6 @@ class WeatherFragment : ScopedFragment(R.layout.weather_fragment), KodeinAware {
         tvPressure = view.findViewById(R.id.tv_pressure_nav)
         recyclerView = view.findViewById(R.id.recycler_weather)
         spinKit = view.findViewById(R.id.spin_kit_weather)
-        frameNav = view.findViewById(R.id.frame_weather_nav_two)
 
         recyclerView.layoutManager = LinearLayoutManager(context)
     }
@@ -76,8 +76,8 @@ class WeatherFragment : ScopedFragment(R.layout.weather_fragment), KodeinAware {
 
     @SuppressLint("SetTextI18n")
     private fun bindUI(model: FutureWeatherResponse){
-        tvTemp.text = model.list[0].main.temp.toString()
-        tvFeels.text = "${getString(R.string.text_feels)} " + model.list[0].main.feelsLike
+        tvTemp.text = "${model.list[0].main.temp.roundToInt()}˚"
+        tvFeels.text = "${getString(R.string.text_feels)} ${model.list[0].main.feelsLike.roundToInt()}˚"
         tvPressure.text = "${getString(R.string.text_pressure)} " + model.list[0].main.pressure
         tvHumidity.text = "${getString(R.string.text_humidity)} " + model.list[0].main.humidity
         tvWind.text = "${getString(R.string.text_wind)} " + model.list[0].wind.speed + "m/s"
@@ -240,5 +240,8 @@ class WeatherFragment : ScopedFragment(R.layout.weather_fragment), KodeinAware {
                 }
             }
         }
+        recyclerView.adapter = WeatherAdapter(model.list)
+        frame_weather.visibility = View.VISIBLE
+        spinKit.visibility = View.GONE
     }
 }

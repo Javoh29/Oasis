@@ -4,13 +4,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.google.firebase.database.*
 import com.rangedroid.javoh.oasis.OasisApplication.Companion.isStartActivity
+import com.rangedroid.javoh.oasis.data.db.CurrencyDao
 import com.rangedroid.javoh.oasis.data.db.CurrentWeatherDao
 import com.rangedroid.javoh.oasis.data.db.FirebaseDao
+import com.rangedroid.javoh.oasis.data.db.entity.currency.CurrencyModel
 import com.rangedroid.javoh.oasis.data.db.entity.current.Climate
 import com.rangedroid.javoh.oasis.data.db.entity.current.Weather
 import com.rangedroid.javoh.oasis.data.db.entity.current.Wind
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.*
 import com.rangedroid.javoh.oasis.data.db.unitlocalized.UnitSpecificCitiesInfoModel
+import com.rangedroid.javoh.oasis.data.network.CurrencyNetworkDataSource
 import com.rangedroid.javoh.oasis.data.network.WeatherNetworkDataSource
 import com.rangedroid.javoh.oasis.data.network.response.CurrentWeatherResponse
 import com.rangedroid.javoh.oasis.data.provider.UnitProvider
@@ -23,7 +26,9 @@ import kotlinx.coroutines.withContext
 class OasisRepositoryImpl(
     private val currentWeatherDao: CurrentWeatherDao,
     private val firebaseDao: FirebaseDao,
+    private val currencyDao: CurrencyDao,
     private val weatherNetworkDataSource: WeatherNetworkDataSource,
+    private val currencyNetworkDataSource: CurrencyNetworkDataSource,
     private val unitProvider: UnitProvider
 ) : OasisRepository {
 
@@ -48,8 +53,15 @@ class OasisRepositoryImpl(
 
     init {
         weatherNetworkDataSource.apply {
-            downloadedCurrentWeather.observeForever { newCurrentWeather ->
-                persistFetchedCurrentWeather(newCurrentWeather)
+            downloadedCurrentWeather.observeForever {
+                persistFetchedCurrentWeather(it)
+            }
+        }
+        currencyNetworkDataSource.apply {
+            downloadedCurrency.observeForever {
+                it.model.forEach {list ->
+                    persistFetchedCurrency(list)
+                }
             }
         }
     }
@@ -725,12 +737,30 @@ class OasisRepositoryImpl(
         }
     }
 
+    override suspend fun getCurrency(): LiveData<List<CurrencyModel>> {
+        fetchCurrency()
+        return withContext(Dispatchers.IO) {
+            return@withContext currencyDao.getCurrency()
+        }
+    }
+
     private fun persistFetchedCurrentWeather(fetchedWeather: CurrentWeatherResponse) {
         GlobalScope.launch(Dispatchers.IO) {
             currentWeatherDao.upsertClimate(fetchedWeather.climate)
             currentWeatherDao.upsertWeather(fetchedWeather.weather[0])
             currentWeatherDao.upsertWind(fetchedWeather.wind)
         }
+    }
+
+    private fun persistFetchedCurrency(currencyModel: CurrencyModel){
+        GlobalScope.launch(Dispatchers.IO) {
+            currencyDao.upsertCurrency(currencyModel)
+        }
+    }
+
+    private suspend fun fetchCurrency() {
+        currencyDao.deleteCurrency()
+        currencyNetworkDataSource.fetchCurrency()
     }
 
     private suspend fun fetchCurrentWeather() {

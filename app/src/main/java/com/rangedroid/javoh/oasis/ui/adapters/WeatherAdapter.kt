@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.db.entity.future.WeatherList
-import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
-class WeatherDataAdapter (private var listWeatherModel: ArrayList<WeatherList>): RecyclerView.Adapter<WeatherDataAdapter.WeatherViewHolder>() {
+class WeatherAdapter (private var listWeatherModel: List<WeatherList>): RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 
     class WeatherViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var tvHour: TextView = view.findViewById(R.id.tv_list_hour)
@@ -38,7 +38,7 @@ class WeatherDataAdapter (private var listWeatherModel: ArrayList<WeatherList>):
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         holder.tvHour.text = listWeatherModel[position].dtTxt.substring(11, 16)
-        holder.tvTemp.text = "${listWeatherModel[position].main.temp} ˚"
+        holder.tvTemp.text = "${listWeatherModel[position].main.temp.roundToInt()}˚"
 
         when(listWeatherModel[position].weather[0].main){
             "Thunderstorm" -> {

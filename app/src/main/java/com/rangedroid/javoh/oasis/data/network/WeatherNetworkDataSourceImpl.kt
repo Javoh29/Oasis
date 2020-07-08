@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.rangedroid.javoh.oasis.data.network.response.CurrentWeatherResponse
+import com.rangedroid.javoh.oasis.data.network.response.FutureWeatherResponse
 import com.rangedroid.javoh.oasis.utils.NoConnectivityException
 
 class WeatherNetworkDataSourceImpl(
@@ -11,17 +12,28 @@ class WeatherNetworkDataSourceImpl(
 ) : WeatherNetworkDataSource {
 
     private val _downloadedCurrentWeather = MutableLiveData<CurrentWeatherResponse>()
+    private val _downloadedFutureWeather = MutableLiveData<FutureWeatherResponse>()
     override val downloadedCurrentWeather: LiveData<CurrentWeatherResponse>
         get() = _downloadedCurrentWeather
+    override val downloadedFutureWeather: LiveData<FutureWeatherResponse>
+        get() = _downloadedFutureWeather
 
     override suspend fun fetchCurrentWeather(id: String) {
         try {
             val fetchedCurrentWeather = weatherApiService
-                .getCurrentWeather(id)
+                .getCurrentWeatherAsync(id)
                 .await()
             _downloadedCurrentWeather.postValue(fetchedCurrentWeather)
+        } catch (e: NoConnectivityException) {
+            Log.e("Connectivity", "No internet connection.", e)
         }
-        catch (e: NoConnectivityException) {
+    }
+
+    override suspend fun fetchFutureWeather(lat: String, lon: String) {
+        try {
+            val fetchedFutureWeather = weatherApiService.getForecastWeatherAsync(lat = lat, lon = lon).await()
+            _downloadedFutureWeather.postValue(fetchedFutureWeather)
+        }catch (e: NoConnectivityException) {
             Log.e("Connectivity", "No internet connection.", e)
         }
     }

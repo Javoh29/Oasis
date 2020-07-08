@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_ccy"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
+
+    <RelativeLayout
+        android:id="@+id/relativ_item_ccy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/img_flag"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="25dp"/>
+
+        <TextView
+            android:id="@+id/tv_ccy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="35dp"
+            android:textColor="@color/colorMenuText"
+            android:fontFamily="@font/work_sans_medium"
+            android:layout_toEndOf="@id/img_flag"/>
+
+        <TextView
+            android:id="@+id/tv_ccynm"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorMenuText"
+            android:fontFamily="@font/work_sans_medium"
+            android:layout_toEndOf="@id/img_flag"
+            android:layout_below="@id/tv_ccy"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/tv_ccy_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:textColor="@color/colorMenuText"
+            android:fontFamily="@font/rubik_medium"
+            android:layout_toEndOf="@+id/tv_ccynm"
+            android:singleLine="true"
+            android:layout_marginStart="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1.5dp"
+            android:layout_toEndOf="@+id/tv_ccynm"
+            android:layout_marginTop="62dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/colorMenuText"/>
+
+        <View
+            android:id="@+id/view_item_ccy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

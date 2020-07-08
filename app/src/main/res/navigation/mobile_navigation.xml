@@ -102,4 +102,9 @@
             app:argType="integer" />
     </fragment>
 
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.WeatherFragment"
+        android:label="WeatherFragment" />
+
 </navigation>

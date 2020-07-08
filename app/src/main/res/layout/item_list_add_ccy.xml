@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_add_ccy"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    app:cardBackgroundColor="@color/colorPanel"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
+
+    <RelativeLayout
+        android:id="@+id/relativ_item_add_ccy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_add_flag"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/uzb"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="25dp"/>
+
+        <TextView
+            android:id="@+id/tv_add_ccy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="27dp"
+            android:textColor="@color/colorMenuText"
+            android:fontFamily="@font/work_sans_medium"
+            android:layout_toEndOf="@id/img_add_flag"/>
+
+        <TextView
+            android:id="@+id/tv_add_ccynm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorMenuText"
+            android:fontFamily="@font/work_sans_medium"
+            android:layout_toEndOf="@id/img_add_flag"
+            android:layout_toStartOf="@+id/radio_btn_add"
+            android:layout_below="@id/tv_add_ccy"/>
+
+        <RadioButton
+            android:id="@+id/radio_btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:buttonTint="@color/colorMenuText"/>
+
+        <View
+            android:id="@+id/view_item_add_ccy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

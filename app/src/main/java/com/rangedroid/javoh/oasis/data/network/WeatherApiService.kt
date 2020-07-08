@@ -15,7 +15,7 @@ interface WeatherApiService {
 
     //https://api.openweathermap.org/data/2.5/weather?id=1512569&units=metric&appid=3fa04f32646d64af46d2bb9e83f625b0
     @GET("weather")
-    fun getCurrentWeather(
+    fun getCurrentWeatherAsync(
         @Query("id") id: String,
         @Query("units") units: String = "metric",
         @Query("appid") appId: String = "3fa04f32646d64af46d2bb9e83f625b0"
@@ -23,7 +23,7 @@ interface WeatherApiService {
 
     //https://api.openweathermap.org/data/2.5/forecast?lat=&lon=&units=metric&appid=3fa04f32646d64af46d2bb9e83f625b0
     @GET("forecast")
-    fun getForecastWeather(
+    fun getForecastWeatherAsync(
         @Query("lat") lat: String,
         @Query("lon") lon: String,
         @Query("units") units: String = "metric",

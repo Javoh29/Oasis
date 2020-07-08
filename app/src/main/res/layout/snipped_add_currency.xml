@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/frame_add_ccy"
+    android:visibility="gone"
+    android:clickable="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?color_home_view"
+    android:focusable="true">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/colorPanel"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_seartch"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/todo" />
+
+        <EditText
+            android:id="@+id/edit_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="18sp"
+            android:hint="@string/text_search"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textColorHint="#8D004686"
+            android:textColor="@color/colorMenuText"
+            android:fontFamily="@font/work_sans_medium"
+            android:inputType="text"
+            android:background="@null"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="20dp"
+            android:importantForAutofill="no" />
+
+        <View
+            android:id="@+id/view_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_ccy_add"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="65dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="50dp"
+        app:cardBackgroundColor="@color/colorMenuText"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="5dp"
+        app:cardMaxElevation="5dp">
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorPanel"
+            android:text="@string/btn_text_back"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:fontFamily="@font/work_sans_medium"/>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
