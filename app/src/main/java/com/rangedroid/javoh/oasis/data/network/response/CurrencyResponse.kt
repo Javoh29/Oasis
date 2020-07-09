@@ -1,11 +1,19 @@
 package com.rangedroid.javoh.oasis.data.network.response
 
+import androidx.annotation.Keep
 import com.rangedroid.javoh.oasis.data.db.entity.currency.CurrencyModel
-import org.simpleframework.xml.Element
+import org.simpleframework.xml.Attribute
+import org.simpleframework.xml.ElementList
 import org.simpleframework.xml.Root
 
-@Root(name = "CBU_Curr")
-data class CurrencyResponse(
-    @Element(name = "CcyNtry")
-    var model: List<CurrencyModel>
+@Keep
+@Root(name = "CBU_Curr", strict = false)
+data class CurrencyResponse constructor(
+    @field:ElementList(
+        name = "CcyNtry",
+        inline = true
+    )
+    var ccyNtry: List<CurrencyModel>,
+    @field:Attribute(name = "name")
+    var name: String
 )

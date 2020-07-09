@@ -59,7 +59,7 @@ class OasisRepositoryImpl(
         }
         currencyNetworkDataSource.apply {
             downloadedCurrency.observeForever {
-                it.model.forEach {list ->
+                it.ccyNtry.forEach {list ->
                     persistFetchedCurrency(list)
                 }
             }

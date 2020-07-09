@@ -106,5 +106,10 @@
         android:id="@+id/weatherFragment"
         android:name="com.rangedroid.javoh.oasis.ui.fragments.WeatherFragment"
         android:label="WeatherFragment" />
+    <fragment
+        android:id="@+id/currencyFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.CurrencyFragment"
+        android:label="currency_fragment"
+        tools:layout="@layout/currency_fragment" />
 
 </navigation>
