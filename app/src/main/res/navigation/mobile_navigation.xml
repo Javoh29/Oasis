@@ -111,5 +111,10 @@
         android:name="com.rangedroid.javoh.oasis.ui.fragments.CurrencyFragment"
         android:label="currency_fragment"
         tools:layout="@layout/currency_fragment" />
+    <fragment
+        android:id="@+id/holidaysFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.HolidaysFragment"
+        android:label="holidays_fragment"
+        tools:layout="@layout/holidays_fragment" />
 
 </navigation>

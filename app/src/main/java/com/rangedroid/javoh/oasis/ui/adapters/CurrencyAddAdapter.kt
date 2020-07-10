@@ -19,16 +19,13 @@ class CurrencyAddAdapter constructor():
 
     private var listCcyModel: ArrayList<CurrencyModel> = ArrayList()
     private var listCcyModelReserv: ArrayList<CurrencyModel> = ArrayList()
-    private var listFlags: ArrayList<Int> = ArrayList()
-    private var listFlagsReserv: ArrayList<Int> = ArrayList()
-    private var search: Boolean = false
+    private var listFlags: HashMap<String, Int> = HashMap()
     private var language: Boolean = false
 
-    constructor(listCcyModel: List<CurrencyModel>, listFlags: List<Int>, language: Boolean) : this() {
+    constructor(listCcyModel: List<CurrencyModel>, listFlags: HashMap<String, Int>, language: Boolean) : this() {
         this.listCcyModel = ArrayList(listCcyModel)
         listCcyModelReserv = ArrayList(listCcyModel)
-        this.listFlags = ArrayList(listFlags)
-        listFlagsReserv = ArrayList(listFlags)
+        this.listFlags = HashMap(listFlags)
         this.language = language
     }
 
@@ -51,38 +48,32 @@ class CurrencyAddAdapter constructor():
     }
 
     override fun getItemCount(): Int {
-        return listFlags.size
+        return listCcyModel.size
     }
 
     override fun onBindViewHolder(holder: CurrencyAddHolder, position: Int) {
-        if (listCcyModel[position].id < 72) {
-            if (search){
-                holder.imgFlag.setImageResource(listFlags[position])
-            }else{
-                holder.imgFlag.setImageResource(listFlags[listCcyModel[position].id] )
-            }
-            holder.tvCcy.text = listCcyModel[position].ccy
-            if (language){
-                holder.tvCcyNm.text = listCcyModel[position].ccyNmEN
-            }else {
-                holder.tvCcyNm.text = listCcyModel[position].ccyNmRU
-            }
-            if (listMainId.contains(listCcyModel[position].id)){
-                holder.radioBtn.isChecked = true
-                holder.relative.setBackgroundResource(R.color.colorPanelMainCcy)
-            }else{
-                holder.radioBtn.isChecked = false
-                holder.relative.setBackgroundResource(R.color.colorPanel)
-            }
+        holder.imgFlag.setImageResource(listFlags[listCcyModel[position].ccy]!!)
+        holder.tvCcy.text = listCcyModel[position].ccy
+        if (language){
+            holder.tvCcyNm.text = listCcyModel[position].ccyNmEN
+        }else {
+            holder.tvCcyNm.text = listCcyModel[position].ccyNmRU
+        }
+        if (listMainId.contains(listCcyModel[position].ccy)){
+            holder.radioBtn.isChecked = true
+            holder.relative.setBackgroundResource(R.color.colorPanelMainCcy)
+        }else{
+            holder.radioBtn.isChecked = false
+            holder.relative.setBackgroundResource(R.color.colorPanel)
         }
 
         holder.viewItem.setOnClickListener {
             if (holder.radioBtn.isChecked){
                 holder.radioBtn.isChecked = false
-                listMainId.remove(listCcyModel[position].id)
+                listMainId.remove(listCcyModel[position].ccy)
                 holder.relative.setBackgroundResource(R.color.colorPanel)
             }else{
-                listMainId.add(listCcyModel[position].id)
+                listMainId.add(listCcyModel[position].ccy)
                 holder.radioBtn.isChecked = true
                 holder.relative.setBackgroundResource(R.color.colorPanelMainCcy)
             }
@@ -92,13 +83,10 @@ class CurrencyAddAdapter constructor():
     @SuppressLint("DefaultLocale")
     fun searchText(text: String){
         listCcyModel.clear()
-        listFlags.clear()
         if (text.isEmpty()){
             listCcyModel = ArrayList(listCcyModelReserv)
-            listFlags = ArrayList(listFlagsReserv)
-            search = false
         }else{
-            for (i in 0 until listFlagsReserv.size){
+            for (i in 0 until listCcyModelReserv.size){
                 if (listCcyModelReserv[i].ccy.toLowerCase().contains(text.toLowerCase()) || listCcyModelReserv[i].ccyNmEN.toLowerCase().contains(text.toLowerCase()) || listCcyModelReserv[i].ccyNmRU.toLowerCase().contains(text.toLowerCase())){
                     val model = CurrencyModel(
                         id = listCcyModelReserv[i].id,
@@ -110,11 +98,10 @@ class CurrencyAddAdapter constructor():
                         nominal = listCcyModelReserv[i].nominal,
                         ccyNmUZC = listCcyModelReserv[i].ccyNmUZC,
                         ccyNmUZ = listCcyModelReserv[i].ccyNmUZ,
-                        ccyMnrUnts = listCcyModelReserv[i].ccyMnrUnts
+                        ccyMnrUnts = listCcyModelReserv[i].ccyMnrUnts,
+                        ccyId = listCcyModelReserv[i].ccyId
                     )
                     listCcyModel.add(model)
-                    listFlags.add(listFlagsReserv[listCcyModelReserv[i].id])
-                    search = true
                 }
             }
         }

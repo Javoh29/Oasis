@@ -15,6 +15,7 @@ import com.rangedroid.javoh.oasis.data.db.entity.firebase.*
 import com.rangedroid.javoh.oasis.data.db.unitlocalized.UnitSpecificCitiesInfoModel
 import com.rangedroid.javoh.oasis.data.network.CurrencyNetworkDataSource
 import com.rangedroid.javoh.oasis.data.network.WeatherNetworkDataSource
+import com.rangedroid.javoh.oasis.data.network.response.CurrencyResponse
 import com.rangedroid.javoh.oasis.data.network.response.CurrentWeatherResponse
 import com.rangedroid.javoh.oasis.data.provider.UnitProvider
 import com.rangedroid.javoh.oasis.utils.UnitLoadFirebase
@@ -54,14 +55,16 @@ class OasisRepositoryImpl(
     init {
         weatherNetworkDataSource.apply {
             downloadedCurrentWeather.observeForever {
+                currentWeatherDao.deleteClimate()
+                currentWeatherDao.deleteWeather()
+                currentWeatherDao.deleteWind()
                 persistFetchedCurrentWeather(it)
             }
         }
         currencyNetworkDataSource.apply {
             downloadedCurrency.observeForever {
-                it.ccyNtry.forEach {list ->
-                    persistFetchedCurrency(list)
-                }
+                currencyDao.deleteCurrency()
+                persistFetchedCurrency(it)
             }
         }
     }
@@ -738,7 +741,9 @@ class OasisRepositoryImpl(
     }
 
     override suspend fun getCurrency(): LiveData<List<CurrencyModel>> {
-        fetchCurrency()
+        if (unitProvider.isOnline()) {
+            fetchCurrency()
+        }
         return withContext(Dispatchers.IO) {
             return@withContext currencyDao.getCurrency()
         }
@@ -752,21 +757,19 @@ class OasisRepositoryImpl(
         }
     }
 
-    private fun persistFetchedCurrency(currencyModel: CurrencyModel){
+    private fun persistFetchedCurrency(currencyResponse: CurrencyResponse){
         GlobalScope.launch(Dispatchers.IO) {
-            currencyDao.upsertCurrency(currencyModel)
+            currencyResponse.ccyNtry.forEach {
+                currencyDao.upsertCurrency(it)
+            }
         }
     }
 
     private suspend fun fetchCurrency() {
-        currencyDao.deleteCurrency()
         currencyNetworkDataSource.fetchCurrency()
     }
 
     private suspend fun fetchCurrentWeather() {
-        currentWeatherDao.deleteClimate()
-        currentWeatherDao.deleteWeather()
-        currentWeatherDao.deleteWind()
         val idList: List<String> = arrayListOf(
             "1512569",
             "1216265",

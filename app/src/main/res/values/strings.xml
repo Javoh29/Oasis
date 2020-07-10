@@ -144,5 +144,6 @@
     <string name="todo" translatable="false">TODO</string>
     <string name="uzs" translatable="false">UZS</string>
     <string name="btn_text_retry">Retry</string>
+    <string name="def_text" translatable="false" />
 
 </resources>

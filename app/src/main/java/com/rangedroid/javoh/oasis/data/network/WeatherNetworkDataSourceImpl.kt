@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.rangedroid.javoh.oasis.data.network.response.CurrentWeatherResponse
 import com.rangedroid.javoh.oasis.data.network.response.FutureWeatherResponse
 import com.rangedroid.javoh.oasis.utils.NoConnectivityException
+import java.net.UnknownHostException
 
 class WeatherNetworkDataSourceImpl(
     private val weatherApiService: WeatherApiService
@@ -26,6 +27,8 @@ class WeatherNetworkDataSourceImpl(
             _downloadedCurrentWeather.postValue(fetchedCurrentWeather)
         } catch (e: NoConnectivityException) {
             Log.e("Connectivity", "No internet connection.", e)
+        }catch (e: UnknownHostException){
+            Log.e("BAG", "unknown exception. ", e)
         }
     }
 
@@ -35,6 +38,8 @@ class WeatherNetworkDataSourceImpl(
             _downloadedFutureWeather.postValue(fetchedFutureWeather)
         }catch (e: NoConnectivityException) {
             Log.e("Connectivity", "No internet connection.", e)
+        }catch (e: UnknownHostException){
+            Log.e("BAG", "unknown exception. ", e)
         }
     }
 }

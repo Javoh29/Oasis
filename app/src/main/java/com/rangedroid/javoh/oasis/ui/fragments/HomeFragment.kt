@@ -63,37 +63,37 @@ class HomeFragment : ScopedFragment(R.layout.home_fragment), KodeinAware, Action
         val currentWeather = viewModel.weather().value.await()
         val currentWind = viewModel.wind().value.await()
 
-        currentClimate.observe(viewLifecycleOwner, Observer{
-            if (it == null || it.size < 12) return@Observer
+        currentClimate.observeForever {
+            if (it == null || it.size < 12) return@observeForever
             weatherModel.climate = ArrayList(it)
-        })
+        }
 
-        currentWeather.observe(viewLifecycleOwner, Observer{
-            if (it == null || it.size < 12) return@Observer
+        currentWeather.observeForever {
+            if (it == null || it.size < 12) return@observeForever
             weatherModel.weather = ArrayList(it)
-        })
+        }
 
-        currentWind.observe(viewLifecycleOwner, Observer{
-            if (it == null || it.size < 12) return@Observer
+        currentWind.observeForever {
+            if (it == null || it.size < 12) return@observeForever
             if (it.isNotEmpty()) {
                 weatherModel.wind = ArrayList(it)
                 bindUI()
             }else errorConnection()
-        })
+        }
 
     }
 
     private fun bindUI() = launch{
         val citiesInfo = viewModel.citiesInfoModels().value.await()
-        citiesInfo.observe(viewLifecycleOwner, Observer {
-            if (it == null || it.isEmpty()) return@Observer
+        citiesInfo.observeForever{
+            if (it == null || it.isEmpty()) return@observeForever
             homeAdapter = HomeFragmentAdapter(listInfoModel = it, listCurrentWeather = weatherModel, unitProvider = viewModel.mUnitProvider)
             recyclerView?.layoutManager = LinearLayoutManager(context)
             recyclerView?.adapter = homeAdapter
             pullToRefresh?.finishRefresh()
             spinKit?.visibility = View.GONE
             spinKit?.clearAnimation()
-        })
+        }
     }
 
     override fun loadBaseHome() {

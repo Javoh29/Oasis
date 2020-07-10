@@ -7,13 +7,16 @@ import org.simpleframework.xml.ElementList
 import org.simpleframework.xml.Root
 
 @Keep
-@Root(name = "CBU_Curr", strict = false)
-data class CurrencyResponse constructor(
+@Root(name = "CBU_Curr")
+data class CurrencyResponse @JvmOverloads constructor(
     @field:ElementList(
+        required = false,
         name = "CcyNtry",
-        inline = true
+        inline = true,
+        entry = "CcyNtry",
+        empty = true
     )
-    var ccyNtry: List<CurrencyModel>,
+    var ccyNtry: List<CurrencyModel> = ArrayList(),
     @field:Attribute(name = "name")
-    var name: String
+    var name: String = ""
 )

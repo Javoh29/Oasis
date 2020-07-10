@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="105dp"
+    android:layout_margin="10dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/img_oct1"/>
+
+    <Button
+        android:id="@+id/btn_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="22sp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:background="#4000E0FF"
+        android:fontFamily="@font/work_sans_medium"
+        android:text="@string/text_oct1"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/ic_calendar_w"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/tv_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/raleway_bold"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/text_oct"/>
+
+</androidx.cardview.widget.CardView>

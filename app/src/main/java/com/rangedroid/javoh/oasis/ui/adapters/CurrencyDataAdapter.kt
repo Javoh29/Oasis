@@ -21,7 +21,7 @@ import java.text.DecimalFormat
 @Suppress("DEPRECATION")
 class CurrencyDataAdapter (
     private var listCurrencyModel: List<CurrencyModel>,
-    private var listFlags: List<Int>, private val language: Boolean,
+    private var listFlags: HashMap<String, Int>, private val language: Boolean,
     private var editCcy: EditText, private var relativeMain: RelativeLayout
 ): RecyclerView.Adapter<CurrencyDataAdapter.CurrencyViewHolder>() {
     var summ: Double = 0.0
@@ -54,42 +54,45 @@ class CurrencyDataAdapter (
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
         holder.relative.setBackgroundResource(R.color.colorPanelCcy)
         if (clicItem){
-            for (i in listCurrencyModel.indices){
-                if (listCurrencyModel[i].id == listMainId[position]){
-                    if (pos == position){
-                        holder.imgFlag.setImageResource(listFlags[listMainId[position]])
-                        holder.tvCcy.text = listCurrencyModel[i].ccy
-                        if (language){
-                            holder.tvCcyNm.text = listCurrencyModel[i].ccyNmEN
-                        }else {
-                            holder.tvCcyNm.text = listCurrencyModel[i].ccyNmRU
+            if (pos == position){
+                listCurrencyModel.forEach {
+                    if (it.ccy == listMainId[position]) {
+                        holder.imgFlag.setImageResource(listFlags[listMainId[position]]!!)
+                        holder.tvCcy.text = it.ccy
+                        if (language) {
+                            holder.tvCcyNm.text = it.ccyNmEN
+                        } else {
+                            holder.tvCcyNm.text = it.ccyNmRU
                         }
                         holder.tvRate.text = df.format(summ)
                         holder.relative.setBackgroundResource(R.color.colorPanelMainCcy)
-                    }else{
-                        holder.imgFlag.setImageResource(listFlags[listMainId[position]])
-                        holder.tvCcy.text = listCurrencyModel[i].ccy
+                    }
+                }
+            }else{
+                listCurrencyModel.forEach {
+                    if (it.ccy == listMainId[position]){
+                        holder.imgFlag.setImageResource(listFlags[listMainId[position]]!!)
+                        holder.tvCcy.text = it.ccy
                         if (language){
-                            holder.tvCcyNm.text = listCurrencyModel[i].ccyNmEN
+                            holder.tvCcyNm.text = it.ccyNmEN
                         }else {
-                            holder.tvCcyNm.text = listCurrencyModel[i].ccyNmRU
+                            holder.tvCcyNm.text = it.ccyNmRU
                         }
-                        holder.tvRate.text = df.format((ccyRate / listCurrencyModel[i].rate) * summ)
-
+                        holder.tvRate.text = df.format((ccyRate / it.rate.toDouble()) * summ)
                     }
                 }
             }
         }else{
-            for (i in listCurrencyModel.indices){
-                if (listCurrencyModel[i].id == listMainId[position]){
-                    holder.imgFlag.setImageResource(listFlags[listMainId[position]])
-                    holder.tvCcy.text = listCurrencyModel[i].ccy
+            listCurrencyModel.forEach {
+                if (it.ccy == listMainId[position]){
+                    holder.imgFlag.setImageResource(listFlags[listMainId[position]]!!)
+                    holder.tvCcy.text = it.ccy
                     if (language){
-                        holder.tvCcyNm.text = listCurrencyModel[i].ccyNmEN
+                        holder.tvCcyNm.text = it.ccyNmEN
                     }else {
-                        holder.tvCcyNm.text = listCurrencyModel[i].ccyNmRU
+                        holder.tvCcyNm.text = it.ccyNmRU
                     }
-                    holder.tvRate.text = df.format(summ / listCurrencyModel[i].rate)
+                    holder.tvRate.text = df.format(summ / it.rate.toDouble())
                 }
             }
         }
@@ -100,9 +103,9 @@ class CurrencyDataAdapter (
             holder.relative.setBackgroundResource(R.color.colorPanelMainCcy)
             relativeMain.setBackgroundResource(R.color.colorPanelCcy)
             clicItem = true
-            for (i in listCurrencyModel.indices){
-                if (listCurrencyModel[i].id == listMainId[position]){
-                    ccyRate = listCurrencyModel[i].rate
+            listCurrencyModel.forEach { list ->
+                if (list.ccy == listMainId[position]){
+                    ccyRate = list.rate.toDouble()
                 }
             }
             pos = position
