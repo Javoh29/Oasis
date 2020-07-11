@@ -38,7 +38,7 @@ import org.kodein.di.android.kodein
 class HomeActivity: AppCompatActivity(), KodeinAware {
 
     override val kodein by kodein()
-    private val unitProvider: UnitProvider by instance<UnitProvider>()
+    val unitProvider: UnitProvider by instance<UnitProvider>()
     private val fusedLocationProviderClient: FusedLocationProviderClient by instance<FusedLocationProviderClient>()
     private val isTheme: Boolean
         get() =  unitProvider.getUnitTheme() == UnitTheme.DAY

@@ -55,15 +55,11 @@ class OasisRepositoryImpl(
     init {
         weatherNetworkDataSource.apply {
             downloadedCurrentWeather.observeForever {
-                currentWeatherDao.deleteClimate()
-                currentWeatherDao.deleteWeather()
-                currentWeatherDao.deleteWind()
                 persistFetchedCurrentWeather(it)
             }
         }
         currencyNetworkDataSource.apply {
             downloadedCurrency.observeForever {
-                currencyDao.deleteCurrency()
                 persistFetchedCurrency(it)
             }
         }
@@ -766,10 +762,14 @@ class OasisRepositoryImpl(
     }
 
     private suspend fun fetchCurrency() {
+        currencyDao.deleteCurrency()
         currencyNetworkDataSource.fetchCurrency()
     }
 
     private suspend fun fetchCurrentWeather() {
+        currentWeatherDao.deleteClimate()
+        currentWeatherDao.deleteWeather()
+        currentWeatherDao.deleteWind()
         val idList: List<String> = arrayListOf(
             "1512569",
             "1216265",

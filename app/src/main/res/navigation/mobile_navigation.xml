@@ -116,5 +116,26 @@
         android:name="com.rangedroid.javoh.oasis.ui.fragments.HolidaysFragment"
         android:label="holidays_fragment"
         tools:layout="@layout/holidays_fragment" />
+    <fragment
+        android:id="@+id/forTouristsFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.ForTouristsFragment"
+        android:label="for_tourists_fragment"
+        tools:layout="@layout/for_tourists_fragment" />
+    <fragment
+        android:id="@+id/phbookFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.PhrasebookFragment"
+        android:label="PhrasebookFragment" >
+        <action
+            android:id="@+id/action_phbookFragment_to_phbookListFragment"
+            app:destination="@id/phbookListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phbookListFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.PhrasebookListFragment"
+        android:label="PhrasebookListFragment" >
+        <argument
+            android:name="index"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>
