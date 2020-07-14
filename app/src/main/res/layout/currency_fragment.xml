@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?color_home_view"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.CurrencyFragment">
+
+    <FrameLayout
+        android:id="@+id/frame_ccy_nav"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_currency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_marginTop="20dp"/>
+
+                <EditText
+                    android:id="@+id/edit_ccy_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_below="@+id/recycler_currency"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:inputType="numberDecimal"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_ccy_any"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_below="@+id/recycler_currency"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+
+                    <RelativeLayout
+                        android:id="@+id/relativ_main_ccy"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/img_flag_any"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/falg_uzs"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="25dp"
+                            android:contentDescription="@string/todo" />
+
+                        <TextView
+                            android:id="@+id/tv_ccy_any"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:text="@string/uzs"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="35dp"
+                            android:textColor="@color/colorMenuText"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:layout_toEndOf="@id/img_flag_any"/>
+
+                        <TextView
+                            android:id="@+id/tv_ccynm_any"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_uzb_sum"
+                            android:textSize="10sp"
+                            android:layout_marginStart="10dp"
+                            android:textColor="@color/colorMenuText"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:layout_toEndOf="@id/img_flag_any"
+                            android:layout_below="@id/tv_ccy_any"
+                            tools:ignore="SmallSp" />
+
+                        <TextView
+                            android:id="@+id/tv_ccy_rate_any"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="0"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorMenuText"
+                            android:fontFamily="@font/rubik_medium"
+                            android:layout_toEndOf="@+id/tv_ccynm_any"
+                            android:textAlignment="textEnd"
+                            android:singleLine="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_alignParentEnd="true"
+                            android:paddingEnd="20dp"
+                            tools:ignore="RtlSymmetry" />
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="1.5dp"
+                            android:layout_toEndOf="@+id/tv_ccynm_any"
+                            android:layout_marginTop="62dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="20dp"
+                            android:background="@color/colorMenuText"/>
+
+                        <View
+                            android:id="@+id/view_main_ccy"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/card_ccy_any"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView
+                        android:id="@+id/tv_add_ccy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_add_ccy"
+                        android:layout_gravity="center"
+                        android:textSize="26sp"
+                        android:textColor="?tv_flowing_color"
+                        android:fontFamily="@font/work_sans_medium"/>
+
+                    <View
+                        android:id="@+id/view_ccy_add_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="?line_ccy"/>
+
+                </FrameLayout>
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <include layout="@layout/snipped_add_currency"/>
+
+    </FrameLayout>
+
+    <include layout="@layout/snipped_err_connection"/>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spin_kit_ccy"
+        android:layout_gravity="center"
+        style="@style/SpinKitView.Large.CubeGrid"/>
+
+</FrameLayout>
