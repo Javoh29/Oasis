@@ -137,5 +137,15 @@
             android:name="index"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/uzb360Fragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.Uzb360Fragment"
+        android:label="Uzb360Fragment" />
+    <fragment
+        android:id="@+id/otherAppsFragment"
+        android:name="com.rangedroid.javoh.oasis.ui.fragments.OtherAppsFragment"
+        android:label="other_apps_fragment"
+        tools:layout="@layout/other_apps_fragment" />
+
 
 </navigation>

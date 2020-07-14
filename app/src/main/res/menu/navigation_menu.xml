@@ -76,7 +76,7 @@
         android:icon="@drawable/ic_menu_language"/>
 
     <item
-        android:id="@+id/otherAppActivity"
+        android:id="@+id/otherAppsFragment"
         android:title="@string/menu_text_other_app"
         android:icon="@drawable/ic_menu_other_apps"/>
 

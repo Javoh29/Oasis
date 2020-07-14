@@ -6,6 +6,7 @@ import com.rangedroid.javoh.oasis.data.db.entity.current.Climate
 import com.rangedroid.javoh.oasis.data.db.entity.current.Weather
 import com.rangedroid.javoh.oasis.data.db.entity.current.Wind
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesMoreInfo
+import com.rangedroid.javoh.oasis.data.db.entity.firebase.MoreAppsModel
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.ToursCategoryModelEn
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.ToursCategoryModelRu
 import com.rangedroid.javoh.oasis.data.db.unitlocalized.UnitSpecificCitiesInfoModel
@@ -19,4 +20,5 @@ interface OasisRepository {
     suspend fun getToursEn():LiveData<out List<ToursCategoryModelEn>>
     suspend fun getToursRu():LiveData<out List<ToursCategoryModelRu>>
     suspend fun getCurrency():LiveData<List<CurrencyModel>>
+    suspend fun getMoreApp():LiveData<List<MoreAppsModel>>
 }

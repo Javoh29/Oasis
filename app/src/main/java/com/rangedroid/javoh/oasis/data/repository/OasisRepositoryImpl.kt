@@ -351,37 +351,25 @@ class OasisRepositoryImpl(
         dataSnapshot.child(moreApps).child(appsRu).children.forEach {
             val model = MoreAppsModel(
                 app_info_ru = dataSnapshot.child(moreApps).child(appsRu)
-                    .child(it.key.toString()).getValue(
-                        MoreAppsModel::class.java
-                    )!!.app_info_ru,
+                    .child(it.key.toString()).child("app_info").value.toString(),
                 app_info_en = dataSnapshot.child(moreApps).child(appsEn)
-                    .child(it.key.toString()).getValue(
-                        MoreAppsModel::class.java
-                    )!!.app_info_en,
+                    .child(it.key.toString()).child("app_info").value.toString(),
                 photo_app = dataSnapshot.child(moreApps).child(appsEn)
                     .child(it.key.toString()).getValue(
                         MoreAppsModel::class.java
                     )!!.photo_app,
                 app_name_ru = dataSnapshot.child(moreApps).child(appsRu)
-                    .child(it.key.toString()).getValue(
-                        MoreAppsModel::class.java
-                    )!!.app_name_ru,
+                    .child(it.key.toString()).child("app_name").value.toString(),
                 app_name_en = dataSnapshot.child(moreApps).child(appsRu)
-                    .child(it.key.toString()).getValue(
-                        MoreAppsModel::class.java
-                    )!!.app_name_en,
+                    .child(it.key.toString()).child("app_name").value.toString(),
                 app_url = dataSnapshot.child(moreApps).child(appsRu)
                     .child(it.key.toString()).getValue(
                         MoreAppsModel::class.java
                     )!!.app_url,
-                btn_text_en = dataSnapshot.child(moreApps).child(appsRu)
-                    .child(it.key.toString()).getValue(
-                        MoreAppsModel::class.java
-                    )!!.btn_text_en,
+                btn_text_en = dataSnapshot.child(moreApps).child(appsEn)
+                    .child(it.key.toString()).child("btn_text").value.toString(),
                 btn_text_ru = dataSnapshot.child(moreApps).child(appsRu)
-                    .child(it.key.toString()).getValue(
-                        MoreAppsModel::class.java
-                    )!!.btn_text_ru
+                    .child(it.key.toString()).child("btn_text").value.toString()
             )
             GlobalScope.launch(Dispatchers.IO) {
                 firebaseDao.upsertMoreApps(model)
@@ -742,6 +730,12 @@ class OasisRepositoryImpl(
         }
         return withContext(Dispatchers.IO) {
             return@withContext currencyDao.getCurrency()
+        }
+    }
+
+    override suspend fun getMoreApp(): LiveData<List<MoreAppsModel>> {
+        return withContext(Dispatchers.IO) {
+            return@withContext firebaseDao.getMoreApps()
         }
     }
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/apps_fon"
+    tools:context=".ui.fragments.OtherAppsFragment">
+
+    <TextView
+        android:id="@+id/tv_more_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:text="@string/text_more_apps"
+        android:textSize="18sp"
+        android:fontFamily="@font/roboto_light"
+        android:textColor="@color/colorBlack"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/apps_viewpager"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+        android:id="@+id/spring_dots_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="30dp"
+        app:dampingRatio="0.1"
+        app:dotsColor="@color/colorMoreAppsInstall"
+        app:dotsStrokeColor="@color/colorMoreAppsInstall"
+        app:dotsSize="16dp"
+        app:dotsSpacing="6dp"
+        app:dotsStrokeWidth="2dp"
+        app:stiffness="450" />
+
+</FrameLayout>

@@ -52,5 +52,6 @@ class OasisApplication: Application(), KodeinAware {
             bind() from provider { ToursViewModelFactory(instance(), instance()) }
             bind() from provider { WeatherViewModelFactory(instance(), instance()) }
             bind() from provider { CurrencyViewModelFactory(instance(), instance()) }
+            bind() from provider { OtherAppsViewModelFactory(instance(), instance()) }
         }
 }
