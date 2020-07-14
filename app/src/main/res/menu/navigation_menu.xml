@@ -71,11 +71,6 @@
         android:icon="@drawable/ic_menu_uzb_360"/>
 
     <item
-        android:id="@+id/languageDialog"
-        android:title="@string/menu_text_language"
-        android:icon="@drawable/ic_menu_language"/>
-
-    <item
         android:id="@+id/otherAppsFragment"
         android:title="@string/menu_text_other_app"
         android:icon="@drawable/ic_menu_other_apps"/>

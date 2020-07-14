@@ -18,7 +18,6 @@ import com.rangedroid.javoh.oasis.data.network.WeatherNetworkDataSource
 import com.rangedroid.javoh.oasis.data.network.response.CurrencyResponse
 import com.rangedroid.javoh.oasis.data.network.response.CurrentWeatherResponse
 import com.rangedroid.javoh.oasis.data.provider.UnitProvider
-import com.rangedroid.javoh.oasis.utils.UnitLoadFirebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -94,18 +93,16 @@ class OasisRepositoryImpl(
                 }
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.child("update_base").value.toString() == "yes") {
-                        firebaseDao.deleteCitiesInfoEn()
-                        firebaseDao.deleteCitiesInfoRu()
-                        firebaseDao.deleteCitiesMoreInfo()
-                        firebaseDao.deleteToursEn()
-                        firebaseDao.deleteToursRu()
-                        firebaseDao.deleteMoreApps()
-                        loadFirebase(dataSnapshot)
-                    } else {
-                        if (unitProvider.getUnitLoadFirebase() == UnitLoadFirebase.NOT) {
-                            loadFirebase(dataSnapshot)
+                    if (dataSnapshot.child("update_base").value.toString() != unitProvider.getUnitLoadFirebase()) {
+                        GlobalScope.launch(Dispatchers.IO) {
+                            firebaseDao.deleteCitiesInfoEn()
+                            firebaseDao.deleteCitiesInfoRu()
+                            firebaseDao.deleteCitiesMoreInfo()
+                            firebaseDao.deleteToursEn()
+                            firebaseDao.deleteToursRu()
+                            firebaseDao.deleteMoreApps()
                         }
+                        loadFirebase(dataSnapshot)
                     }
                 }
 
@@ -693,7 +690,7 @@ class OasisRepositoryImpl(
             }
         }
 
-        unitProvider.setUnitLoadFirebase(true)
+        unitProvider.setUnitLoadFirebase(dataSnapshot.child("update_base").value.toString())
     }
 
     override suspend fun getCitiesInfo(): LiveData<out List<UnitSpecificCitiesInfoModel>> {
@@ -744,6 +741,7 @@ class OasisRepositoryImpl(
             currentWeatherDao.upsertClimate(fetchedWeather.climate)
             currentWeatherDao.upsertWeather(fetchedWeather.weather[0])
             currentWeatherDao.upsertWind(fetchedWeather.wind)
+            unitProvider.setWeather(true)
         }
     }
 
@@ -752,6 +750,7 @@ class OasisRepositoryImpl(
             currencyResponse.ccyNtry.forEach {
                 currencyDao.upsertCurrency(it)
             }
+            unitProvider.setCurrencyLoaded(true)
         }
     }
 

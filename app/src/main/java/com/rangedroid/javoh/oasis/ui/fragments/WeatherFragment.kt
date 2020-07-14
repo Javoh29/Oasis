@@ -5,6 +5,7 @@ package com.rangedroid.javoh.oasis.ui.fragments
 import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,6 +17,8 @@ import com.rangedroid.javoh.oasis.data.network.response.FutureWeatherResponse
 import com.rangedroid.javoh.oasis.ui.adapters.WeatherAdapter
 import com.rangedroid.javoh.oasis.ui.base.ScopedFragment
 import com.rangedroid.javoh.oasis.utils.UnitTheme
+import kotlinx.android.synthetic.main.currency_fragment.*
+import kotlinx.android.synthetic.main.snipped_err_connection.*
 import kotlinx.android.synthetic.main.weather_fragment.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
@@ -62,7 +65,10 @@ class WeatherFragment : ScopedFragment(R.layout.weather_fragment), KodeinAware {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(WeatherViewModel::class.java)
-        loadData()
+
+        if (viewModel.mUnitProvider.isOnline())
+            loadData()
+        else errConnect()
     }
 
     private fun loadData() = launch {
@@ -243,5 +249,24 @@ class WeatherFragment : ScopedFragment(R.layout.weather_fragment), KodeinAware {
         recyclerView.adapter = WeatherAdapter(model.list)
         frame_weather.visibility = View.VISIBLE
         spinKit.visibility = View.GONE
+    }
+
+    private fun errConnect(){
+        relative_err_connect.visibility = View.VISIBLE
+        frame_weather.visibility = View.GONE
+        spinKit.visibility = View.GONE
+        btn_retry.setOnClickListener {
+            relative_err_connect.visibility = View.GONE
+            spinKit.visibility = View.VISIBLE
+            Handler().postDelayed(Runnable {
+                if (viewModel.mUnitProvider.isOnline()) {
+                    relative_err_connect.visibility = View.GONE
+                    loadData()
+                }else{
+                    spinKit.visibility = View.GONE
+                    relative_err_connect.visibility = View.VISIBLE
+                }
+            }, 1000)
+        }
     }
 }

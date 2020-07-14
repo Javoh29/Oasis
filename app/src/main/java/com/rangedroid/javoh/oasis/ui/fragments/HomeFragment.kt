@@ -2,11 +2,9 @@ package com.rangedroid.javoh.oasis.ui.fragments
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -50,12 +48,15 @@ class HomeFragment : ScopedFragment(R.layout.home_fragment), KodeinAware, Action
         pullToRefresh = view.findViewById<SmartRefreshLayout>(R.id.pull_to_refresh)
         recyclerView = view.findViewById(R.id.list_view_home)
         spinKit = view.findViewById(R.id.spin_kit_home)
+        spinKit?.visibility = View.VISIBLE
         if (viewModel.mUnitProvider.getUnitTheme() == UnitTheme.DAY)
             pullToRefresh?.setRefreshHeader(TaurusHeader(context))
         else pullToRefresh?.setRefreshHeader(PhoenixHeader(context))
         (activity as HomeActivity).updateAdapter(this@HomeFragment)
 
-        onLoadBase()
+        if (viewModel.mUnitProvider.isOnline() || viewModel.mUnitProvider.getWeather())
+            onLoadBase()
+        else errorConnection()
     }
 
     private fun onLoadBase() = launch {
@@ -75,10 +76,8 @@ class HomeFragment : ScopedFragment(R.layout.home_fragment), KodeinAware, Action
 
         currentWind.observeForever {
             if (it == null || it.size < 12) return@observeForever
-            if (it.isNotEmpty()) {
-                weatherModel.wind = ArrayList(it)
-                bindUI()
-            }else errorConnection()
+            weatherModel.wind = ArrayList(it)
+            bindUI()
         }
 
     }
@@ -97,6 +96,7 @@ class HomeFragment : ScopedFragment(R.layout.home_fragment), KodeinAware, Action
     }
 
     override fun loadBaseHome() {
+        spinKit?.visibility = View.VISIBLE
         onLoadBase()
     }
 
@@ -105,6 +105,7 @@ class HomeFragment : ScopedFragment(R.layout.home_fragment), KodeinAware, Action
     }
 
     private fun errorConnection(){
+        spinKit?.visibility = View.GONE
         if (OasisApplication.isStartActivity) {
             Handler().postDelayed({
                 setStatusBarColor(R.color.colorConnectTwo)

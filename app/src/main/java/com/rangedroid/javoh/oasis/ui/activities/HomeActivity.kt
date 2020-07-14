@@ -13,7 +13,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -22,11 +21,7 @@ import com.google.android.gms.location.LocationResult
 import com.rangedroid.javoh.oasis.OasisApplication.Companion.isStartActivity
 import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.provider.UnitProvider
-import com.rangedroid.javoh.oasis.ui.adapters.HomeFragmentAdapter
-import com.rangedroid.javoh.oasis.utils.ActionHomeFun
-import com.rangedroid.javoh.oasis.utils.LifecycleBoundLocationManager
-import com.rangedroid.javoh.oasis.utils.UnitPanorama
-import com.rangedroid.javoh.oasis.utils.UnitTheme
+import com.rangedroid.javoh.oasis.utils.*
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.error_connect.*
 import kotlinx.android.synthetic.main.snipped_app_bar_home.*
@@ -211,11 +206,13 @@ class HomeActivity: AppCompatActivity(), KodeinAware {
     }
 
     private fun requestLocationPermission() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-            1
-        )
+        Handler().postDelayed(Runnable {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+                1
+            )
+        }, 4500)
     }
 
     override fun onSupportNavigateUp(): Boolean {

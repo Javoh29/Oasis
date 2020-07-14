@@ -1,6 +1,5 @@
 package com.rangedroid.javoh.oasis.data.provider
 
-import com.rangedroid.javoh.oasis.utils.UnitLoadFirebase
 import com.rangedroid.javoh.oasis.utils.UnitPanorama
 import com.rangedroid.javoh.oasis.utils.UnitTheme
 
@@ -14,9 +13,9 @@ interface UnitProvider {
 
     fun setUnitPanorama(isPanorama: Boolean)
 
-    fun getUnitLoadFirebase(): UnitLoadFirebase
+    fun getUnitLoadFirebase(): String
 
-    fun setUnitLoadFirebase(isLoad: Boolean)
+    fun setUnitLoadFirebase(updateVer: String)
 
     fun initImageLoader()
 
@@ -33,6 +32,14 @@ interface UnitProvider {
     fun setLocation(location: String)
 
     fun getIsLiked(ds: String): Boolean
+
+    fun setCurrencyLoaded(isLoaded: Boolean)
+
+    fun getCurrencyLoaded(): Boolean
+
+    fun setWeather(isLoaded: Boolean)
+
+    fun getWeather(): Boolean
 
 
 }

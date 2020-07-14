@@ -47,7 +47,6 @@ class OtherAppsFragment : ScopedFragment(R.layout.other_apps_fragment), KodeinAw
     private fun bindUI() = launch{
         viewModel.listModel().value.await().observe(viewLifecycleOwner, Observer{
             if (it == null) return@Observer
-            Log.d("BAG", it.toString())
             appsAdapter = AppsAdapter(it, viewModel.mUnitProvider.isLocale())
             mViewPager.adapter = appsAdapter
             springDotsIndicator.setViewPager(mViewPager)

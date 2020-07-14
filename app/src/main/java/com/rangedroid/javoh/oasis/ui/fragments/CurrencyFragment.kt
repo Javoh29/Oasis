@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -80,7 +81,11 @@ class CurrencyFragment : ScopedFragment(R.layout.currency_fragment), KodeinAware
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CurrencyViewModel::class.java)
-        loadData()
+        if (viewModel.mUnitProvider.isOnline() && viewModel.mUnitProvider.getCurrencyLoaded()) {
+            loadData()
+        }else{
+            errConnect()
+        }
     }
 
     private fun loadData() = launch{

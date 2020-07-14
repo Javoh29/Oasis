@@ -145,5 +145,7 @@
     <string name="uzs" translatable="false">UZS</string>
     <string name="btn_text_retry">Retry</string>
     <string name="def_text" translatable="false" />
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
