@@ -1,12 +1,15 @@
 package com.rangedroid.javoh.oasis.ui.fragments
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.Handler
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.RelativeLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +20,8 @@ import com.rangedroid.javoh.oasis.ui.activities.HomeActivity
 import com.rangedroid.javoh.oasis.ui.adapters.*
 import com.rangedroid.javoh.oasis.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.single_fragment.*
+import kotlinx.android.synthetic.main.snipped_err_connection.*
+import kotlinx.android.synthetic.main.snipped_err_location.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -32,6 +37,7 @@ class SingleFragment : ScopedFragment(R.layout.single_fragment), KodeinAware {
     private var spinKit: SpinKitView? = null
     private var editSearch: EditText? = null
     private var label: String = ""
+    private lateinit var relativeLayout: RelativeLayout
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,6 +46,7 @@ class SingleFragment : ScopedFragment(R.layout.single_fragment), KodeinAware {
         spinKit = view.findViewById(R.id.single_spin_kit)
         editSearch = view.findViewById(R.id.single_edit_search)
         recyclerView?.layoutManager = LinearLayoutManager(context)
+        relativeLayout = view.findViewById(R.id.relative_err_location)
 
         editSearch?.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -77,7 +84,9 @@ class SingleFragment : ScopedFragment(R.layout.single_fragment), KodeinAware {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SingleViewModel::class.java)
-        loadData()
+        if (viewModel.mUnitProvider.getLocation().length > 5)
+            loadData()
+        else errLocation()
     }
 
     private fun loadData() = launch {
@@ -195,5 +204,26 @@ class SingleFragment : ScopedFragment(R.layout.single_fragment), KodeinAware {
 
         single_frame.visibility = View.VISIBLE
         spinKit?.visibility = View.GONE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (viewModel.mUnitProvider.getLocation().length > 5)
+            loadData()
+        else errLocation()
+    }
+
+    private fun errLocation(){
+        relativeLayout.visibility = View.VISIBLE
+        recyclerView?.visibility =View.GONE
+        spinKit?.visibility =View.GONE
+        btn_retry_location.setOnClickListener {
+            relativeLayout.visibility = View.GONE
+            spinKit?.visibility = View.VISIBLE
+            startActivity(
+                Intent(
+                    Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            )
+        }
     }
 }

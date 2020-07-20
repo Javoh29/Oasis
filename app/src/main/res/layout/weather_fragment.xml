@@ -193,6 +193,7 @@
     </FrameLayout>
 
     <include layout="@layout/snipped_err_connection"/>
+    <include layout="@layout/snipped_err_location"/>
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:layout_width="wrap_content"

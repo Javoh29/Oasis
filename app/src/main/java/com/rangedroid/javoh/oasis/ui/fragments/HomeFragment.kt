@@ -17,12 +17,12 @@ import com.rangedroid.javoh.oasis.ui.adapters.HomeFragmentAdapter
 import com.rangedroid.javoh.oasis.ui.base.ScopedFragment
 import com.rangedroid.javoh.oasis.utils.ActionHomeFun
 import com.rangedroid.javoh.oasis.utils.UnitTheme
+import com.rangedroid.javoh.oasis.utils.lazyDeferred
 import com.scwang.smartrefresh.header.PhoenixHeader
 import com.scwang.smartrefresh.header.TaurusHeader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.error_connect.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -54,32 +54,31 @@ class HomeFragment : ScopedFragment(R.layout.home_fragment), KodeinAware, Action
         else pullToRefresh?.setRefreshHeader(PhoenixHeader(context))
         (activity as HomeActivity).updateAdapter(this@HomeFragment)
 
-        if (viewModel.mUnitProvider.isOnline() || viewModel.mUnitProvider.getWeather())
-            onLoadBase()
-        else errorConnection()
+        onLoadBase()
     }
 
     private fun onLoadBase() = launch {
-        val currentClimate = viewModel.climate().value.await()
-        val currentWeather = viewModel.weather().value.await()
-        val currentWind = viewModel.wind().value.await()
+        if (lazyDeferred { viewModel.mUnitProvider.isOnline() }.value.await() || viewModel.mUnitProvider.getWeather()){
+            val currentClimate = viewModel.climate().value.await()
+            val currentWeather = viewModel.weather().value.await()
+            val currentWind = viewModel.wind().value.await()
 
-        currentClimate.observeForever {
-            if (it == null || it.size < 12) return@observeForever
-            weatherModel.climate = ArrayList(it)
-        }
+            currentClimate.observeForever {
+                if (it == null || it.size < 12) return@observeForever
+                weatherModel.climate = ArrayList(it)
+            }
 
-        currentWeather.observeForever {
-            if (it == null || it.size < 12) return@observeForever
-            weatherModel.weather = ArrayList(it)
-        }
+            currentWeather.observeForever {
+                if (it == null || it.size < 12) return@observeForever
+                weatherModel.weather = ArrayList(it)
+            }
 
-        currentWind.observeForever {
-            if (it == null || it.size < 12) return@observeForever
-            weatherModel.wind = ArrayList(it)
-            bindUI()
-        }
-
+            currentWind.observeForever {
+                if (it == null || it.size < 12) return@observeForever
+                weatherModel.wind = ArrayList(it)
+                bindUI()
+            }
+        } else errorConnection()
     }
 
     private fun bindUI() = launch{

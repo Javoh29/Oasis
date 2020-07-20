@@ -6,7 +6,7 @@
     android:id="@+id/relative_err_connect"
     android:visibility="gone">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:src="@drawable/ic_error_connection"
@@ -25,7 +25,7 @@
         android:text="@string/no_con_text"/>
 
     <Button
-        android:id="@+id/btn_retry"
+        android:id="@+id/btn_retry_connection"
         android:layout_width="150dp"
         android:layout_height="45dp"
         android:background="@drawable/btn_retry"

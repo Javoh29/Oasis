@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -22,6 +21,7 @@ import com.rangedroid.javoh.oasis.data.db.entity.currency.CurrencyModel
 import com.rangedroid.javoh.oasis.ui.adapters.CurrencyAddAdapter
 import com.rangedroid.javoh.oasis.ui.adapters.CurrencyDataAdapter
 import com.rangedroid.javoh.oasis.ui.base.ScopedFragment
+import com.rangedroid.javoh.oasis.utils.lazyDeferred
 import kotlinx.android.synthetic.main.currency_fragment.*
 import kotlinx.android.synthetic.main.snipped_err_connection.*
 import kotlinx.coroutines.launch
@@ -81,21 +81,22 @@ class CurrencyFragment : ScopedFragment(R.layout.currency_fragment), KodeinAware
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CurrencyViewModel::class.java)
-        if (viewModel.mUnitProvider.isOnline() && viewModel.mUnitProvider.getCurrencyLoaded()) {
-            loadData()
-        }else{
-            errConnect()
-        }
+        loadData()
     }
 
     private fun loadData() = launch{
-        viewModel.model().value.await().observe(viewLifecycleOwner, Observer {
-            if (it == null) return@Observer
-            if (it.isNotEmpty()){
-                if (it.size > 73)
-                    bindUI(it, viewModel.listFlags.value!!)
-            }
-        })
+        if (lazyDeferred { viewModel.mUnitProvider.isOnline() }.value.await() || viewModel.mUnitProvider.getCurrencyLoaded()) {
+            viewModel.model().value.await().observe(viewLifecycleOwner, Observer {
+                if (it == null) return@Observer
+                if (it.isNotEmpty()){
+                    if (it.size > 73)
+                        bindUI(it, viewModel.listFlags.value!!)
+                }
+            })
+        }else{
+            errConnect()
+        }
+
     }
 
     private fun bindUI(list: List<CurrencyModel>, listFlags: HashMap<String, Int>){
@@ -177,17 +178,11 @@ class CurrencyFragment : ScopedFragment(R.layout.currency_fragment), KodeinAware
         relative_err_connect.visibility = View.VISIBLE
         frame_ccy_nav.visibility = View.GONE
         spinKit.visibility = View.GONE
-        btn_retry.setOnClickListener {
+        btn_retry_connection.setOnClickListener {
             relative_err_connect.visibility = View.GONE
             spin_kit_ccy.visibility = View.VISIBLE
             Handler().postDelayed(Runnable {
-                if (viewModel.mUnitProvider.isOnline()) {
-                    relative_err_connect.visibility = View.GONE
-                    loadData()
-                }else{
-                    spin_kit_ccy.visibility = View.GONE
-                    relative_err_connect.visibility = View.VISIBLE
-                }
+                loadData()
             }, 1000)
         }
     }

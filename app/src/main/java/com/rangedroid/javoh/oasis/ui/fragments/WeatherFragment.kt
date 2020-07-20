@@ -3,11 +3,15 @@
 package com.rangedroid.javoh.oasis.ui.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,8 +21,9 @@ import com.rangedroid.javoh.oasis.data.network.response.FutureWeatherResponse
 import com.rangedroid.javoh.oasis.ui.adapters.WeatherAdapter
 import com.rangedroid.javoh.oasis.ui.base.ScopedFragment
 import com.rangedroid.javoh.oasis.utils.UnitTheme
-import kotlinx.android.synthetic.main.currency_fragment.*
+import com.rangedroid.javoh.oasis.utils.lazyDeferred
 import kotlinx.android.synthetic.main.snipped_err_connection.*
+import kotlinx.android.synthetic.main.snipped_err_location.*
 import kotlinx.android.synthetic.main.weather_fragment.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
@@ -43,6 +48,7 @@ class WeatherFragment : ScopedFragment(R.layout.weather_fragment), KodeinAware {
     private lateinit var tvPressure: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var spinKit: SpinKitView
+    private lateinit var relativeLayout: RelativeLayout
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,6 +64,7 @@ class WeatherFragment : ScopedFragment(R.layout.weather_fragment), KodeinAware {
         tvPressure = view.findViewById(R.id.tv_pressure_nav)
         recyclerView = view.findViewById(R.id.recycler_weather)
         spinKit = view.findViewById(R.id.spin_kit_weather)
+        relativeLayout = view.findViewById(R.id.relative_err_location)
 
         recyclerView.layoutManager = LinearLayoutManager(context)
     }
@@ -65,19 +72,20 @@ class WeatherFragment : ScopedFragment(R.layout.weather_fragment), KodeinAware {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(WeatherViewModel::class.java)
-
-        if (viewModel.mUnitProvider.isOnline())
-            loadData()
-        else errConnect()
+        loadData()
     }
 
     private fun loadData() = launch {
-        val lat: String = viewModel.mUnitProvider.getLocation().split("/")[0]
-        val lon: String = viewModel.mUnitProvider.getLocation().split("/")[1]
-        viewModel.model(lat, lon).value.await().downloadedFutureWeather.observeForever {
-            if (it == null) return@observeForever
-            bindUI(it)
-        }
+        if (viewModel.mUnitProvider.getLocation().length > 5) {
+            if (lazyDeferred { viewModel.mUnitProvider.isOnline() }.value.await()) {
+                val lat: String = viewModel.mUnitProvider.getLocation().split("/")[0]
+                val lon: String = viewModel.mUnitProvider.getLocation().split("/")[1]
+                viewModel.model(lat, lon).value.await().downloadedFutureWeather.observeForever {
+                    if (it == null) return@observeForever
+                    bindUI(it)
+                }
+            } else errConnect()
+        }else errLocation()
     }
 
     @SuppressLint("SetTextI18n")
@@ -255,18 +263,31 @@ class WeatherFragment : ScopedFragment(R.layout.weather_fragment), KodeinAware {
         relative_err_connect.visibility = View.VISIBLE
         frame_weather.visibility = View.GONE
         spinKit.visibility = View.GONE
-        btn_retry.setOnClickListener {
+        btn_retry_connection.setOnClickListener {
             relative_err_connect.visibility = View.GONE
             spinKit.visibility = View.VISIBLE
             Handler().postDelayed(Runnable {
-                if (viewModel.mUnitProvider.isOnline()) {
-                    relative_err_connect.visibility = View.GONE
-                    loadData()
-                }else{
-                    spinKit.visibility = View.GONE
-                    relative_err_connect.visibility = View.VISIBLE
-                }
+                loadData()
             }, 1000)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
+
+    private fun errLocation(){
+        relativeLayout.visibility = View.VISIBLE
+        recyclerView.visibility =View.GONE
+        spinKit.visibility =View.GONE
+        btn_retry_location.setOnClickListener {
+            relativeLayout.visibility = View.GONE
+            spinKit.visibility = View.VISIBLE
+            startActivity(
+                Intent(
+                    Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            )
         }
     }
 }

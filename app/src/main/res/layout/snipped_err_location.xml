@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/relative_err_location"
+    android:visibility="gone">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:src="@drawable/ic_location"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/tv_err_connect"
+        android:layout_marginBottom="50dp"/>
+
+    <TextView
+        android:id="@+id/tv_err_connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@color/colorConnectTwo"
+        android:fontFamily="@font/raleway_semibold"
+        android:layout_centerInParent="true"
+        android:text="@string/turn_on_gps"/>
+
+    <Button
+        android:id="@+id/btn_retry_location"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:background="@drawable/btn_retry"
+        android:text="@string/turn_on"
+        android:textColor="@color/colorWhite"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_err_connect"
+        android:layout_marginTop="30dp"/>
+
+</RelativeLayout>

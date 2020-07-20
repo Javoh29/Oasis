@@ -115,6 +115,8 @@
     <string name="text_cities">Города:</string>
     <string name="text_season">Сезон:</string>
     <string name="btn_text_retry">Еще раз</string>
+    <string name="turn_on">Включит</string>
+    <string name="turn_on_gps">GPS отключен</string>
 
     <!--    Holidays-->
     <string name="text_yan1">Новый год</string>

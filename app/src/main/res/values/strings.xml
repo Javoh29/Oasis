@@ -4,7 +4,7 @@
     <!--SharadPreferences strings-->
     <string name="bool_panorama" translatable="false">PANORAMA</string>
     <string name="bool_change" translatable="false">THEME</string>
-    <string name="text_about_ver" translatable="false">Oasis ver 1.9</string>
+    <string name="text_about_ver" translatable="false">Oasis ver 10</string>
     <string name="text_uzb" translatable="false">Uzbekistan</string>
 
     <string name="open" translatable="false">Open</string>
@@ -146,6 +146,7 @@
     <string name="btn_text_retry">Retry</string>
     <string name="def_text" translatable="false" />
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="turn_on">Turn on</string>
+    <string name="turn_on_gps">GPS is off</string>
 
 </resources>

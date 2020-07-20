@@ -4,14 +4,15 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.MutableLiveData
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.rangedroid.javoh.oasis.utils.UnitPanorama
 import com.rangedroid.javoh.oasis.utils.UnitTheme
 import com.rangedroid.javoh.oasis.utils.UniversalImageLoader
-import java.io.IOException
+import kotlinx.coroutines.*
+import java.net.InetAddress
+import java.net.UnknownHostException
+import kotlin.coroutines.CoroutineContext
 
 const val UNIT_THEME = "UNIT_THEME"
 const val UNIT_PANORAMA = "UNIT_PANORAMA"
@@ -21,10 +22,9 @@ const val UNIT_CURRENCY = "UNIT_CURRENCY"
 const val UNIT_WEATHER = "UNIT_WEATHER"
 
 @Suppress("DEPRECATION")
-class UnitProviderImpl(context: Context) : PreferenceProvider(context), UnitProvider {
+class UnitProviderImpl(context: Context) : PreferenceProvider(context), UnitProvider{
 
     private val mContext: Context = context
-    private var isConnect: MutableLiveData<Boolean> = MutableLiveData()
 
     override fun getUnitTheme(): UnitTheme {
         return UnitTheme.valueOf(preferences.getString(UNIT_THEME, UnitTheme.DAY.name)!!)
@@ -69,17 +69,9 @@ class UnitProviderImpl(context: Context) : PreferenceProvider(context), UnitProv
                 as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
         return if (networkInfo != null && networkInfo.isConnected) {
-            try {
-                val command = "ping -c 1 google.com"
-                return Runtime.getRuntime().exec(command).waitFor() == 0
-            } catch (e: IOException ) {
-                Log.d("BAG", "IOException")
-                false
-            } catch (e: InterruptedException){
-                Log.d("BAG", "InterruptedException")
-                false
-            } catch (e: NullPointerException){
-                Log.d("BAG", "InterruptedException")
+            return try {
+                !InetAddress.getByName("google.com").equals("")
+            }catch (e: UnknownHostException){
                 false
             }
         }else false

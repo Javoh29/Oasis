@@ -26,6 +26,8 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.error_connect.*
 import kotlinx.android.synthetic.main.snipped_app_bar_home.*
 import kotlinx.android.synthetic.main.splash_screen.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -119,35 +121,37 @@ class HomeActivity: AppCompatActivity(), KodeinAware {
         }
 
         btn_try_age.setOnClickListener {
-            if (unitProvider.isOnline()){
-                Log.e("BAG", "connect")
-                line_no_connection.visibility = View.GONE
-                progress_bar_connect.visibility = View.VISIBLE
-                Handler().postDelayed({
-                    kotlin.run {
-                        if (isTheme){
-                            setStatusBarColor(R.color.colorPrimaryDark)
-                        }else {
-                            setStatusBarColor(R.color.colorPrimaryNight)
+            GlobalScope.launch {
+                if (unitProvider.isOnline()){
+                    Log.e("BAG", "connect")
+                    line_no_connection.visibility = View.GONE
+                    progress_bar_connect.visibility = View.VISIBLE
+                    Handler().postDelayed({
+                        kotlin.run {
+                            if (isTheme){
+                                setStatusBarColor(R.color.colorPrimaryDark)
+                            }else {
+                                setStatusBarColor(R.color.colorPrimaryNight)
+                            }
+                            frame_connect.visibility = View.GONE
+                            line_no_connection.visibility = View.VISIBLE
+                            progress_bar_connect.visibility = View.GONE
+                            isStartActivity = true
+                            actionHomeFun?.loadBaseHome()
                         }
-                        frame_connect.visibility = View.GONE
-                        line_no_connection.visibility = View.VISIBLE
-                        progress_bar_connect.visibility = View.GONE
-                        isStartActivity = true
-                        actionHomeFun?.loadBaseHome()
-                    }
-                }, 3000)
-            }else{
-                Log.e("BAG", "not connect")
-                line_no_connection.visibility = View.GONE
-                progress_bar_connect.visibility = View.VISIBLE
-                Handler().postDelayed({
-                    kotlin.run {
-                        frame_connect.visibility = View.VISIBLE
-                        line_no_connection.visibility = View.VISIBLE
-                        progress_bar_connect.visibility = View.GONE
-                    }
-                }, 3000)
+                    }, 3000)
+                }else{
+                    Log.e("BAG", "not connect")
+                    line_no_connection.visibility = View.GONE
+                    progress_bar_connect.visibility = View.VISIBLE
+                    Handler().postDelayed({
+                        kotlin.run {
+                            frame_connect.visibility = View.VISIBLE
+                            line_no_connection.visibility = View.VISIBLE
+                            progress_bar_connect.visibility = View.GONE
+                        }
+                    }, 3000)
+                }
             }
         }
     }
@@ -209,7 +213,7 @@ class HomeActivity: AppCompatActivity(), KodeinAware {
         Handler().postDelayed(Runnable {
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.CALL_PHONE),
                 1
             )
         }, 4500)

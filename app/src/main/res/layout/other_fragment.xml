@@ -19,4 +19,6 @@
         android:layout_gravity="center"
         style="@style/SpinKitView.Large.CubeGrid"/>
 
+    <include layout="@layout/snipped_err_location"/>
+
 </FrameLayout>

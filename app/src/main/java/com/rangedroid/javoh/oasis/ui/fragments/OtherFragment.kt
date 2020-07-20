@@ -1,8 +1,12 @@
 package com.rangedroid.javoh.oasis.ui.fragments
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.Handler
+import android.provider.Settings
 import android.view.View
+import android.widget.RelativeLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +15,8 @@ import com.rangedroid.javoh.oasis.R
 import com.rangedroid.javoh.oasis.data.db.entity.firebase.CitiesMoreInfo
 import com.rangedroid.javoh.oasis.ui.adapters.*
 import com.rangedroid.javoh.oasis.ui.base.ScopedFragment
+import kotlinx.android.synthetic.main.snipped_err_connection.*
+import kotlinx.android.synthetic.main.snipped_err_location.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -24,11 +30,13 @@ class OtherFragment : ScopedFragment(R.layout.other_fragment), KodeinAware {
 
     private var recyclerView: RecyclerView? = null
     private var spinKit: SpinKitView? = null
+    private lateinit var relativeLayout: RelativeLayout
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.other_recycler_view)
+        relativeLayout = view.findViewById(R.id.relative_err_location)
         spinKit = view.findViewById(R.id.other_spin_kit)
     }
 
@@ -36,14 +44,16 @@ class OtherFragment : ScopedFragment(R.layout.other_fragment), KodeinAware {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(OtherViewModel::class.java)
 
-        loadData(
-            dataSnap = arguments?.let {
-                OtherFragmentArgs.fromBundle(it)
-            }!!.snapData,
-            index = arguments?.let {
-                OtherFragmentArgs.fromBundle(it)
-            }!!.index
-        )
+        if (viewModel.mUnitProvider.getLocation().length > 5) {
+            loadData(
+                dataSnap = arguments?.let {
+                    OtherFragmentArgs.fromBundle(it)
+                }!!.snapData,
+                index = arguments?.let {
+                    OtherFragmentArgs.fromBundle(it)
+                }!!.index
+            )
+        }else errLocation()
     }
 
     private fun loadData(dataSnap: String, index: Int) = launch {
@@ -129,6 +139,34 @@ class OtherFragment : ScopedFragment(R.layout.other_fragment), KodeinAware {
         }
         spinKit?.visibility = View.GONE
         recyclerView?.visibility = View.VISIBLE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (viewModel.mUnitProvider.getLocation().length > 5) {
+            loadData(
+                dataSnap = arguments?.let {
+                    OtherFragmentArgs.fromBundle(it)
+                }!!.snapData,
+                index = arguments?.let {
+                    OtherFragmentArgs.fromBundle(it)
+                }!!.index
+            )
+        }else errLocation()
+    }
+
+    private fun errLocation(){
+        relativeLayout.visibility = View.VISIBLE
+        recyclerView?.visibility =View.GONE
+        spinKit?.visibility =View.GONE
+        btn_retry_location.setOnClickListener {
+            relativeLayout.visibility = View.GONE
+            spinKit?.visibility = View.VISIBLE
+            startActivity(
+                Intent(
+                    Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            )
+        }
     }
 
 }
